@@ -21,7 +21,9 @@
       <header class="text-center">
     <!-- Myparish Logo -->
     <a href="">
-       
+        <div class="col-md-12" style="height: 170px; width: 100%;  
+             background: url('<?php echo base_url(); ?>html_attrib/parishStyles/images/header.png') no-repeat center center; background-size:35% 100%; position:relative; left:40 px;">
+        </div>
     </a>
 
   <!--=========End of Logo=======-->

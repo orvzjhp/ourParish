@@ -15,8 +15,8 @@ function ListSwitcher()
 	this.lists["0"] = base_url + "index.php/parish_site/listOne";
 	this.lists["1"] = base_url + "index.php/parish_site/listTwo";
 	this.lists["2"] = base_url + "index.php/parish_site/listThree";
-	
-	
+
+
 	this.init = function()
 	{
 		document.getElementById("init").innerHTML = '<meta name ="viewport" content = "width=device-width, initial-scale = 1.0">'+
@@ -87,7 +87,7 @@ function ListSwitcher()
 			var a = document.createElement("a");
 			a.setAttribute("data-toggle", "tab");
 			a.setAttribute("href", "#");
-		
+
 			a.onclick = closure(ref, count);
 
 			a.appendChild(document.createTextNode("" + (count+1)));
@@ -117,7 +117,7 @@ function ViewSwitcher()
 {
 	this.views = {};
 	var base_url = $("#init").data('base_url');
-	
+
 	this.views["thumbnails"] = base_url + "index.php/parish_site/thumbnails";
 	this.views["list"] = base_url + "index.php/parish_site/lists";
 
@@ -156,7 +156,7 @@ function ViewSwitcher()
 			a.setAttribute("data-toggle", "tab");
 			a.setAttribute("href", "#");
 			a.setAttribute("id", "" + count);
-		
+
 			a.onclick = closure(ref, key);
 
 			a.appendChild(document.createTextNode(key));
@@ -196,7 +196,7 @@ function MonthSwitcher()
 		document.getElementById("init").innerHTML = '<meta name ="viewport" content = "width=device-width, initial-scale = 1.0">'+
 		'<link href = "'+ base_url +'html_attrib/parishStyles/css/bootstrap_2.css" rel = "stylesheet">'+
 		'<link href = "'+ base_url +'html_attrib/parishStyles/css/styles.css" rel = "stylesheet">'+
-		'<link rel="stylesheet" type="text/css" href="'+ base_url +'html_attrib/parishStyles/css/parishStyle.css" media="screen"></style>';
+		'<link rel="stylesheet" type="text/css" href="'+ base_url +'html_attrib/parishStyles/css/newStyle.css" media="screen"></style>';
 	};
 
 	var closure = function(ref, key)
@@ -209,7 +209,7 @@ function MonthSwitcher()
 
 	this.getMonths = function()
 	{
-		var ul = document.getElementById('months');
+		var ul = document.getElementById('months')
 		var ref = this;
 
 		var count = 0;
@@ -223,7 +223,7 @@ function MonthSwitcher()
 			a.setAttribute("data-toggle", "tab");
 			a.setAttribute("href", "#");
 			a.setAttribute("id", "" + count);
-		
+
 			a.onclick = closure(ref, key);
 
 			a.appendChild(document.createTextNode(key));
@@ -281,7 +281,7 @@ function ServiceSwitcher()
 			a.setAttribute("data-toggle", "tab");
 			a.setAttribute("href", "#");
 			a.setAttribute("id", "" + count);
-		
+
 			a.onclick = closure(ref, key);
 
 			a.appendChild(document.createTextNode(key));

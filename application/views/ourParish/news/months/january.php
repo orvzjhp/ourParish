@@ -152,7 +152,6 @@
 	   <!--End of Modal2-->
 		<br>
 		<br>
-		<hr>	
 	</div>
 	
 <!-- Latest compiled and minified JavaScript -->

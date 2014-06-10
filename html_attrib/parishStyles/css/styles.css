@@ -22,7 +22,7 @@ border-radius: 8px;
 position: relative;
 overflow: hidden;
 background: url(../images/block-6.jpg) center bottom no-repeat #ffffff;
-padding-bottom: 0px;
+padding-bottom: 51px;
 }
 
 .design_bar 
@@ -60,10 +60,13 @@ font-weight: 500;
 line-height: 1.1;
 color: inherit;
 font-style: italic;
-text-align: center;
+text-align: left;
 
 }
 
+h5, .h5{
+    text-align:center;
+}
 
 .introduction_container
 {
@@ -120,6 +123,7 @@ padding-top: 22px;
 {
 position: relative;
 }
+
 footer 
 { 
     width:950px; 
@@ -131,6 +135,7 @@ footer
     color:#a3a2a2; 
     background:url(../images/footer-bg.png) center 0 no-repeat; 
     left:35px;
+    margin-top: 0px;
 } 
 footer p, footer p a.link 
 {

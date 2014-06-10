@@ -3,8 +3,9 @@
 <head>
   <title>OurParish</title>
       <meta name ="viewport" content = "width=device-width, initial-scale = 1.0">
-      <link href = "../css/bootstrap_2.css" rel = "stylesheet">
-      <link rel="stylesheet" type="text/css" href="monthStyle.css" media="screen"></style>
+      <link href = "<?php echo base_url(); ?>html_attrib/parishStyles/css/bootstrap_2.css" rel = "stylesheet">
+      <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>html_attrib/parishStyles/month/monthStyle.css" media="screen"></style>
+</head>
 </head>
 <body>
 
@@ -15,7 +16,7 @@
     <div class="col-lg-12"></div>
       <li><h3 class="h2-line">December 1</h3></li>
       <div class="col-8 col-lg-9">
-        <div style="float:left" padding:"10px" width:"50px"><img src="favicon.png"/></div>
+        <div style="float:left" padding:"10px" width:"50px"><img src="<?php echo base_url(); ?>html_attrib/parishStyles/month/favicon.png"/></div>
           <h4>Anouncements here! Anouncements here! Anouncements here!</h4>
           <a class="ca-more" href="#" data-toggle="modal" data-target="#myModal1">more...</a>
         </div>
@@ -49,7 +50,7 @@
         <li><h3 class="h2-line">December 2 2014</h3></li>
         
           <div class="col-8 col-lg-9">
-            <div style="float:left" padding:"10px" width:"50px"><img src="favicon.png"/></div>
+            <div style="float:left" padding:"10px" width:"50px"><img src="<?php echo base_url(); ?>html_attrib/parishStyles/month/favicon.png"/></div>
              <h4>Anouncements here! Anouncements here!. Anouncements here! Anouncements here!</h4>
                   <a class="ca-more" href="#" data-toggle="modal" data-target="#myModal2">more...</a>
             </div>
@@ -85,7 +86,7 @@
         <li><h3 class="h2-line">December 10 2014</h3></li>
     
         <div class="col-8 col-lg-9">
-          <div style="float:left" padding:"10px" width:"50px"><img src="favicon.png"/></div>
+          <div style="float:left" padding:"10px" width:"50px"><img src="<?php echo base_url(); ?>html_attrib/parishStyles/month/favicon.png"/></div>
             <h4>Anouncements here! Anouncements here!. Anouncements here! Anouncements here!</h4>
                   <a class="ca-more" href="#" data-toggle="modal" data-target="#myModal3">more...</a>
           </div>
@@ -118,7 +119,7 @@
 
         <li><h3 class="h2-line">December 11</h3></li>
         <div class="col-8 col-lg-9">
-          <div style="float:left" padding:"10px" width:"50px"><img src="favicon.png"/></div>
+          <div style="float:left" padding:"10px" width:"50px"><img src="<?php echo base_url(); ?>html_attrib/parishStyles/month/favicon.png"/></div>
           <h4>Anouncements here! Anouncements here!. Anouncements here! Anouncements here!</h4>
           <a class="ca-more" href="#" data-toggle="modal" data-target="#myModal4">more...</a>
         </div>
@@ -151,7 +152,7 @@
 
         <li><h3 class="h2-line">December 22</h3></li>
           <div class="col-8 col-lg-9">
-            <div style="float:left" padding:"10px" width:"50px"><img src="favicon.png"/></div>
+            <div style="float:left" padding:"10px" width:"50px"><img src="<?php echo base_url(); ?>html_attrib/parishStyles/month/favicon.png"/></div>
             <h4>Anouncements here! Anouncements here!. Anouncements here! Anouncements here!</h4>
             <a class="ca-more" href="#" data-toggle="modal" data-target="#myModal5">more...</a>
           </div>
@@ -185,7 +186,7 @@
 
         <li><h3 class="h2-line">December 30</h3></li>
           <div class="col-8 col-lg-9">
-            <div style="float:left" padding:"10px" width:"50px"><img src="favicon.png"/></div>
+            <div style="float:left" padding:"10px" width:"50px"><img src="<?php echo base_url(); ?>html_attrib/parishStyles/month/favicon.png"/></div>
             <h4>Anouncements here! Anouncements here!. Anouncements here! Anouncements here!</h4>
             <a class="ca-more" href="#" data-toggle="modal" data-target="#myModal6">more...</a>
           </div>
@@ -218,7 +219,7 @@
   </div>  
   <!-- Latest compiled and minified JavaScript -->
   <script src="http://code.jquery.com/jquery.js"></script>
-  <script src="../js/bootstrap.min.js"></script>      
+   <script src="<?php echo base_url(); ?>html_attrib/parishStyles/js/bootstrap.min.js"></script>            
     
 </body>
 </html>
