@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2014 at 12:31 PM
+-- Generation Time: Jun 11, 2014 at 07:13 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -163,6 +163,35 @@ INSERT INTO `day` (`id_day`, `day`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `image`
+--
+
+CREATE TABLE IF NOT EXISTS `image` (
+  `image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(100) NOT NULL,
+  `ext` varchar(10) NOT NULL,
+  PRIMARY KEY (`image_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`image_id`, `filename`, `ext`) VALUES
+(1, 'pic1', 'jpg'),
+(2, 'pic2', 'jpg'),
+(3, 'pic3', 'jpg'),
+(4, 'pic4', 'jpg'),
+(5, 'pic5', 'jpg'),
+(6, 'pic6', 'jpg'),
+(7, 'pic7', 'jpg'),
+(8, 'pic8', 'jpg'),
+(9, 'pic9', 'jpg'),
+(10, 'pic10', 'jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `language`
 --
 
@@ -253,28 +282,30 @@ CREATE TABLE IF NOT EXISTS `page` (
 CREATE TABLE IF NOT EXISTS `parish` (
   `id_parish` int(11) NOT NULL AUTO_INCREMENT,
   `parish` varchar(45) DEFAULT NULL,
-  `street` int(11) DEFAULT NULL,
-  `barangay` int(11) DEFAULT NULL,
-  `towncity` int(11) DEFAULT NULL,
-  `tnumber` varchar(20) DEFAULT NULL,
+  `street` int(11) DEFAULT '1',
+  `barangay` int(11) DEFAULT '1',
+  `towncity` int(11) DEFAULT '1',
+  `tnumber` varchar(20) DEFAULT '09227638918',
+  `image` int(11) DEFAULT '1',
   PRIMARY KEY (`id_parish`),
   KEY `id_barangay` (`barangay`),
   KEY `id_street` (`street`),
   KEY `id_town` (`towncity`),
   KEY `id_towncity` (`towncity`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='		' AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='		' AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `parish`
 --
 
-INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`) VALUES
-(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111'),
-(2, 'Our Lady of Lourdes Parish', 1, 1, 1, NULL),
-(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', NULL, NULL, NULL, NULL),
-(4, 'Our Lady of the Sacred Heart Parish - Capitol', NULL, NULL, NULL, NULL),
-(6, 'capitol capitan', NULL, NULL, NULL, NULL),
-(7, 'porno', NULL, NULL, NULL, NULL);
+INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`) VALUES
+(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 1),
+(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 2),
+(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3),
+(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4),
+(6, 'capitol capitan', 1, 1, 1, '123123123', 5),
+(7, 'porno', 1, 1, 1, '123123123', 6),
+(8, 'potato', 1, 1, 1, '12312313', 1);
 
 -- --------------------------------------------------------
 
