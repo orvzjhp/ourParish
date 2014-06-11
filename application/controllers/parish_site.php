@@ -73,14 +73,16 @@ class parish_site extends CI_Controller {
  {
 	$this->load->view('ourParish/parishes/listThree'); 
  }
- 
-
-
+///////////////////////////////
  function thumbnails()
  {
-	$this->load->view('ourParish/parishes/thumbnails'); 
+	$this->load->model('model_parishsite');
+	$data['information'] = $this->model_parishsite->model_getParishData();
+	$this->load->view('ourParish/parishes/thumbnails', $data); 
  }
  
+ 
+ ///////////////////
  function months()
  {
    $this->load->helper('url');
