@@ -33,7 +33,7 @@
 
 	<img src = "<?php echo base_url(); ?>/html_attrib/parishStyles/images/header_small.png" style = "float:left; position:relative; top:10px; ">
 		<p class="text-justify text-indent">
-			OurParish.org is a community initiative by the <strong style = "color: #7d8992;">Better Philippines Inititative Movement (BPIM)</strong>.
+			!OurParish.org is a community initiative by the <strong style = "color: #7d8992;">Better Philippines Inititative Movement (BPIM)</strong>.
 			We cover the latest news, religious activities and schedules from our different partner parishes.
 			Are you looking for mass schedules near your community? Myparish.org does that for you!
 			Myparish.org makes these information easily available and accessible, fit for the modern world.
