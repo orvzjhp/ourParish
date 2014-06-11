@@ -1,6 +1,6 @@
         .html 
           { 
-              background: url(../images/OurParish1.jpg) no-repeat center center fixed; 
+              background: url(../images/OurParish.jpg) no-repeat center center fixed; 
               -webkit-background-size: cover;
               -moz-background-size: cover;
               -o-background-size: cover;
@@ -10,7 +10,7 @@
 
     body{
             
-        background: url(../images/OurParish1.jpg) no-repeat center center fixed; 
+        background: url(../images/OurParish.jpg) no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -308,7 +308,7 @@
 
         .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
           color: #fff;
-          background-color: #E1E0CE;
+          background-color: #8E9499;
           }
 
 
@@ -323,7 +323,6 @@
         .panel-body {
           padding: 15px;
           background-color: #ffffff;
-          min-height: 445px;
           }
 .panel-heading {
 padding: 9px 15px;
