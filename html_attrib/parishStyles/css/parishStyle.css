@@ -326,4 +326,21 @@ left: 98px;
 top: -5px;
 }
 
+   .ca-more {
+position: absolute;
+bottom: -10px;
+right: 0px;
+padding: 4px 2px;
+font-weight: bold;
+background: #504E49;
+text-align: center;
+color: white;
+font-family: "Georgia","Times New Roman",serif;
+font-style: italic;
+text-shadow: 1px 1px 1px #897c63;
+border: #7d8992 1px solid;
+position: relative;
+margin-left: 525px;
+}
+
    

@@ -3,15 +3,17 @@
       <meta name ="viewport" content = "width=device-width, initial-scale = 1.0">
       <link href = "<?php echo base_url(); ?>/html_attrib/parishStyles/css/bootstrap_2.css" rel = "stylesheet">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/html_attrib/parishStyles/css/parishStyle.css" media="screen"></style>
+
 </head>
 
 <body>
+<!--<body id="thumbnail_body"> -->
         <!--=======================START OF BODY CONTENT============================-->
 
          <!--======================Note: If you add a parish/thumbnail, you must change the code.===========================-->
 
   <!----thumbnail 1---->
-  <div class="row">                       
+  <div class="row">        
     <div class="col-md-3">
         <div class="thumbnail">
             <img style="display:block;height: 110px; width: 180px;" src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/pic1.jpg">
