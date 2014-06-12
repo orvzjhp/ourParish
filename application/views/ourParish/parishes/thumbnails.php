@@ -24,7 +24,7 @@
 					<img style="display:block;height: 110px; width: 180px;" src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/<?php echo $value->filename.'.'.$value->ext; ?>">
 					<div class="caption">
 						<a data-toggle="modal" data-target="#myModal<?php echo $count;?>"><h4 class="text-center"><?php echo $value->parish; ?></h4></a>
-						<p class="text-center"><?php echo $value->barangay.', '.$value->street.' '.$value->towncity; ?></p>
+						<p class="text-center"><?php echo $value->barangay.', '.$value->street.' '.$value->towncity.' city'; ?></p>
 					</div>
 				</div>  
 			</div>

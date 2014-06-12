@@ -8,8 +8,7 @@
 $(document).ready(function(){
   $("#flip").click(function(){
 		var base_url = $("#init").data('base_url');
-	    console.log($("#mass_form").serialize());
-		var parish_id = $("#editDesc_PID").attr('value');	
+	    console.log($("#mass_form").serialize());	
 		$.ajax({
 			type: "POST",
 			url: base_url + "index.php/p_functs/search_massSched",
@@ -17,8 +16,25 @@ $(document).ready(function(){
 			data:  $("#mass_form").serialize(),
 			success:
 				  function(data) {
-						console.log(data);
-						
+						var count = 1;
+						$("#mass_table").html('');
+						$.each( data, function( key, value ) {							
+							var tableRow = $('<tr></tr>');
+							
+							if(count % 2 == 1) {
+								tableRow.addClass('odd');							
+							} else {
+								tableRow.addClass('even');														
+							}
+							
+							$("<td />", { text: value.parish }).addClass('sorting_1').appendTo(tableRow);							
+							$("<td />", { text: value.street+' '+value.barangay+', '+value.towncity }).appendTo(tableRow);							
+							$("<td />", { text: value.day }).appendTo(tableRow);
+							$("<td />", { text: value.time_start }).appendTo(tableRow);							
+							$("<td />", { text: value.language }).appendTo(tableRow);														
+							$("#mass_table").append(tableRow);
+							count++;
+						});
 						
 				  },
 							
@@ -182,24 +198,12 @@ min-height: 300px;
               <th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Language: activate to sort column ascending" style="width: 101px;">Language</th></tr>
         </thead>
         
-    <tbody role="alert" aria-live="polite" aria-relevant="all">
+    <tbody role="alert" aria-live="polite" aria-relevant="all" id="mass_table">
 	
 	<!-- I will edit-->
-      <tr class="odd">
-        <td class=" sorting_1">Cebu Redemptorist Church</td>
-        <td class=" ">Queen's Rd, Cebu City</td>
-        <td class=" ">Monday</td>
-        <td class=" ">10:30 AM</td>
-        <td class=" ">Cebuano</td>
-	</tr>
-          <tr class="even">
-            <td class=" sorting_1">Cebu Redemptorist Church</td>
-            <td class=" ">Queen's Rd, Cebu City</td>
-            <td class=" ">Friday</td>
-            <td class=" ">10:30 AM</td>
-            <td class=" ">Cebuano</td>
-		</tr>
-            <!-- I will edit -->
+
+		
+     <!-- I will edit -->
                 </tbody>
               </table>
             <div class="dataTables_info" id="table_id_info">Showing 1 to 10 of 35 entries</div>

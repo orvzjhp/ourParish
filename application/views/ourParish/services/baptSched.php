@@ -7,6 +7,43 @@
   <script> 
 $(document).ready(function(){
   $("#flip").click(function(){
+  
+	var base_url = $("#init").data('base_url');
+	console.log($("#bapt_form").serialize());
+	$.ajax({
+		type: "POST",
+		url: base_url + "index.php/p_functs/search_baptSched",
+		dataType: "json",
+		data:  $("#bapt_form").serialize(),
+		success:
+			  function(data) {
+					console.log(data);
+					var count = 1;
+					$("#bapt_table").html('');
+					$.each( data, function( key, value ) {							
+						var tableRow = $('<tr></tr>');
+						
+						if(count % 2 == 1) {
+							tableRow.addClass('odd');							
+						} else {
+							tableRow.addClass('even');														
+						}
+						
+						$("<td />", { text: value.parish }).addClass('sorting_1').appendTo(tableRow);							
+						$("<td />", { text: value.street+' '+value.barangay+', '+value.towncity }).appendTo(tableRow);							
+						$("<td />", { text: value.day }).appendTo(tableRow);
+						$("<td />", { text: value.time_start }).appendTo(tableRow);							
+						$("#bapt_table").append(tableRow);
+						count++;
+					});
+					
+			  },
+						
+		error: function(data){
+					console.log(data);
+			  }
+	});
+  
     $("#panel").slideDown("slow"); console.log("text");
   });
 });
@@ -45,7 +82,7 @@ min-height: 300px;
     <h4><span class="glyphicon glyphicon-search"></span> Search Baptism Schedule</h4>
   </div>
   <div class="panel-body">
-    <form class="form-horizontal" role="form" method="post">
+    <form class="form-horizontal" role="form" method="post" id="bapt_form">
       <div class="form-group"> 
         <label class="col-sm-2 control-label">Parish</label>
         <div class= "col-sm-10">
@@ -83,83 +120,21 @@ min-height: 300px;
                   <input type="text" aria-controls="table_id">
                 </label>
               </div>
-      <table id="table_id" class="display dataTable" aria-describedby="table_id_info">
-        <thead>
-            <tr role="row">
-              <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Parish: activate to sort column descending" style="width: 269px;">Parish</th>
-              
-              <th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 192px;">Address</th>
+			
+			<!-- The Parish Table-->
+			<table id="table_id" class="display dataTable" aria-describedby="table_id_info">
+				<thead>
+				<tr role="row">
+					<th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Parish: activate to sort column descending" style="width: 269px;">Parish</th>
+					<th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Address: activate to sort column ascending" style="width: 192px;">Address</th>
+					<th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 97px;">Day</th>
+					<th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Start Time: activate to sort column ascending" style="width: 101px;">Start Time</th>
+				</thead>
 
-              <th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Day: activate to sort column ascending" style="width: 97px;">Day</th>
-
-              <th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Start Time: activate to sort column ascending" style="width: 101px;">Start Time</th>
-
-              <th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Language: activate to sort column ascending" style="width: 101px;">Language</th></tr>
-        </thead>
-        
-    <tbody role="alert" aria-live="polite" aria-relevant="all">
-      <tr class="odd">
-        <td class=" sorting_1">Cebu Redemptorist Church</td>
-        <td class=" ">Queen's Rd, Cebu City</td>
-        <td class=" ">Monday</td>
-        <td class=" ">10:30 AM</td>
-        <td class=" ">Cebuano</td></tr>
-          <tr class="even">
-            <td class=" sorting_1">Cebu Redemptorist Church</td>
-            <td class=" ">Queen's Rd, Cebu City</td>
-            <td class=" ">Friday</td>
-            <td class=" ">10:30 AM</td>
-            <td class=" ">Cebuano</td></tr>
-              <tr class="odd">
-                <td class=" sorting_1">Cebu Redemptorist Church</td>
-                <td class=" ">Queen's Rd, Cebu City</td>
-                <td class=" ">Tuesday</td>
-                <td class=" ">09:30 AM</td>
-                <td class=" ">English</td></tr>
-                  <tr class="even">
-                    <td class=" sorting_1">Cebu Redemptorist Church</td>
-                    <td class=" ">Queen's Rd, Cebu City</td>
-                    <td class=" ">Monday</td>
-                    <td class=" ">06:00 AM</td>
-                    <td class=" ">English</td></tr>
-                      <tr class="odd">
-                        <td class=" sorting_1">Cebu Redemptorist Church</td>
-                        <td class=" ">Queen's Rd, Cebu City</td>
-                        <td class=" ">Monday</td>
-                        <td class=" ">07:00 AM</td>
-                        <td class=" ">English</td></tr>
-                          <tr class="even">
-                            <td class=" sorting_1">Cebu Redemptorist Church</td>
-                            <td class=" ">Queen's Rd, Cebu City</td>
-                            <td class=" ">Monday</td>
-                            <td class=" ">05:30 PM</td>
-                            <td class=" ">English</td></tr>
-                              <tr class="odd">
-                                <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                <td class=" ">Queen's Rd, Cebu City</td>
-                                <td class=" ">Tuesday</td>
-                                <td class=" ">06:00 AM</td>
-                                <td class=" ">English</td></tr>
-                                  <tr class="even">
-                                    <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                    <td class=" ">Queen's Rd, Cebu City</td>
-                                    <td class=" ">Tuesday</td>
-                                    <td class=" ">07:00 AM</td>
-                                    <td class=" ">English</td></tr>
-                                      <tr class="odd">
-                                        <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                        <td class=" ">Queen's Rd, Cebu City</td>
-                                        <td class=" ">Tuesday</td>
-                                        <td class=" ">05:30 PM</td>
-                                        <td class=" ">English</td></tr>
-                                          <tr class="even">
-                                            <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                            <td class=" ">Queen's Rd, Cebu City</td>
-                                            <td class=" ">Wednesday</td>
-                                            <td class=" ">05:15 AM</td>
-                                            <td class=" ">English</td></tr>
-                </tbody>
-              </table>
+				<tbody role="alert" aria-live="polite" aria-relevant="all" id="bapt_table">
+				</tbody>
+			</table>
+			<!-- Parish Table end-->
             <div class="dataTables_info" id="table_id_info">Showing 1 to 10 of 35 entries</div>
               <div class="dataTables_paginate paging_two_button" id="table_id_paginate">
                 <a class="paginate_disabled_previous" tabindex="0" role="button" id="table_id_previous" aria-controls="table_id">Previous</a>

@@ -32,8 +32,7 @@ Class model_parishsite extends CI_Model
  
 		if($query->num_rows() > 0) {
 			return $query->result();
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -85,36 +84,40 @@ Class model_parishsite extends CI_Model
 
 	function model_searchMass($data) {
 		// $this->db->select('parish.parish, street.street, barangay.barangay, towncity.towncity, day.day, mass_schedule.time_start, language.language');
-		$this->db->select('parish.parish, street.street');
+		$this->db->select('parish.parish, parish.street, street.street,
+						   parish.barangay, barangay.barangay, 
+						   parish.towncity, towncity.towncity,
+						   day.day, mass_schedule.time_start,
+						   language.language' );
 		$this->db->from('mass_schedule');
 		
  		$this->db->join('parish', 'mass_schedule.id_parish = parish.id_parish');
  		$this->db->join('street', 'parish.street = street.id_street');
-		// $this->db->join('barangay', 'parish.barangay = barangay.id_barangay');
-		// $this->db->join('towncity', 'parish.towncity = towncity.id_towncity');
-		// $this->db->join('day', 'mass_schedule.day = day.id_day');
-		// $this->db->join('language', 'mass_schedule.language = language.id_language');
+		$this->db->join('barangay', 'parish.barangay = barangay.id_barangay');
+		$this->db->join('towncity', 'parish.towncity = towncity.id_towncity');
+		$this->db->join('day', 'mass_schedule.day = day.id_day');
+		$this->db->join('language', 'mass_schedule.language = language.id_language');
 		
 		if($data['id_parish'] != 0)
 			$this->db->where('mass_schedule.id_parish', $data['id_parish']); 
 		
-		// if($data['day'] != 0)
-			// $this->db->where('mass_schedule.day', $data['day']);
+		if($data['day'] != 0)
+			$this->db->where('mass_schedule.day', $data['day']);
 
-		// if($data['time_start'] != 0)
-			// $this->db->where('mass_schedule.time_start', $data['time_start']);
+		if($data['time_start'] != 0)
+			$this->db->where('mass_schedule.time_start', $data['time_start']);
 			
 		if($data['street'] != 0)
 			$this->db->where('parish.street', $data['street']);
 			
-		// if($data['barangay'] != 0)
-			// $this->db->where('parish.barangay', $data['barangay']);
+		if($data['barangay'] != 0)
+			$this->db->where('parish.barangay', $data['barangay']);
 			
-		// if($data['towncity'] != 0)
-			// $this->db->where('parish.towncity', $data['towncity']);
+		if($data['towncity'] != 0)
+			 $this->db->where('parish.towncity', $data['towncity']);
 			
-		// if($data['language'] != 0)
-			// $this->db->where('mass_schedule.language', $data['language']);
+		if($data['language'] != 0)
+			$this->db->where('mass_schedule.language', $data['language']);
 						
 		$query = $this->db->get();
  
@@ -128,6 +131,91 @@ Class model_parishsite extends CI_Model
 		}
 	}
 	
+	function model_searchBapt($data) {
+		$this->db->select('parish.parish, parish.street, street.street,
+						   parish.barangay, barangay.barangay, 
+						   parish.towncity, towncity.towncity,
+						   day.day, baptism_schedule.time_start');
+		$this->db->from('baptism_schedule');
+		
+ 		$this->db->join('parish', 'baptism_schedule.id_parish = parish.id_parish');
+ 		$this->db->join('street', 'parish.street = street.id_street');
+		$this->db->join('barangay', 'parish.barangay = barangay.id_barangay');
+		$this->db->join('towncity', 'parish.towncity = towncity.id_towncity');
+		$this->db->join('day', 'baptism_schedule.day = day.id_day');
+
+		if($data['id_parish'] != 0)
+			$this->db->where('baptism_schedule.id_parish', $data['id_parish']); 
+								
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0)
+		{
+				return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function model_searchConfe($data) {
+		$this->db->select('parish.parish, parish.street, street.street,
+						   parish.barangay, barangay.barangay, 
+						   parish.towncity, towncity.towncity,
+						   day.day, confession_schedule.time_start');
+		$this->db->from('confession_schedule');
+		
+ 		$this->db->join('parish', 'confession_schedule.id_parish = parish.id_parish');
+ 		$this->db->join('street', 'parish.street = street.id_street');
+		$this->db->join('barangay', 'parish.barangay = barangay.id_barangay');
+		$this->db->join('towncity', 'parish.towncity = towncity.id_towncity');
+		$this->db->join('day', 'confession_schedule.day = day.id_day');
+
+		if($data['id_parish'] != 0)
+			$this->db->where('confession_schedule.id_parish', $data['id_parish']); 
+								
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0)
+		{
+				return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function model_searchConfi($data) {
+		$this->db->select('parish.parish, parish.street, street.street,
+						   parish.barangay, barangay.barangay, 
+						   parish.towncity, towncity.towncity,
+						   day.day, confirmation_schedule.time_start');
+		$this->db->from('confirmation_schedule');
+		
+ 		$this->db->join('parish', 'confirmation_schedule.id_parish = parish.id_parish');
+ 		$this->db->join('street', 'parish.street = street.id_street');
+		$this->db->join('barangay', 'parish.barangay = barangay.id_barangay');
+		$this->db->join('towncity', 'parish.towncity = towncity.id_towncity');
+		$this->db->join('day', 'confirmation_schedule.day = day.id_day');
+
+		if($data['id_parish'] != 0)
+			$this->db->where('confirmation_schedule.id_parish', $data['id_parish']); 
+								
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0)
+		{
+				return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+		
+
 }
 
 ?>

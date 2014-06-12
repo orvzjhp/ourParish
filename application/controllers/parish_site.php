@@ -56,7 +56,9 @@ class parish_site extends CI_Controller {
  
  function lists()
  {
-	$this->load->view('ourParish/parishes/list'); 
+ 	$this->load->model('model_parishsite');
+	$data['information'] = $this->model_parishsite->model_getParishData();
+	$this->load->view('ourParish/parishes/list', $data); 
  }
  
  function listOne()
