@@ -12,6 +12,8 @@ class admin extends CI_Controller {
  
  function index()
  {
+ 	
+ 	
    $this->loginPage();
  }
  
