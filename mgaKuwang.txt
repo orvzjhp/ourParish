@@ -24,6 +24,7 @@ Mga Kuwang
 			1. log in page is the best login page ever(someone plis do dis)
 			2. wala pa na session
 			3. may need more fields
+			4. needs a log out button
 		ckEditor/ parishAdmin:
 			ambut lang... bouncy?	
 		database

@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <html>
 
 <div><h4 style="margin-left:350px;">CONFESSION SCHEDULES</h4></div>

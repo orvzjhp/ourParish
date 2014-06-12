@@ -1,5 +1,4 @@
-<?php
-
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class User extends CI_Model
 {
 	function model_getParishData($parish_id, $database) {

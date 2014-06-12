@@ -1,4 +1,4 @@
-
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
   <div id="init" data-base_url="<?php echo base_url(); ?>"></div>
   <script type="text/javascript">
     var test = new ViewSwitcher();
@@ -9,11 +9,11 @@
   <style>
     .html 
     {
-     background: url(<?php echo base_url(); ?>html_attrib/parishStyles/images/bckg1.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+		 background: url(<?php echo base_url(); ?>html_attrib/parishStyles/images/bckg1.jpg) no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
     }
   </style>
 <!--End ofBackgroound-->

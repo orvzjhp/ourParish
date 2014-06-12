@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <body class = "html" >
 	<div class="navbar navbar-static-top navbar-default"> 
 		<div class="container">

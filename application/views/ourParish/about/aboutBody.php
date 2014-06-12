@@ -1,4 +1,5 @@
-     <!--==============LOGO===========-->
+ <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+ <!--==============LOGO===========-->
   <header class="text-center">
     <!-- Myparish Logo -->
     <a href="">

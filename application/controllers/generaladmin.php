@@ -65,6 +65,7 @@ class generaladmin extends CI_Controller {
 		$data = array(
 		   'username' => $this->input->post('username') ,
 		   'password' => $this->input->post('password') ,
+		   //'password' => MD5($this->input->post('password')) ,
 		   'role' => '2' ,
 		   'id_parish' => $this->input->post('id_parish')
 		);

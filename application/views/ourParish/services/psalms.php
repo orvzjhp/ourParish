@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>OurParish</title>

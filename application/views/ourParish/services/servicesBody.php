@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
   <div id="init" data-base_url="<?php echo base_url(); ?>"></div>
   <script type="text/javascript">
     var test = new ServiceSwitcher();

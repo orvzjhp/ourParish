@@ -1,5 +1,4 @@
-<?php
-?>
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
 
 <div><h5 style="margin-left:350px;">BAPTISM SCHEDULES</h5></div>
