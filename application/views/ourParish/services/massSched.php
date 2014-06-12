@@ -7,7 +7,26 @@
   <script> 
 $(document).ready(function(){
   $("#flip").click(function(){
-    $("#panel").slideDown("slow"); console.log("text");
+		var base_url = $("#init").data('base_url');
+	    console.log($("#mass_form").serialize());
+		var parish_id = $("#editDesc_PID").attr('value');	
+		$.ajax({
+			type: "POST",
+			url: base_url + "index.php/p_functs/search_massSched",
+			dataType: "json",
+			data:  $("#mass_form").serialize(),
+			success:
+				  function(data) {
+						console.log(data);
+						
+						
+				  },
+							
+			error: function(data){
+						console.log(data);
+				  }
+		});
+    $("#panel").slideDown("slow");
   });
 });
 </script>
@@ -45,32 +64,31 @@ min-height: 300px;
   </script>
   <div class="panel-heading"><h4><span class="glyphicon glyphicon-search"></span> Search Mass Schedule</h4></div>		
   <div class="panel-body">
-    <form class="form-horizontal" role="form" method="post">
+    <form class="form-horizontal" role="form" method="post" id="mass_form">
       <div class="form-group"> 
         <label class="col-sm-2 control-label">Parish</label>
         <div class= "col-sm-10">
-          <select class="form-control">
-            <option value>All</option>
-            <option value="Cebu Redemptorist Church">Cebu Redemptorist Church</option>
-            <option value="Sto. Rosario Parish">Sto. Rosario Parish</option>
-            <option value="Our Lady of Sacred Parish">Our Lady of the Sacred Heart Parish</option>
-            <option value="Archdiocesan Shrine of St. Therese of The Child Jesus">Archdiocesan Shrine of St. Therese of The Child Jesus</option>
-            <option value="Sacred Heart Parish Church">Sacred Heart Parish Church</option>
-            <option value="San Isidro Parish Church">San Isidro Parish Church</option>
-            <option value="Basilica Minore del Santo Niño de Cebu Pilgrim Center">Basilica Minore del Santo Nino de Cebu Pilgrim Center</option>
-            <option value="Cebu Metropolitan Cathedral">Cebu Metropolitan Cathedral</option>
+          <select class="form-control" name="parish">
+            <option value="0">All</option>
+			<?php
+				foreach($parish as $value) 
+				{
+					?><option value="<?php echo $value->id_parish; ?>"><?php echo $value->parish; ?></option>
+			<?php				
+				}			
+			?>
           </select>
         </div>
       </div>
       <div class="form-group"> 
         <label class="col-sm-2 control-label">Day</label>
         <div class= "col-sm-4">
-          <select id="days" class="form-control"></select>
+          <select id="days" class="form-control" name="day"></select>
           <script type="text/javascript">test.listDays()</script>
         </div>
         <label class="col-sm-1 control-label">Time</label>
           <div class= "col-sm-4">
-            <select id = "schedules" class="form-control"></select>
+            <select id = "schedules" class="form-control" name="time_start"></select>
             <script type="text/javascript">test.listSchedules();</script>
           </div>
       </div>
@@ -78,40 +96,45 @@ min-height: 300px;
       <div class="form-group"> 
         <label class="col-sm-4 control-label">Street</label>
         <div class= "col-sm-4">
-          <select class="form-control">                             
-            <option value+"Address">Address</option>    
-            <option value="P. del Rosario St.">P. del Rosario St.</option>
-            <option value="Queen's Rd">Queen's Rd</option>
-            <option value="N. Escario St.">N. Escario St.</option>
-            <option value="Jakosalem St.">Jakosalem St.</option>
-            <option value="Edison St.">Edison St.</option>
+          <select class="form-control" name="street">
+			<option value="0">Any</option>
+			<?php
+				foreach($street as $value) 
+				{
+					?><option value="<?php echo $value->id_street; ?>"><?php echo $value->street; ?></option>
+			<?php				
+				}			
+			?>
           </select>
         </div>
       </div> 
       <div class="form-group">
       <label class="col-sm-4 control-label">Barangay</label>
         <div class= "col-sm-4">
-          <select class="form-control">
-            <option value="Address">Address</option>
-            <option value="Sunday">Sunday</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
+          <select class="form-control" name="barangay">	  
+			<option value="0">Any</option>
+			<?php
+				foreach($barangay as $value) 
+				{
+					?><option value="<?php echo $value->id_barangay; ?>"><?php echo $value->barangay; ?></option>
+			<?php				
+				}			
+			?>
           </select>
         </div>
       </div>
       <div class="form-group">
         <label class="col-sm-4 control-label">City/Town</label>
         <div class= "col-sm-4">
-          <select class="form-control">
-            <option value="Address">Address</option>
-            <option value="Cebu City">Cebu City</option>
-            <option value="Mandaue City">Mandaue City</option>
-            <option value="Lapu-Lapu City">Lapu-Lapu City</option>
-            <option value="Danao City">Danao City</option>
+          <select class="form-control" name="towncity">
+			<option value="0">Any</option>
+			<?php
+				foreach($towncity as $value) 
+				{
+					?><option value="<?php echo $value->id_towncity; ?>"><?php echo $value->towncity; ?></option>
+			<?php				
+				}			
+			?>
           </select>
         </div>
       </div>
@@ -121,7 +144,9 @@ min-height: 300px;
         <script type="text/javascript">test.listLanguages()</script>
       </div>
       </div>
-        <div class="col-sm-offset-4 col-sm-4">
+	  
+	  </form>
+       <div class="col-sm-offset-4 col-sm-4">
          <div id="flip">Search Schedules</div>
       </div>
 
@@ -158,66 +183,23 @@ min-height: 300px;
         </thead>
         
     <tbody role="alert" aria-live="polite" aria-relevant="all">
+	
+	<!-- I will edit-->
       <tr class="odd">
         <td class=" sorting_1">Cebu Redemptorist Church</td>
         <td class=" ">Queen's Rd, Cebu City</td>
         <td class=" ">Monday</td>
         <td class=" ">10:30 AM</td>
-        <td class=" ">Cebuano</td></tr>
+        <td class=" ">Cebuano</td>
+	</tr>
           <tr class="even">
             <td class=" sorting_1">Cebu Redemptorist Church</td>
             <td class=" ">Queen's Rd, Cebu City</td>
             <td class=" ">Friday</td>
             <td class=" ">10:30 AM</td>
-            <td class=" ">Cebuano</td></tr>
-              <tr class="odd">
-                <td class=" sorting_1">Cebu Redemptorist Church</td>
-                <td class=" ">Queen's Rd, Cebu City</td>
-                <td class=" ">Tuesday</td>
-                <td class=" ">09:30 AM</td>
-                <td class=" ">English</td></tr>
-                  <tr class="even">
-                    <td class=" sorting_1">Cebu Redemptorist Church</td>
-                    <td class=" ">Queen's Rd, Cebu City</td>
-                    <td class=" ">Monday</td>
-                    <td class=" ">06:00 AM</td>
-                    <td class=" ">English</td></tr>
-                      <tr class="odd">
-                        <td class=" sorting_1">Cebu Redemptorist Church</td>
-                        <td class=" ">Queen's Rd, Cebu City</td>
-                        <td class=" ">Monday</td>
-                        <td class=" ">07:00 AM</td>
-                        <td class=" ">English</td></tr>
-                          <tr class="even">
-                            <td class=" sorting_1">Cebu Redemptorist Church</td>
-                            <td class=" ">Queen's Rd, Cebu City</td>
-                            <td class=" ">Monday</td>
-                            <td class=" ">05:30 PM</td>
-                            <td class=" ">English</td></tr>
-                              <tr class="odd">
-                                <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                <td class=" ">Queen's Rd, Cebu City</td>
-                                <td class=" ">Tuesday</td>
-                                <td class=" ">06:00 AM</td>
-                                <td class=" ">English</td></tr>
-                                  <tr class="even">
-                                    <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                    <td class=" ">Queen's Rd, Cebu City</td>
-                                    <td class=" ">Tuesday</td>
-                                    <td class=" ">07:00 AM</td>
-                                    <td class=" ">English</td></tr>
-                                      <tr class="odd">
-                                        <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                        <td class=" ">Queen's Rd, Cebu City</td>
-                                        <td class=" ">Tuesday</td>
-                                        <td class=" ">05:30 PM</td>
-                                        <td class=" ">English</td></tr>
-                                          <tr class="even">
-                                            <td class=" sorting_1">Cebu Redemptorist Church</td>
-                                            <td class=" ">Queen's Rd, Cebu City</td>
-                                            <td class=" ">Wednesday</td>
-                                            <td class=" ">05:15 AM</td>
-                                            <td class=" ">English</td></tr>
+            <td class=" ">Cebuano</td>
+		</tr>
+            <!-- I will edit -->
                 </tbody>
               </table>
             <div class="dataTables_info" id="table_id_info">Showing 1 to 10 of 35 entries</div>

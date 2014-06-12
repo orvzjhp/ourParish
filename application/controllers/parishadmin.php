@@ -64,9 +64,6 @@ class parishadmin extends CI_Controller {
 		echo json_encode('validation run fail');
 	} else {
 		
-		$date = $this->input->post('date');
-		$language = $this->input->post('language');			
-		
 		$data = array(
 			'date' => $this->input->post('date'),
 			'language' => $this->input->post('language')

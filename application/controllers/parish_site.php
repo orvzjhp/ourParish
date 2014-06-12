@@ -94,13 +94,20 @@ class parish_site extends CI_Controller {
  {
    $this->load->helper('url');
    $schedType = $this->uri->segment(3);
+   $this->load->model('model_parishsite');
    switch($schedType)
    {
 		case 'read':
 			$this->load->view('ourParish/services/readSched');  			
 			break;
 		case 'mass':
-			$this->load->view('ourParish/services/massSched');  			
+			
+			$data['parish'] = $this->model_parishsite->model_getParishData();
+			$data['street'] = $this->model_parishsite->model_getStreets();
+			$data['barangay'] = $this->model_parishsite->model_getBarangays();
+			$data['towncity'] = $this->model_parishsite->model_getTowncity();			
+			$this->load->view('ourParish/services/massSched', $data);
+			
 			break;
 		case 'bapt':
 			$this->load->view('ourParish/services/baptSched');  			
