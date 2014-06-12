@@ -37,7 +37,7 @@ class p_functs extends CI_Controller {
 		
 		
 		$searched = $this->model_parishsite->model_searchMass($data);
-		echo jason_encode($searched);
+		echo json_encode($searched);
 	} 
 	
  }

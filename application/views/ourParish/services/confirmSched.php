@@ -49,20 +49,19 @@ min-height: 300px;
       <div class="form-group"> 
         <label class="col-sm-2 control-label">Parish</label>
         <div class= "col-sm-10">
-          <select class="form-control">
-            <option value>All</option>
-            <option value="Cebu Redemptorist Church">Cebu Redemptorist Church</option>
-            <option value="Sto. Rosario Parish">Sto. Rosario Parish</option>
-            <option value="Our Lady of Sacred Parish">Our Lady of the Sacred Heart Parish</option>
-            <option value="Archdiocesan Shrine of St. Therese of The Child Jesus">Archdiocesan Shrine of St. Therese of The Child Jesus</option>
-            <option value="Sacred Heart Parish Church">Sacred Heart Parish Church</option>
-            <option value="San Isidro Parish Church">San Isidro Parish Church</option>
-            <option value="Basilica Minore del Santo Niño de Cebu Pilgrim Center">Basilica Minore del Santo Nino de Cebu Pilgrim Center</option>
-            <option value="Cebu Metropolitan Cathedral">Cebu Metropolitan Cathedral</option>
+          <select class="form-control" name="parish_id">
+            <option value="0">All</option>
+			<?php
+				foreach($parish as $value) 
+				{
+					?><option value="<?php echo $value->id_parish; ?>"><?php echo $value->parish; ?></option>
+			<?php				
+				}			
+			?>
           </select>
         </div>
       </div>
-  
+	</form>
       <div class="col-sm-offset-4 col-sm-4">
          <div id="flip">Search Schedules</div>
       </div>

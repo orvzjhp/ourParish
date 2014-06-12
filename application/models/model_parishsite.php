@@ -53,6 +53,21 @@ Class model_parishsite extends CI_Model
 		}
 	}
 	
+	function model_getParishNameID() {
+		$this->db->select('id_parish, parish');
+		$this->db->from('parish');
+		
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0) {
+			return $query->result();
+		}
+		else {
+			return false;
+		}
+		
+	}
+	
 	function model_getTowncity() {
 			
 		$this->db->select('*');
@@ -70,11 +85,11 @@ Class model_parishsite extends CI_Model
 
 	function model_searchMass($data) {
 		// $this->db->select('parish.parish, street.street, barangay.barangay, towncity.towncity, day.day, mass_schedule.time_start, language.language');
-		$this->db->select('parish.parish');
+		$this->db->select('parish.parish, street.street');
 		$this->db->from('mass_schedule');
 		
- 		//$this->db->join('parish', 'mass_schedule.id_parish = parish.id_parish');
- 		// $this->db->join('street', 'parish.street = street.id_street');
+ 		$this->db->join('parish', 'mass_schedule.id_parish = parish.id_parish');
+ 		$this->db->join('street', 'parish.street = street.id_street');
 		// $this->db->join('barangay', 'parish.barangay = barangay.id_barangay');
 		// $this->db->join('towncity', 'parish.towncity = towncity.id_towncity');
 		// $this->db->join('day', 'mass_schedule.day = day.id_day');
@@ -89,8 +104,8 @@ Class model_parishsite extends CI_Model
 		// if($data['time_start'] != 0)
 			// $this->db->where('mass_schedule.time_start', $data['time_start']);
 			
-		// if($data['street'] != 0)
-			// $this->db->where('parish.street', $data['street']);
+		if($data['street'] != 0)
+			$this->db->where('parish.street', $data['street']);
 			
 		// if($data['barangay'] != 0)
 			// $this->db->where('parish.barangay', $data['barangay']);

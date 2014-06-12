@@ -107,16 +107,18 @@ class parish_site extends CI_Controller {
 			$data['barangay'] = $this->model_parishsite->model_getBarangays();
 			$data['towncity'] = $this->model_parishsite->model_getTowncity();			
 			$this->load->view('ourParish/services/massSched', $data);
-			
 			break;
 		case 'bapt':
-			$this->load->view('ourParish/services/baptSched');  			
+			$data['parish'] = $this->model_parishsite->model_getParishNameID();
+			$this->load->view('ourParish/services/baptSched', $data);  			
 			break;
 		case 'confess':
-			$this->load->view('ourParish/services/confessSched');  			
+			$data['parish'] = $this->model_parishsite->model_getParishNameID();
+			$this->load->view('ourParish/services/confessSched', $data);  			
 			break;
 		case 'confirm':
-			$this->load->view('ourParish/services/confirmSched');  			
+			$data['parish'] = $this->model_parishsite->model_getParishNameID();
+			$this->load->view('ourParish/services/confirmSched', $data);  			
 			break;
    }
  }
