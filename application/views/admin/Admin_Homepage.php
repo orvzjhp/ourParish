@@ -26,7 +26,8 @@
 		<div class="col-md-12">
 			<table class="tableheader">
 			<tr>
-				<th><h4><a data-toggle="modal" data-target="#addpar">ADD PARISH</a></th>
+				<td><h4><a data-toggle="modal" data-target="#addpar">ADD PARISH</a></td>
+        <td><h4><a style="margin-left:390px;">LOG-OUT</a></td>
 			</tr>
 			</table>
 
