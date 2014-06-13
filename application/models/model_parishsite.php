@@ -214,7 +214,40 @@ Class model_parishsite extends CI_Model
 		}
 	}
 		
-
+	function model_getNews($month) {
+		switch($month) {
+			case 'january'  : $month = 1; break;
+			case 'febuary'  : $month = 2; break;
+			case 'march'    : $month = 3; break;
+			case 'april'    : $month = 4; break;
+			case 'may'      : $month = 5; break;
+			case 'june'     : $month = 6; break;
+			case 'july'     : $month = 7; break;
+			case 'august'   : $month = 8; break;
+			case 'september': $month = 9; break;
+			case 'october'  : $month = 10; break;
+			case 'november' : $month = 11; break;
+			case 'december' : $month = 12; break;
+		}
+		
+		$this->db->select('news.id_news, parish.parish, parish.url, news.date, news.title, news.content');
+		$this->db->from('news');
+		
+		$this->db->join('parish', 'news.id_parish = parish.id_parish');
+ 	
+		$this->db->where('month(date)', $month);
+		$this->db->where('year(date)', 2014);
+		
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0) {
+			return $query->result();
+		}
+		else {
+			return false;
+		}
+		
+	}
 }
 
 ?>
