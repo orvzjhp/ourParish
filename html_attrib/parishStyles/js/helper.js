@@ -127,7 +127,7 @@ function ListManager(parishDataContainer, max)
 	this.maxPages = Math.round(list.getSize() / max);
 
 	// bounds checking
-	if(list.getSize() % max != 0) this.maxPages++;
+	if(list.getSize() < max) this.maxPages++;
 	
 	this.init = function()
 	{
@@ -309,7 +309,7 @@ function ListManager(parishDataContainer, max)
 		div5.setAttribute('class', 'modal-body');
 		var div6 = document.createElement('div');
 		div6.setAttribute('class', 'form-group');
-		div6.setAttribute('style', 'word-wrap:break word;');
+		div6.setAttribute('style', 'word-wrap:break-word;');
 		var div7 = document.createElement('div');
 		div7.setAttribute('style', "background-:" + url + "/html_attrib/parishStyles/images/pic3.jpg);");
 		var p1 = document.createElement('p');
@@ -519,7 +519,7 @@ function ServiceSwitcher()
 		'<link href = "'+ base_url +'html_attrib/parishStyles/css/newStyle.css" rel = "stylesheet">'+
 		'</style><link rel="stylesheet" type="text/css" href="'+ base_url +'html_attrib/parishStyles/css/parishStyle.css" media="screen"></style>';
 	};
-
+	
 	var closure = function(ref, key)
 	{
 		return function()
@@ -580,9 +580,9 @@ function MassSchedulerHelper()
 	this.languages = {};
 
 	this.schedules["0"] = "Any";
-    this.schedules["00:15"] = "12:30AM";
+    this.schedules["00:15"] = "12:15AM";
     this.schedules["00:30"] = "12:30AM";
-    this.schedules["00:45"] = "12:30AM";
+    this.schedules["00:45"] = "12:45AM";
     this.schedules["01:00"] = "01:00AM";
     this.schedules["01:15"] = "01:15AM";
     this.schedules["01:30"] = "01:30AM";
@@ -675,20 +675,20 @@ function MassSchedulerHelper()
     this.schedules["23:15"] = "12:30AM";
     this.schedules["23:30"] = "12:30AM";
     this.schedules["23:45"] = "12:30AM";
-    this.schedules["24:00"] = "12:30AM";
+    this.schedules["24:00"] = "12:30AM";	
 
 	this.days["0"] = "Any";
-    this.days["Sunday"] = "Sunday";
-    this.days["Monday"] = "Monday";
-    this.days["Tuesday"] = "Tuesday";
-    this.days["Wednesday"] = "Wednesday";
-    this.days["Thursday"] = "Thursday";
-    this.days["Friday"] = "Friday";
-    this.days["Saturday"] = "Saturday";
+    this.days["1"] = "Sunday";
+    this.days["2"] = "Monday";
+    this.days["3"] = "Tuesday";
+    this.days["4"] = "Wednesday";
+    this.days["5"] = "Thursday";
+    this.days["6"] = "Friday";
+    this.days["7"] = "Saturday";
 
     this.languages["0"] = "Any";
-    this.languages["English"] = "English";
-    this.languages["Cebuano"] = "Cebuano";
+    this.languages["1"] = "English";
+    this.languages["2"] = "Cebuano";
 
 	this.listSchedules = function()
 	{

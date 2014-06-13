@@ -88,8 +88,12 @@ class parish_site extends CI_Controller {
  function months()
  {
    $this->load->helper('url');
+   $this->load->model('model_parishsite');
    $month = $this->uri->segment(3);
-   $this->load->view('ourParish/news/months/'.$month); 
+   // $data = $this->db->group_by('MONTH(date), YEAR(date)');
+   $data['info'] = $this->model_parishsite->model_getNews($month);
+   //$data['month'] = $month;
+   $this->load->view('ourParish/news/months/theOneTrueMonth', $data); 
  }
  
  function sched() 
@@ -135,10 +139,6 @@ class parish_site extends CI_Controller {
 	$this->load->view('ourParish/services/psalms');  	 	
  }
  
- function login() {
-	
-	
- }
 }
 
 ?>

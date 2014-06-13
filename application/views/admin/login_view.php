@@ -1,19 +1,27 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <html>
-	<head>
+		<head>
 		<script src="http://code.jquery.com/jquery.js"></script>
+		 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/html_attrib/adminStyles/css/login_css.css" media="screen"></style>
 	</head>
 	<body>
-		<h1>World's Best Login Page!!</h2>
-			
+
+	<section class="container">
+    	<div class="login">
+
+		<h1 style="margin-left:130px">Login</h1>
+			<table width="510" border="0" align="center">
+
 			<?php echo form_open('admin/verifyUser'); ?>
-<!--		<form id="login_form"> -->
-			Username: <input type="text" name="username">
+
+			<tr>Username: <input  type="text" name="username"></tr>
 			<br>
-			Password: <input type="text" name="password">
+			<tr>Password: <input type="text" name="password" style="margin-left:8px"></tr>
 			<br>
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit"></table>
 			</form>
+		</div>
+		</section>
 			
 			<?php echo validation_errors(); ?>
 			

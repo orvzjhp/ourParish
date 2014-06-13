@@ -7,7 +7,7 @@
 	    <link href = "<?php echo base_url(); ?>html_attrib/parishStyles/css/bootstrap_2.css" rel = "stylesheet">
 	    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>html_attrib/parishStyles/month/monthStyle.css" media="screen"></style>
 </head>
-
+	<?php echo var_dump($info); ?>
 	<div class="container">
 		
 		<!--Note: Adding new "news and event" must change the code statically-->
