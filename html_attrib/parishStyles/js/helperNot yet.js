@@ -1,203 +1,4 @@
 /*
-	CLASS: ParishSched
-	------------------------
-*/
-function ParishSched(parish_name, 
-					 parish_address,
-					 parish_day,
-					 parish_timeStart)
-{
-	this.parish_name = parish_name; // name of the parish
-	this.parish_address = parish_address; // address of the parish
-	this.parish_day = parish_day; // day of the mass or baptism or etc...
-	this.parish_timeStart = parish_timeStart;
-};
-
-/*
-	CLASS: ParishSchedContainer
-	----------------------------------
-	NOTE: Array is sorted based on the parish name
-*/
-function ParishSchedContainer()
-{
-	var list = []; // list of ParishSchedData
-
-	// sorts the list based on the parish name
-	this.sort = function()
-	{
-		list.sort(function(a, b)
-		{
-			return a.parish_name.localeCompare(b.parish_name);
-		});
-
-		return this;
-	};
-
-	this.eraseAll = function()
-	{
-		while(list.length > 0)
-			list.pop();
-	};
-
-	this.getSize = function() { return list.length; };
-
-	// search the list based on the parish name
-	// returns -1 if not found
-	// returns the parish data if found
-	this.search = function(parish_name)
-	{
-		for(var a = 0; a < list.length; a++)
-		{
-			if(list[a].parish_name.match(parish_name))
-				return list[a];
-		}
-
-		return -1;
-	};
-
-	// retrieves an element based on the index
-	// returns 0 if there's an error
-	this.get = function(index)
-	{
-		return index > list.length ? 0 : list[index];
-	};
-
-	// removes an element in the list based on
-	// the parish name
-	this.remove = function(parish_name)
-	{
-		for(var a = 0; a < list.length; a++)
-		{
-			if(list[a].parish_name.match(parish_name))
-				list.splice(a, 1);
-		}
-	};
-
-	// push an element at the back of the list
-	this.push_back = function(parish_data)
-	{
-		list.push(parish_data);
-		return this;
-	};
-
-	// pop an element at the back of the list
-	// and returns the popped element
-	this.pop_back = function()
-	{
-		var temp = list[list.length - 1];
-		list.pop();
-		return temp;
-	};
-
-	// for debugging purposes
-	this.print = function()
-	{
-		for(var a = 0; a < list.length; a++)
-		{
-			console.log(list[a].parish_name);
-			console.log(list[a].parish_address);
-			console.log(list[a].parish_day);
-			console.log(list[a].parish_timeStart);
-		}
-
-		return this;
-	};
-};
-
-/*
-	CLASS: ParishSchedManager
-	----------------------------------
-	NOTE: Array is sorted based on the parish name
-*/
-
-function ParishSchedManager(parishSchedContainer, max)
-{
-	var list = parishSchedContainer;
-
-	this.max = max;
-	this.pageNum = 0;
-	this.maxPages = 0;
-	
-	// helper vars
-	var startCounter = 0;
-	var endCounter = 0;
-
-	// calculate number of pages
-	this.maxPages = Math.round(list.getSize() / max);
-	
-	var decrementingClosure = function(ref)
-	{
-		return function()
-		{
-			document.getElementById('table_id_next').setAttribute("href", "#");
-
-			if(ref.pageNum == 0)
-			{
-				document.getElementById('table_id_previous').removeAttribute("href");
-				return;
-			}
-
-			ref.pageNum--;
-			ref.displayList();
-		};
-	};
-
-	var incrementingClosure = function(ref)
-	{
-		return function()
-		{
-			document.getElementById('table_id_previous').setAttribute("href", "#");
-			
-			if(ref.pageNum >= ref.maxPages)
-			{
-				document.getElementById('table_id_next').removeAttribute("href");
-				return;
-			}
-
-			document.getElementById('table_id_next').setAttribute("href", "#");
-			ref.pageNum++;
-			ref.displayList();
-		};
-	};
-
-	this.set = function()
-	{
-		var ref = this;
-		document.getElementById('table_id_previous').onclick = decrementingClosure(ref);
-		document.getElementById('table_id_next').onclick = incrementingClosure(ref);
-	};
-
-	this.displayList = function()
-	{
-		$("#table").html('');
-		var flag = 0;
-		for(var a = this.pageNum * (this.max); a < list.getSize(); a++, flag++)
-		{
-			if(flag > 0 && flag % (this.max) == 0) break;
-
-			var tableRow = $('<tr></tr>');
-			tableRow.addClass(flag % 2 == 1 ? 'odd' : 'even');							
-			
-			$("<td />", { text: list.get(a).parish_name /*value.parish*/ }).addClass('sorting_1').appendTo(tableRow);							
-			$("<td />", { text: list.get(a).parish_address /*value.street+' '+value.barangay+', '+value.towncity*/ }).appendTo(tableRow);							
-			$("<td />", { text: list.get(a).parish_day /*value.day*/ }).appendTo(tableRow);
-			$("<td />", { text: list.get(a).parish_timeStart /*value.time_start*/ }).appendTo(tableRow);							
-			$("#table").append(tableRow);
-		}
-
-		startCounter = (this.pageNum * this.max) + 1;
-		endCounter = flag;
-	};
-
-	this.displayLabel = function()
-	{
-		document.getElementById("table_id_info")
-		.appendChild(document.createTextNode("Showing " + startCounter +
-			" to " + endCounter + " of " + list.getSize() + " entries."));
-	};
-};
-
-/*
 	CLASS: ParishData
 	----------------------
 */
@@ -316,6 +117,10 @@ function ListManager(parishDataContainer, max)
 	this.pageNum = 0;
 	this.maxPages = 0;
 	this.lists = {};
+	
+	this.lists["0"] = "index.php/parish_site/listOne";
+	this.lists["1"] = "index.php/parish_site/listTwo";
+	this.lists["2"] = "index.php/parish_site/listThree";
 	
 	// calculate number of pages
 	// each page should have 5 parishes displayed
@@ -714,7 +519,7 @@ function ServiceSwitcher()
 		'<link href = "'+ base_url +'html_attrib/parishStyles/css/newStyle.css" rel = "stylesheet">'+
 		'</style><link rel="stylesheet" type="text/css" href="'+ base_url +'html_attrib/parishStyles/css/parishStyle.css" media="screen"></style>';
 	};
-
+	
 	var closure = function(ref, key)
 	{
 		return function()

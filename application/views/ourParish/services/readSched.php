@@ -1,5 +1,4 @@
-﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>OurParish</title>
@@ -12,7 +11,7 @@
 <body>
 <div class="panel-heading"><h4><span class="glyphicon glyphicon-book"></span> Reading of the Day</h4></div>
 <div class="panel-body">
-	<div class="row">
+	<div class="row1">
 	
 				<div class="form-horizontal"  role="form" method="post">
 					<div class="form-group">
