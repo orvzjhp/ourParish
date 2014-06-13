@@ -28,14 +28,14 @@ $(document).ready(function(){
 				    value.parish,
 				    value.street+' '+value.barangay+', '+value.towncity,
 				    value.day,
-				    value.time_start
+				    value.time_start,
+				    null
 				  )
 				);
 				a.sort();
 
 				});
-				b.set();
-				b.displayList();
+				b.set(b.invokeNormalSched);
 			},
 						
 		error: function(data){

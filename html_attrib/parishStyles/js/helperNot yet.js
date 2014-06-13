@@ -565,7 +565,7 @@ function Helper()
 	this.init = function()
 	{
 		var base_url = $("#init").data('base_url');
-		document.getElementById("init").innerHTML = '<meta name ="viewport" content = "width=device-width, initial-scale = 1.0"><link href = "'+ base_url +'html_attrib/parishStyles/css/bootstrap_2.css" rel = "stylesheet"><link href = "'+ base_url +'html_attrib/parishStyles/css/newStyle.css" rel = "stylesheet"><link href = "'+ base_url +'html_attrib/parishStyles/css/styles.css" rel = "stylesheet"><link rel="stylesheet" type="text/css" href="'+ base_url +'html_attrib/parishStyles/css/parishStyle.css" media="screen"></style>';
+		document.getElementById("init").innerHTML = '<meta name ="viewport" content = "width=device-width, initial-scale = 1.0"><link href = "'+ base_url +'html_attrib/parishStyles/services/servbootstrap.css" rel = "stylesheet"><link href = "'+ base_url +'html_attrib/parishStyles/css/styles.css" rel = "stylesheet"><link rel="stylesheet" type="text/css" href="'+ base_url +'html_attrib/parishStyles/css/parishStyle.css" media="screen"></style>';
 	};
 };
 

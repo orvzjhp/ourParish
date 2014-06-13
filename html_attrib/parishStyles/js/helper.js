@@ -5,12 +5,14 @@
 function ParishSched(parish_name, 
 					 parish_address,
 					 parish_day,
-					 parish_timeStart)
+					 parish_timeStart,
+					 parish_language)
 {
 	this.parish_name = parish_name; // name of the parish
 	this.parish_address = parish_address; // address of the parish
 	this.parish_day = parish_day; // day of the mass or baptism or etc...
 	this.parish_timeStart = parish_timeStart;
+	this.parish_language = parish_language;
 };
 
 /*
@@ -112,13 +114,13 @@ function ParishSchedContainer()
 
 function ParishSchedManager(parishSchedContainer, max)
 {
-	var list = parishSchedContainer;
+	this.list = parishSchedContainer;
 
 	this.max = max;
 	this.pageNum = 0;
 	this.maxPages = 0;
 	
-	var decrementingClosure = function(ref)
+	var decrementingClosure = function(ref, func)
 	{
 		return function()
 		{
@@ -131,11 +133,11 @@ function ParishSchedManager(parishSchedContainer, max)
 			}
 
 			ref.pageNum--;
-			ref.displayList();
+			ref.displayList(func);
 		};
 	};
 
-	var incrementingClosure = function(ref)
+	var incrementingClosure = function(ref, func)
 	{
 		return function()
 		{
@@ -149,45 +151,58 @@ function ParishSchedManager(parishSchedContainer, max)
 
 			document.getElementById('table_id_next').setAttribute("href", "#");
 			ref.pageNum++;
-			ref.displayList();
+			ref.displayList(func);
 		};
 	};
 
-	this.set = function()
+	this.set = function(func)
 	{
 		var ref = this;
 		// calculate number of pages
-		this.maxPages = Math.round(list.getSize() / max);
-		document.getElementById('table_id_previous').onclick = decrementingClosure(ref);
-		document.getElementById('table_id_next').onclick = incrementingClosure(ref);
+		this.maxPages = Math.round(this.list.getSize() / max);
+		document.getElementById('table_id_previous').onclick = decrementingClosure(ref, func);
+		document.getElementById('table_id_next').onclick = incrementingClosure(ref, func);
+
+		this.displayList(func);
 	};
 
-	this.displayList = function()
+	this.invokeNormalSched = function(a, ref, flag, tableRow)
+	{
+		$("<td />", { text: ref.list.get(a).parish_name /*value.parish*/ }).addClass('sorting_1').appendTo(tableRow);							
+		$("<td />", { text: ref.list.get(a).parish_address /*value.street+' '+value.barangay+', '+value.towncity*/ }).appendTo(tableRow);
+		$("<td />", { text: ref.list.get(a).parish_day /*value.day*/ }).appendTo(tableRow);
+		$("<td />", { text: ref.list.get(a).parish_timeStart /*value.time_start*/ }).appendTo(tableRow);
+	};
+
+	this.invokeMassSched = function(a, ref, flag, tableRow)
+	{
+		ref.invokeNormalSched(a, ref, flag, tableRow);
+		$("<td />", { text: ref.list.get(a).parish_language /*value.time_start*/ }).appendTo(tableRow);
+	};
+
+	this.displayList = function(func)
 	{
 		$("#table").html('');
 		var flag = 0;
 		var a;
-		for(a = this.pageNum * (this.max); a < list.getSize(); a++, flag++)
+		for(a = this.pageNum * (this.max); a < this.list.getSize(); a++, flag++)
 		{
 			if(flag > 0 && flag % (this.max) == 0) break;
-
 			var tableRow = $('<tr></tr>');
-			tableRow.addClass(flag % 2 == 1 ? 'odd' : 'even');							
-			
-			$("<td />", { text: list.get(a).parish_name /*value.parish*/ }).addClass('sorting_1').appendTo(tableRow);							
-			$("<td />", { text: list.get(a).parish_address /*value.street+' '+value.barangay+', '+value.towncity*/ }).appendTo(tableRow);							
-			$("<td />", { text: list.get(a).parish_day /*value.day*/ }).appendTo(tableRow);
-			$("<td />", { text: list.get(a).parish_timeStart /*value.time_start*/ }).appendTo(tableRow);							
+			tableRow.addClass(flag % 2 == 1 ? 'odd' : 'even');
+			func(a, this, flag, tableRow);
 			$("#table").append(tableRow);
 		}
 
 		var startCounter = (this.pageNum * this.max) + 1;
 		var endCounter = a;
 
+		if(this.list.getSize() == 0) startCounter = endCounter = 0;
+
 		document.getElementById("table_id_info").innerHTML = "";
 		document.getElementById("table_id_info")
 		.appendChild(document.createTextNode("Showing " + startCounter +
-			" to " + endCounter + " of " + list.getSize() + " entries."));
+			" to " + endCounter + " of " + this.list.getSize() + " entries."));
 	};
 };
 
