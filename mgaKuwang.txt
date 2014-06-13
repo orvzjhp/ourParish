@@ -12,19 +12,12 @@ Mga Kuwang
 	Services
 		1. still has question mark thingy(ako ra man tingali ni)
 		2. sabot ta how reading of the day data should be stored and accessed
-		3. search is functional but other functions are not yet functional
-		4. schedules table kae maguba when a lot of schedules are loaded
-	
-	news
-		to be updated by junichi		
 	
 	others:
 	
 		general admin
-			1. log in page is the best login page ever(someone plis do dis)
-			2. wala pa na session
-			3. may need more fields
-			4. needs a log out button
+			1. wala pa na session
+			2. may need more fields
 		ckEditor/ parishAdmin:
 			ambut lang... bouncy?	
 		database

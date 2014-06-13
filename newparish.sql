@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2014 at 07:13 PM
+-- Generation Time: Jun 13, 2014 at 10:43 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `baptism_schedule` (
   KEY `parish_id` (`id_parish`),
   KEY `day_id` (`day`),
   KEY `time_id` (`time_start`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 --
 -- Dumping data for table `baptism_schedule`
@@ -51,7 +51,11 @@ INSERT INTO `baptism_schedule` (`id_baptism_schedule`, `id_parish`, `day`, `time
 (53, 2, 1, '11:11:00', '11:11:00'),
 (54, 3, 1, '11:11:00', '11:11:00'),
 (55, 2, 6, '00:31:00', '00:12:00'),
-(56, 2, 1, '11:11:00', '11:11:00');
+(56, 2, 1, '11:11:00', '11:11:00'),
+(62, 1, 1, '00:15:00', '00:30:00'),
+(63, 1, 1, '01:00:00', '01:15:00'),
+(64, 1, 1, '11:11:00', '11:11:00'),
+(65, 1, 1, '00:30:00', '11:11:00');
 
 -- --------------------------------------------------------
 
@@ -98,14 +102,18 @@ CREATE TABLE IF NOT EXISTS `confession_schedule` (
   PRIMARY KEY (`id_confession_schedule`),
   KEY `idparish` (`id_parish`),
   KEY `dayid` (`day`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `confession_schedule`
 --
 
 INSERT INTO `confession_schedule` (`id_confession_schedule`, `id_parish`, `day`, `time_start`, `time_end`) VALUES
-(3, 1, 6, '11:11:00', '11:11:00');
+(3, 1, 6, '11:11:00', '11:11:00'),
+(4, 1, 1, '11:11:00', '11:11:00'),
+(5, 3, 1, '11:11:00', '11:11:00'),
+(6, 3, 4, '00:12:00', '00:12:00'),
+(7, 2, 3, '11:11:11', '11:11:11');
 
 -- --------------------------------------------------------
 
@@ -122,18 +130,14 @@ CREATE TABLE IF NOT EXISTS `confirmation_schedule` (
   PRIMARY KEY (`id_confirmation_schedule`),
   KEY `parishid` (`id_parish`),
   KEY `id_day` (`day`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `confirmation_schedule`
 --
 
 INSERT INTO `confirmation_schedule` (`id_confirmation_schedule`, `id_parish`, `day`, `time_start`, `time_end`) VALUES
-(1, 3, 3, '01:53:22', '02:42:12'),
-(4, 1, 1, '00:12:00', '00:12:00'),
-(5, 1, 1, '11:12:00', '11:11:00'),
-(6, 1, 1, '11:12:00', '11:11:00'),
-(7, 1, 1, '11:12:00', '11:11:00');
+(10, 7, 1, '00:12:00', '00:12:00');
 
 -- --------------------------------------------------------
 
@@ -226,14 +230,19 @@ CREATE TABLE IF NOT EXISTS `mass_schedule` (
   KEY `id_parish` (`id_parish`),
   KEY `idday` (`day`),
   KEY `id_language` (`language`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `mass_schedule`
 --
 
 INSERT INTO `mass_schedule` (`id_mass_schedule`, `id_parish`, `day`, `time_start`, `time_end`, `language`) VALUES
-(4, 1, 3, '11:11:00', '11:11:00', 2);
+(4, 1, 3, '11:11:00', '11:11:00', 2),
+(5, 4, 1, '11:11:00', '11:11:00', 1),
+(6, 1, 1, '11:11:00', '11:11:00', 1),
+(7, 1, 1, '11:11:00', '11:11:00', 1),
+(8, 1, 6, '11:11:00', '11:11:00', 1),
+(9, 1, 5, '00:45:00', '11:11:00', 1);
 
 -- --------------------------------------------------------
 
@@ -242,21 +251,23 @@ INSERT INTO `mass_schedule` (`id_mass_schedule`, `id_parish`, `day`, `time_start
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `id_news` int(11) NOT NULL,
+  `id_news` int(11) NOT NULL AUTO_INCREMENT,
   `id_parish` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `title` varchar(45) DEFAULT NULL,
-  `info` varchar(45) DEFAULT NULL,
+  `content` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id_news`),
   KEY `id-parish` (`id_parish`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id_news`, `id_parish`, `date`, `title`, `info`) VALUES
-(1, 1, '2014-05-15', 'Jesus walks', 'something');
+INSERT INTO `news` (`id_news`, `id_parish`, `date`, `title`, `content`) VALUES
+(1, 1, '2014-05-15', 'Jesus walks', 'something'),
+(2, 1, '2014-01-01', 'ronnie''s gay!', 'Ang exclusive interview ronnie donito... Abangan!'),
+(3, 1, '2014-01-16', 'john love Mr. G!', 'We thought we were joking but it was actually true. The Scandalous scandal of the century! potato potatopotatopotatopotatopotatopotatopotato');
 
 -- --------------------------------------------------------
 
@@ -287,6 +298,7 @@ CREATE TABLE IF NOT EXISTS `parish` (
   `towncity` int(11) DEFAULT '1',
   `tnumber` varchar(20) DEFAULT '09227638918',
   `image` int(11) DEFAULT '1',
+  `url` varchar(100) NOT NULL DEFAULT 'http://google.com/',
   PRIMARY KEY (`id_parish`),
   KEY `id_barangay` (`barangay`),
   KEY `id_street` (`street`),
@@ -298,14 +310,14 @@ CREATE TABLE IF NOT EXISTS `parish` (
 -- Dumping data for table `parish`
 --
 
-INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`) VALUES
-(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 1),
-(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 2),
-(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3),
-(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4),
-(6, 'capitol capitan', 1, 1, 1, '123123123', 5),
-(7, 'porno', 1, 1, 1, '123123123', 6),
-(8, 'potato', 1, 1, 1, '12312313', 1);
+INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`) VALUES
+(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 1, 'http://google.com/'),
+(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 2, 'http://google.com/'),
+(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/'),
+(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/'),
+(6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/'),
+(7, 'porno', 1, 1, 1, '123123123', 6, 'http://google.com/'),
+(8, 'potato', 1, 1, 1, '12312313', 1, 'http://google.com/');
 
 -- --------------------------------------------------------
 
@@ -412,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`),
   KEY `id_role` (`role`),
   KEY `id,parish` (`id_parish`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `user`
@@ -423,7 +435,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `id_parish`) VALU
 (11, 'erty', 'asdf', 2, 2),
 (13, 'qwerwerqw', 'asdf', 2, 4),
 (38, '134', 'adfadf', 2, 1),
-(40, 'qwe', 'qwe', 2, 1);
+(41, 'qwe', 'qwe', 2, 1);
 
 --
 -- Constraints for dumped tables
