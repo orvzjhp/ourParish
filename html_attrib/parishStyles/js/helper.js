@@ -118,13 +118,6 @@ function ParishSchedManager(parishSchedContainer, max)
 	this.pageNum = 0;
 	this.maxPages = 0;
 	
-	// helper vars
-	var startCounter = 0;
-	var endCounter = 0;
-
-	// calculate number of pages
-	this.maxPages = Math.round(list.getSize() / max);
-	
 	var decrementingClosure = function(ref)
 	{
 		return function()
@@ -148,7 +141,7 @@ function ParishSchedManager(parishSchedContainer, max)
 		{
 			document.getElementById('table_id_previous').setAttribute("href", "#");
 			
-			if(ref.pageNum >= ref.maxPages)
+			if(ref.pageNum >= ref.maxPages-1)
 			{
 				document.getElementById('table_id_next').removeAttribute("href");
 				return;
@@ -163,6 +156,8 @@ function ParishSchedManager(parishSchedContainer, max)
 	this.set = function()
 	{
 		var ref = this;
+		// calculate number of pages
+		this.maxPages = Math.round(list.getSize() / max);
 		document.getElementById('table_id_previous').onclick = decrementingClosure(ref);
 		document.getElementById('table_id_next').onclick = incrementingClosure(ref);
 	};
@@ -171,7 +166,8 @@ function ParishSchedManager(parishSchedContainer, max)
 	{
 		$("#table").html('');
 		var flag = 0;
-		for(var a = this.pageNum * (this.max); a < list.getSize(); a++, flag++)
+		var a;
+		for(a = this.pageNum * (this.max); a < list.getSize(); a++, flag++)
 		{
 			if(flag > 0 && flag % (this.max) == 0) break;
 
@@ -185,12 +181,10 @@ function ParishSchedManager(parishSchedContainer, max)
 			$("#table").append(tableRow);
 		}
 
-		startCounter = (this.pageNum * this.max) + 1;
-		endCounter = flag;
-	};
+		var startCounter = (this.pageNum * this.max) + 1;
+		var endCounter = a;
 
-	this.displayLabel = function()
-	{
+		document.getElementById("table_id_info").innerHTML = "";
 		document.getElementById("table_id_info")
 		.appendChild(document.createTextNode("Showing " + startCounter +
 			" to " + endCounter + " of " + list.getSize() + " entries."));

@@ -37,7 +37,6 @@ $(document).ready(function(){
 					});
 					b.set();
 					b.displayList();
-					b.displayLabel();
 			  },
 						
 		error: function(data) { console.log(data); }

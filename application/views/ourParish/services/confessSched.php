@@ -19,6 +19,7 @@ $(document).ready(function(){
 		success:
 			  function(data) {
           console.log(data);
+          document.getElementById("table_id_info").innerHTML = "";
           a.eraseAll();
           $.each( data, function( key, value )
           {
@@ -35,7 +36,6 @@ $(document).ready(function(){
           });
           b.set();
           b.displayList();
-          b.displayLabel();
         },
 						
 		error: function(data){
