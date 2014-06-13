@@ -1,13 +1,4 @@
 
-
-    body{
-            
-        background: url(../images/bckg1.png) no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        }
         
         #header{
             margin-top: auto;
@@ -124,9 +115,15 @@
             margin-left: -15px;
             position: right;
             height: auto;
-min-height: 80px;
+            min-height: 80px;
         }
-
+        .row1 {
+            margin-right: -15px;
+            margin-left: -15px;
+            position: right;
+            height: auto;
+            min-height: 80px;
+        }
         .block-bg {
             background: url(../images/block-3.png)  center 0 no-repeat;
             position: relative;
@@ -193,6 +190,7 @@ min-height: 80px;
         line-height: 1.1;
         color: inherit;
         font-style: italic;
+        text-align: center;
         }
 
         .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
@@ -212,8 +210,13 @@ min-height: 80px;
         .panel-body {
           padding: 15px;
           background-color: #ffffff;
-          min-height: 575px;
+          font-family: Helvetica Neue;
+          font-style: italic;
+          text-align: center;
+        
+        
           }
+
 
         body {
           font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -231,4 +234,8 @@ min-height: 80px;
           margin-left: 35px;
 margin-right: -40px;
         }
-
+    .text-center {
+            text-align: center;
+            font-family: Helvetica Neue;
+            font-style: italic;
+        }
