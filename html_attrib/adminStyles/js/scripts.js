@@ -69,7 +69,7 @@ $(document).ready(function(){
 					admin.append($('<a></a>').text('Admin').attr("data-toggle", "modal").attr("data-target", "#prior").attr("data-id",value.id_parish).on( "click", getAdmin));
 
 					var description = $('<td></td>');
-					description.append($('<a></a>').text('Location').css('margin-left','5px').attr("data-toggle", "modal").attr("data-target", "#desc").attr("data-id",value.id_parish).on("click", editLocation));
+					description.append($('<a></a>').text('Edit').css('margin-left','5px').attr("data-toggle", "modal").attr("data-target", "#desc").attr("data-id",value.id_parish).on("click", editLocation));
 
 					var schedule = $('<td></td>');
 					schedule.append($('<a></a>').text('Schedule').css('margin-left','5px').attr("data-toggle", "modal").attr("data-target", "#managesched").attr("data-id",value.id_parish).on( "click", setID));
