@@ -19,6 +19,7 @@ $(document).ready(function(){
 				  function(data) {
 						var count = 1;
 						$("#mass_table").html('');
+						console.log(data);
 						$.each( data, function( key, value ) {							
 							var tableRow = $('<tr></tr>');
 							

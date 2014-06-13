@@ -21,7 +21,9 @@
 				"<?php echo $value->parish; ?>" ,
 				"<?php echo $value->barangay.', '.$value->street.' '.$value->towncity.' city'; ?>" ,
 				"<?php echo 'The Best Description Ever!' ?>",
-				"<?php echo 'Parish Page'?>"
+				"<?php echo 'Parish Page'?>",
+				"<? echo base_url(); ?>index.php"
+					
 			  )
 			);
 	<?php
