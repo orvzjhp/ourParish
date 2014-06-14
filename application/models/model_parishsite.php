@@ -230,7 +230,7 @@ Class model_parishsite extends CI_Model
 			case 'december' : $month = 12; break;
 		}
 		
-		$this->db->select('news.id_news, parish.parish, parish.url news.date, news.title, news.content');
+		$this->db->select('news.id_news, parish.parish, parish.url, news.date, news.title, news.content');
 		$this->db->from('news');
 		
 		$this->db->join('parish', 'news.id_parish = parish.id_parish');

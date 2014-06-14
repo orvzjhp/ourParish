@@ -1,11 +1,12 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
   <!DOCTYPE html>
 <html>
 <head>
       <title>OurParish</title>
-  <script language="javascript" type="text/javascript" src="<?php echo base_url(); ?>html_attrib/parishStyles/js/helper.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="<?php echo base_url(); ?>html_attrib/parishStyles/js/helper.js"></script>
   <script> 
+  var a = new ParishSchedContainer();
+  var b = new ParishSchedManager(a, 15);
 $(document).ready(function(){
   $("#flip").click(function(){
   var base_url = $("#init").data('base_url');
@@ -17,27 +18,25 @@ $(document).ready(function(){
 		data:  $("#confe_form").serialize(),
 		success:
 			  function(data) {
-					console.log(data);
-					var count = 1;
-					$("#confe_table").html('');
-					$.each( data, function( key, value ) {							
-						var tableRow = $('<tr></tr>');
-						
-						if(count % 2 == 1) {
-							tableRow.addClass('odd');							
-						} else {
-							tableRow.addClass('even');														
-						}
-						
-						$("<td />", { text: value.parish }).addClass('sorting_1').appendTo(tableRow);							
-						$("<td />", { text: value.street+' '+value.barangay+', '+value.towncity }).appendTo(tableRow);							
-						$("<td />", { text: value.day }).appendTo(tableRow);
-						$("<td />", { text: value.time_start }).appendTo(tableRow);							
-						$("#confe_table").append(tableRow);
-						count++;
-					});
-					
-			  },
+          console.log(data);
+          a.eraseAll();
+          $.each( data, function( key, value )
+          {
+            a.push_back(
+              new ParishSched(
+                value.parish,
+                value.street+' '+value.barangay+', '+value.towncity,
+                value.day,
+                value.time_start
+              )
+            );
+            a.sort();
+            
+          });
+          b.set();
+          b.displayList();
+          b.displayLabel();
+        },
 						
 		error: function(data){
 					console.log(data);
@@ -129,15 +128,17 @@ min-height: 300px;
 					<th class="sorting" role="columnheader" tabindex="0" aria-controls="table_id" rowspan="1" colspan="1" aria-label="Start Time: activate to sort column ascending" style="width: 101px;">Start Time</th>
 				</thead>
 
-				<tbody role="alert" aria-live="polite" aria-relevant="all" id="confe_table">
+				<tbody role="alert" aria-live="polite" aria-relevant="all" id="table">
 
 				</tbody>
 			</table>
 			<!-- End of Parish Tbale-->
-            <div class="dataTables_info" id="table_id_info">Showing 1 to 10 of 35 entries</div>
+            <div class="dataTables_info" id="table_id_info"></div>
               <div class="dataTables_paginate paging_two_button" id="table_id_paginate">
-                <a class="paginate_disabled_previous" tabindex="0" role="button" id="table_id_previous" aria-controls="table_id">Previous</a>
-                <a class="paginate_enabled_next" tabindex="0" role="button" id="table_id_next" aria-controls="table_id">Next</a>
+                <!--<a class="paginate_disabled_previous" tabindex="0" role="button" id="table_id_previous" aria-controls="table_id">Previous</a>
+                <a class="paginate_enabled_next" tabindex="0" role="button" id="table_id_next" aria-controls="table_id">Next</a>-->
+                <a class="" tabindex="0" role="button" id="table_id_previous" aria-controls="table_id">Previous</a>
+                <a class="" tabindex="0" role="button" id="table_id_next" aria-controls="table_id">Next</a>
             </div>
       </div>
 </div></div>
