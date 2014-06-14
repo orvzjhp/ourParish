@@ -10,7 +10,6 @@
 $(document).ready(function(){
   $("#flip").click(function(){
   var base_url = $("#init").data('base_url');
-	console.log($("#confe_form").serialize());
 	$.ajax({
 		type: "POST",
 		url: base_url + "index.php/p_functs/search_confeSched",
@@ -18,7 +17,6 @@ $(document).ready(function(){
 		data:  $("#confe_form").serialize(),
 		success:
 			  function(data) {
-          console.log(data);
           document.getElementById("table_id_info").innerHTML = "";
           a.eraseAll();
           $.each( data, function( key, value )
@@ -42,7 +40,7 @@ $(document).ready(function(){
 					console.log(data);
 			  }
 	});
-    $("#panel").slideDown("slow"); console.log("text");
+    $("#panel").slideDown("slow");
   });
 });
 </script>
@@ -50,13 +48,23 @@ $(document).ready(function(){
 
 #flip
 {
-padding:10px;
+padding: 10px;
 text-align:center;
-background-color:#e5e5e5;
+background-color:#ffffff;
 border:solid 1px #c3c3c3;
 margin-right: 25px;
 margin-left: 35px;
- margin-bottom: 10px;
+margin-bottom: 10px;
+cursor: pointer;
+border-radius: 4px;
+box-shadow: inset 0px 10px 0px -18px #ffffff;
+background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+display: inline-block;
+white-space: nowrap;
+background-image: none;
+border: 1px solid transparent;
+-webkit-appearance: button;
+-webkit-user-select: none;
 }
 #panel
 {
@@ -101,7 +109,7 @@ min-height: 300px;
          <div id="flip">Search Schedules</div>
       </div>
    <div id="container"> 
-  <div id="panel-body" style="margin-top: 150px;">
+  <div id="panel-body" style="margin-top: 70px;">
   <div id="panel"><h2 class="h2-line-3">Confession Schedules</h2>
           <div class="col-page-cont left-2">
             <div id="table_id_wrapper" class="dataTables_wrapper" role="grid">
@@ -137,8 +145,8 @@ min-height: 300px;
               <div class="dataTables_paginate paging_two_button" id="table_id_paginate">
                 <!--<a class="paginate_disabled_previous" tabindex="0" role="button" id="table_id_previous" aria-controls="table_id">Previous</a>
                 <a class="paginate_enabled_next" tabindex="0" role="button" id="table_id_next" aria-controls="table_id">Next</a>-->
-                <a class="" tabindex="0" role="button" id="table_id_previous" aria-controls="table_id">Previous</a>
-                <a class="" tabindex="0" role="button" id="table_id_next" aria-controls="table_id">Next</a>
+                <a class="paginate_enabled_previous" tabindex="0" role="button" id="table_id_previous" aria-controls="table_id">Previous</a>
+                <a class="paginate_enabled_next" tabindex="0" role="button" id="table_id_next" aria-controls="table_id">Next</a>
             </div>
       </div>
 </div></div>

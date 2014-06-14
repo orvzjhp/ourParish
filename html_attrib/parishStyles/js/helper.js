@@ -143,7 +143,7 @@ function ParishSchedManager(parishSchedContainer, max)
 		{
 			document.getElementById('table_id_previous').setAttribute("href", "#");
 			
-			if(ref.pageNum >= ref.maxPages-1)
+			if(ref.pageNum >= ref.maxPages)
 			{
 				document.getElementById('table_id_next').removeAttribute("href");
 				return;
@@ -159,7 +159,8 @@ function ParishSchedManager(parishSchedContainer, max)
 	{
 		var ref = this;
 		// calculate number of pages
-		this.maxPages = Math.round(this.list.getSize() / max);
+		this.maxPages = parseInt(this.list.getSize() / max);
+
 		document.getElementById('table_id_previous').onclick = decrementingClosure(ref, func);
 		document.getElementById('table_id_next').onclick = incrementingClosure(ref, func);
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>OurParish</title>
@@ -12,7 +12,7 @@
 <div class="panel-heading"><h4><span class="glyphicon glyphicon-book"></span> Reading of the Day</h4></div>
 <div class="panel-body">
 	<div class="row1">
-	
+
 				<div class="form-horizontal"  role="form" method="post">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Language</label>
@@ -25,7 +25,7 @@
  					</div>
  				</div>	
 
-				
+
 	</div>
 
 <div class="panel2 panel-default" style="border-color: #ddd;">
