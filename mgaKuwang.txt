@@ -10,8 +10,7 @@ Mga Kuwang
 		3. Search Bar does not have function
 	
 	Services
-		1. still has question mark thingy(ako ra man tingali ni)
-		2. sabot ta how reading of the day data should be stored and accessed
+		1. sabot ta how reading of the day data should be stored and accessed
 	
 	others:
 	
