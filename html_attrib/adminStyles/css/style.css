@@ -170,3 +170,24 @@
             background-color: #CCCCCC;
             min-height: 60px;
         }
+
+        .modal_noti{
+            margin-top: 150px;
+        }
+
+        .modal_notisizesw{
+            width: 200px;
+        }
+
+        .modal_notisizeh{
+            height: 50px;
+        }
+
+        .notim{
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .fsize{
+            font-size: 15px;
+        }
