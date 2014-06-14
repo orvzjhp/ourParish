@@ -76,12 +76,29 @@
       </div>
      <div class="modal-footer">
                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                   <input type="submit" class="btn btn-primary" value="Add Parish">
+                   <input type="submit" data-toggle="modal" data-target="#notiaddpar" class="btn btn-primary" value="Add Parish">
                 </div>  
     </form>
     </div>
   </div>
 </div>	
+
+<!--notification para add parish -->
+<div class="modal fade" id="notiaddpar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal_noti modal_notisizesw">
+    <div class="modal-content modal_background">
+      <div class="modal-header modal_bheader" style="height:35px;">
+        <font class="modal-title" id="myModalLabel">STATUS</font>
+      </div>
+ 
+          <div class="modal-body modal_background modal_notisizeh" style="margin-bottom:3px;">
+            <font style="margin-left:35px;">PARISH ADDED</font>
+          </div>
+      
+
+    </div>
+  </div>
+</div>  
 
 <!--End of add parish modal-->
 
@@ -133,7 +150,6 @@
 		 </div>
 		 <div class="modal-footer modal_bfooter">
 			<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
-			<input type="submit" class="btn btn-primary" value="Save Changes">
 		 </div>
 	 </form>
     </div>
@@ -164,15 +180,31 @@
     <input type="password" name="password" class="form-control" id="pass" placeholder="Enter Password">
     </div>
   
-  
-    
+
   
     </div>
       <div class="modal-footer modal_bfooter">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="Save Changes">
+        <input type="submit" data-toggle="modal" data-target="#notiaddadmin" class="btn btn-primary" value="Save Changes">
       </div>
 	</form>
+    </div>
+  </div>
+</div>  
+
+<!--notification para add admin -->
+<div class="modal fade" id="notiaddadmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal_noti modal_notisizesw">
+    <div class="modal-content modal_background">
+      <div class="modal-header modal_bheader" style="height:35px;">
+        <font class="modal-title" id="myModalLabel">STATUS</font>
+      </div>
+ 
+          <div class="modal-body modal_background modal_notisizeh" style="margin-bottom:3px;">
+            <font style="margin-left:35px;">ADMIN ADDED</font>
+          </div>
+      
+
     </div>
   </div>
 </div>    
@@ -241,7 +273,7 @@
 	    </div>
 	    <div class="modal-footer modal_bfooter">
 	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="Save Changes">
+        <input type="submit" data-toggle="modal" data-target="#notiedit" class="btn btn-primary" value="Save Changes">
 	    </div>
 	  </form>
     </div>    
@@ -249,6 +281,24 @@
 </div>  
 
 <!--End of Edit description modal -->
+
+<!--notification para edit location -->
+<div class="modal fade" id="notiedit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal_noti modal_notisizesw">
+    <div class="modal-content modal_background">
+      <div class="modal-header modal_bheader" style="height:35px;">
+        <font class="modal-title" id="myModalLabel">STATUS</font>
+      </div>
+ 
+          <div class="modal-body modal_background modal_notisizeh" style="margin-bottom:3px;">
+            <font style="margin-left:55px;">SAVED</font>
+          </div>
+      
+
+    </div>
+  </div>
+</div>   
+
 </body>
 </html>
 
