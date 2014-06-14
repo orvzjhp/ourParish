@@ -189,7 +189,25 @@
       <form id="editDescForm">
 	    <div id="editDesc_PID" value=""></div>
 	    <div class="modal-body" style="margin-bottom:3px;">
-	      <div><h4 style="margin-left:180px;">Locations</h4></div>
+	      <div><h4 style="margin-left:180px;">Profile Parish Picture</h4></div>
+          
+          <div id="upload-area">
+            <div id="preview">
+              <img width="100px" height="100px" src="<?php echo base_url(); ?>\html_attrib\adminStyles\images\question-mark.jpg" id="thumb">
+            </div>
+
+            <form action="/playground/ajax_upload" id="newHotnessForm">
+              <label>Upload a Picture of the Parish</label>
+                      <table>
+                        <tr>  
+                            <td><input type="file" size="20" id="imageUpload" class=" "></td>
+                            <td><button class="button" type="submit">Upload</button></td>
+                        </tr>
+                      </table>
+            </form>
+          </div>
+        
+        <div><h4 style="margin-left:180px;">Locations</h4></div>
 		<div class="form-group">
 	      <label for="labelparishadd">Street</label>
 	      <select class="form-control" name="street" id="street">
