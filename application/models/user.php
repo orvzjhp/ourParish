@@ -250,6 +250,66 @@ Class User extends CI_Model
 		}
 	}
 	
+	function model_getDetails($data) {
+		
+		$this->db->select('parish.image, image.filename, image.ext');
+		$this->db->from('parish');
+		$this->db->where('parish.id_parish', $data['parish_id']);		
+	
+		$this->db->join('image', 'parish.image = image.image_id', 'inner');
+
+		$query = $this->db->get();
+ 
+		if($query->num_rows() == 1)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}	
+	}
+	
+	function model_getImage($imageID) {
+		$this->db->select('filename, ext');
+		$this->db->from('image');
+		$this->db->where('image_id', $imageID);
+		$query = $this->db->get();
+		if($query->num_rows() == 1)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	function model_updateCover($filename, $imageID) {
+		
+		$fileArray = explode(".", $filename);		
+		$data = array(
+            'filename'      => $fileArray[0],
+            'ext'         => $fileArray[1]
+        );
+		
+		
+        //$this->db->insert('image', $data);
+		
+		
+ 		// if($this->db->affected_rows() > 0) {
+			// $this->db->select_max('image_id');
+			// $id = $this->db->get('image');
+			// $id['image_id']; //this is image id in table 'image'
+			// update image ID column in 'parish' table
+		// }
+		
+		return TRUE;
+		
+		
+		return FALSE;
+	}
+	
 
 	
 

@@ -23,7 +23,6 @@
 				"<?php echo 'The Best Description Ever!' ?>",
 				"<?php echo 'Parish Page'?>",
 				"<? echo base_url(); ?>index.php"
-					
 			  )
 			);
 	<?php

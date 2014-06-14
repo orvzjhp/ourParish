@@ -26,9 +26,26 @@ $(document).ready(function(){
 	
 	return false;  
   });
+  
+  $("#uploadForm").submit(function(e){
+	e.preventDefault();
+	$.ajaxFileUpload({
+		url             : base_url + 'index.php/parishadmin/updateCover', 
+		secureuri       : false,
+		fileElementId   :'imageUpload',
+		dataType        : 'json',
+		data            : {
+			'imageID'     : $("#thumb").data('id')
+		},
+		success : function (data)
+		{
+			console.log(data);
+		}
+	});
+  
+	return false;
+  });
 
-  
-  
   $("#addParishForm").submit(function(){
 
 	$.ajax({
@@ -153,7 +170,25 @@ $(document).ready(function(){
   
   function editLocation() {
 	var parish_id = $(this).data('id');	
-	$("#editDesc_PID").attr("value",parish_id);	
+	console.log(parish_id);
+	$("#editDesc_PID").attr("value",parish_id);
+	$.ajax({
+		type: "POST",
+		url: base_url + "index.php/parishadmin/getDetails",
+		dataType: "json",
+		data: "parish_id=" + parish_id,
+		success:
+			  function(data) {
+					
+					document.getElementById("thumb").src= base_url + "html_attrib/parishStyles/images/parishcovers/"+data[0].filename+'.'+data[0].ext;					
+					document.getElementById('thumb').setAttribute('data-id', data[0].image)
+					console.log(data);
+				},
+						
+		error: function(data){
+					console.log(data);
+			  }
+	});
   }
   
     $("#adminAddForm").submit(function(){
@@ -337,8 +372,8 @@ $(document).ready(function(){
   }
   
    function getSchedules(parish_id, type, toHighlight) {
-		toHighlight = typeof toHighlight !== 'undefined' ? toHighlight : 0;
-		console.log(toHighlight);
+		//toHighlight = typeof toHighlight !== 'undefined' ? toHighlight : 0;
+		//console.log(toHighlight);
 		$.ajax({
 			type: "POST",
 			url: base_url + "index.php/parishadmin/schedules" + type,

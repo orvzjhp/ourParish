@@ -7,8 +7,9 @@
     <link href = "<?php echo base_url(); ?>/html_attrib/adminStyles/css/style.css" rel = "stylesheet">
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/scripts.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 	<script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/ajaxfileupload.js"></script>
+    <script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/scripts.js"></script>    
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
@@ -17,6 +18,7 @@
 
 
 <body>
+
 <div id="base_url" data-base_url="<?php echo base_url(); ?>"></div>
 <div class="col-md-12">
 	<div class="uppertable"></div>
@@ -27,7 +29,7 @@
 			<table class="tableheader">
 			<tr>
 				<td><h4><a data-toggle="modal" data-target="#addpar">ADD PARISH</a></td>
-        <td><h4><a style="margin-left:390px;">LOG-OUT</a></td>
+        <td><h4><a href="<?php echo base_url(); ?>index.php/admin/logout" style="margin-left:390px;">LOG-OUT</a></td>
 			</tr>
 			</table>
 
@@ -184,29 +186,39 @@
   <div class="modal-dialog">
     <div class="modal-content modal_background">
       <div class="modal-header modal_bheader">
-        <h4 class="modal-title" id="myModalLabel">EDIT LOCATION</h4>
+        <h4 class="modal-title" id="myModalLabel">EDIT INFORMATION</h4>
       </div>
-      <form id="editDescForm">
+
 	    <div id="editDesc_PID" value=""></div>
 	    <div class="modal-body" style="margin-bottom:3px;">
 	      <div><h4 style="margin-left:180px;">Profile Parish Picture</h4></div>
-          
-          <div id="upload-area">
+         
+		 <!-- start of uploaddd-->
+		 
+		 
+		    
+         <div id="upload-area">
             <div id="preview">
-              <img width="100px" height="100px" src="<?php echo base_url(); ?>\html_attrib\adminStyles\images\question-mark.jpg" id="thumb">
+              <img width="100px" height="100px" src="<?php echo base_url(); ?>html_attrib/parishStyles/images/parishcovers/default.jpg" id="thumb" data-id="" >
             </div>
 
-            <form action="/playground/ajax_upload" id="newHotnessForm">
-              <label>Upload a Picture of the Parish</label>
-                      <table>
-                        <tr>  
-                            <td><input type="file" size="20" id="imageUpload" class=" "></td>
-                            <td><button class="button" type="submit">Upload</button></td>
-                        </tr>
-                      </table>
-            </form>
+             <label>Upload a Picture of the Parish</label>
+			  <table>
+				<tr>  
+					<form id="uploadForm" enctype="multipart/form-data">     
+						<td><input type="file" size="20" id="imageUpload" name="imageUpload"></td>
+						<td>
+						   
+						   <button class="button" type="submit">Upload</button>
+						</td>
+					</form>
+				</tr>
+			  </table>
+           
           </div>
-        
+		
+		<!-- emd of uploadddd-->
+      <form id="editDescForm">		
         <div><h4 style="margin-left:180px;">Locations</h4></div>
 		<div class="form-group">
 	      <label for="labelparishadd">Street</label>
@@ -237,8 +249,6 @@
 </div>  
 
 <!--End of Edit description modal -->
-
-
 </body>
 </html>
 

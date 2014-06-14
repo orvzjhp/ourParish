@@ -302,6 +302,76 @@ class parishadmin extends CI_Controller {
 	}
  }
  
+ function updateCover() {
+ 
+
+    $msg = "";
+    $file_element_name = 'imageUpload';
+	$imageID = $_POST['imageID'];
+	
+	$config['upload_path'] ='./html_attrib/parishStyles/images/parishcovers/';
+	$config['allowed_types'] = 'jpg|jpeg|png|gif';
+	$config['max_size'] = 1024 * 8;
+	//$config['encrypt_name'] = TRUE; //encrypts the filename
+	
+	$this->load->library('upload', $config);
+
+	if (!$this->upload->do_upload($file_element_name))
+	{
+		$msg = $this->upload->display_errors('', '');
+	}
+	else
+	{
+	
+		$data = $this->upload->data();
+		
+		if($imageID != 1) {
+			
+			 // delete picture in db and folder
+			$query = $this->user->model_getImage($imageID);
+						
+			$path = "./html_attrib/parishStyles/images/parishcovers/".$query[0]->filename.'.'.$query[0]->ext;
+			unlink($path);
+			if($this->user->model_updateCover($data['file_name'], $imageID))
+			{
+				$msg = "File successfully uploaded";
+			}
+			else
+			{
+				unlink($data['full_path']);
+				$msg = "Something went wrong when saving the file, please try again.";
+			}
+		}
+
+		
+
+	}
+	@unlink($_FILES[$file_element_name]);
+
+    echo json_encode($msg);	
+ }
+
+ function getDetails() {
+	
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules('parish_id', 'Parish_id', 'trim|required|xss_clean');
+	
+	if($this->form_validation->run() == FALSE) {
+		echo json_encode('validation run fail');
+	} else {
+		$data = array(
+			'parish_id' => $this->input->post('parish_id')
+		);
+		
+		
+		$details = $this->user->model_getDetails($data);
+		echo json_encode($details);		
+		
+		
+	}
+ 
+ }
+ 
 
 
 

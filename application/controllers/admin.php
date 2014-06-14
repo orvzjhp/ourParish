@@ -16,12 +16,13 @@ class admin extends CI_Controller {
  }
  
  function loginPage() {
+   
    $this->load->helper(array('form'));
    $this->load->view('admin/login_view'); 
  }
  
  function homePage() {
- 
+   $this->load->helper(array('form', 'url'));
    $this->load->view('admin/Header');
    $this->load->view('admin/Admin_Homepage');
  }
@@ -91,6 +92,7 @@ class admin extends CI_Controller {
 	
 	if($this->login->model_verifyUser($data)) {
 		$this->session->set_userdata('logged_in', $data);
+		session_start();
 		return TRUE;
 	}
 	else {
@@ -102,8 +104,7 @@ class admin extends CI_Controller {
  function logout() {
 	$this->session->unset_userdata('logged_in');
 	session_destroy();
-	redirect('admin/login_view', 'refresh');
-
+	//redirect('admin/loginPage', 'refresh');
  }
 
 }
