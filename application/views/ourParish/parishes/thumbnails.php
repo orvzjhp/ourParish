@@ -16,7 +16,7 @@
   <div class="row">
 	<?php
 		$count = 0;
-		foreach($information as $value) 
+		foreach($information as $value)
 		{
 			?>
 			       
@@ -43,11 +43,8 @@
 				<div class="modal-body">
 				  <div class="form-group">
 					 <div style="background-: url(<?php echo base_url(); ?>/html_attrib/parishStyles/images/parishcovers/<?php echo $value->filename.'.'.$value->ext; ?>);"></div>
-					  <p class="text-center">Data: Data here</p>
-					  <p class="text-center">Data: Data here</p>
-					  <p class="text-center">Data: Data here</p>
-					  <p class="text-center">Data: Data here</p>
-					  <p class="text-center">Data: Data here</p>
+					  <p class="text-center"><?php echo $value->description; ?></p>
+
 					  <a href="<?php echo $value->url; ?>" target="window">See more</a>
 				  </div>
 					<div class="form-group"></div>

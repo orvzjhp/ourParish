@@ -8,8 +8,9 @@
     
       <div class = "main_container" >
       <div class = "design_bar">
-      	 <h1> OurParish.org
+      	 <h1> 
 		 <img src = "<?php echo base_url();?>/html_attrib/parishStyles/images/header.png" style = "position:relative; top:-19px;">
+		 OurParish.org
 		 </h1>
 	  </div>
       <div class="slider" style = "position:relative; top:-20px;" >

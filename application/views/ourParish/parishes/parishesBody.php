@@ -41,11 +41,12 @@
                       <script type="text/javascript">test.setView();</script>
                 </li>
                         <li> <label class="sr-only" for="search">Search</label></li>
-                        <li><input type="search" class="form-control" id="Ronnie Gwapo" placeholder="Search"></li>
-                             
-                        <li> <button type="submit" style="border: 0; background: transparent"></li>
-                        <li><a href="www.facebook.com"> <img src="<?php echo base_url(); ?>html_attrib/parishStyles/images/but.png" width="16" height="16"></a></li>
-
+						<form id="searchForm" method="post" accept-charset="utf-8">
+							<li><input type="search" class="form-control" id="Ronnie Gwapo" placeholder="Search"></li>
+								 
+							<li> <button type="submit" style="border: 0; background: transparent"></button></li>
+							<li><a href="www.facebook.com"> <img src="<?php echo base_url(); ?>html_attrib/parishStyles/images/but.png" width="16" height="16"></a></li>
+						</form>
                         
           </ul>
 
@@ -65,9 +66,9 @@
       </div>
               
            <div style="margin-left: 825px; float: left; position: relative; top: -30px;" >
-          <a href="www.facebook.com"> <img src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/iconFb.png" width="50" height="50" margin-left:"8%" class="img-iconMedia"></a>
-               <a href="www.twitter.com"> <img src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/iconTwitter.png" width="50" height="50" margin-left:"8%" class="img-iconMedia"></a>
-               <a href="betterphilippines.org"> <img src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/iconBpim.png" width="50" height="50" margin-left:"8%" class="img-iconMedia"></a>
+          <a href="http://facebook.com"> <img src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/iconFb.png" width="50" height="50" margin-left:"8%" class="img-iconMedia"></a>
+               <a href="http://twitter.com"> <img src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/iconTwitter.png" width="50" height="50" margin-left:"8%" class="img-iconMedia"></a>
+               <a href="http://betterphilippines.org"> <img src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/iconBpim.png" width="50" height="50" margin-left:"8%" class="img-iconMedia"></a>
           </div>
     </div>
 
