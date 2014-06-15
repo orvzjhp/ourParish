@@ -943,7 +943,8 @@ $(document).ready(function(){
     
 	var keyword = document.getElementById("keyword").value;
 	//i add lang ang keyword at the end of the url
-	document.getElementById("myframe").src = $("#init").data('base_url') + "index.php/parish_site/thumbnails/" + keyword;
+	var page = "thumbnails";
+	document.getElementById("myframe").src = $("#init").data('base_url') + "index.php/parish_site/"+ page +"/" + keyword;
 	
 	return false;  
   });
