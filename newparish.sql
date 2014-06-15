@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2014 at 09:59 AM
+-- Generation Time: Jun 15, 2014 at 10:13 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -314,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `parish` (
 
 INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`, `description`) VALUES
 (1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 33, 'http://google.com/', 'Ronnie is so gay'),
-(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 23, 'http://google.com/', 'Orvz bayuuuttt'),
+(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 7, 'http://google.com/', 'Orvz bayuuuttt'),
 (3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/', 'potato potato potato potato potato'),
 (4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/', 'Once upon a time, there was once an ugly barnacle. He was so ugly... Everyone died. The end.'),
 (6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/', 'One cheese burger please. aw'),

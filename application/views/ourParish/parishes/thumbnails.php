@@ -19,7 +19,6 @@
 		foreach($information as $value)
 		{
 			?>
-			       
 			<div class="col-md-3">
 				<div class="thumbnail">
 					<img style="display:block;height: 110px; width: 180px;" src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/parishcovers/<?php echo $value->filename.'.'.$value->ext; ?>">
@@ -37,7 +36,7 @@
 			  <div class="modal-content">
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				  <h4 class="modal-title" id="myModalLabel">Data: Data here</h4>
+				  <h4 class="modal-title" id="myModalLabel">The <?php echo $value->parish; ?></h4>
 				</div>
 				
 				<div class="modal-body">
@@ -57,6 +56,7 @@
 		  <!--End of Modal-->
 			
 			<?php
+			$count++;
 		}		
 	?>
 </div>
