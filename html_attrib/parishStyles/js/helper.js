@@ -937,6 +937,18 @@ function MassSchedulerHelper()
 	};
 };
 
+$(document).ready(function(){
+
+  $("#searchForm").submit(function() {
+    
+	var keyword = document.getElementById("keyword").value;
+	//i add lang ang keyword at the end of the url
+	document.getElementById("myframe").src = $("#init").data('base_url') + "index.php/parish_site/thumbnails/" + keyword;
+	
+	return false;  
+  });
+});
+
 // set inheritance
 MassSchedulerHelper.prototype = new Helper();
 MassSchedulerHelper.constructor = MassSchedulerHelper;

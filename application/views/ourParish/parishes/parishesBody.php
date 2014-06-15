@@ -42,10 +42,10 @@
                 </li>
                         <li> <label class="sr-only" for="search">Search</label></li>
 						<form id="searchForm" method="post" accept-charset="utf-8">
-							<li><input type="search" class="form-control" id="Ronnie Gwapo" placeholder="Search"></li>
+							<li><input type="search" class="form-control" id="keyword" name="keyword" placeholder="Search"></li>
 								 
 							<li> <button type="submit" style="border: 0; background: transparent"></button></li>
-							<li><a href="www.facebook.com"> <img src="<?php echo base_url(); ?>html_attrib/parishStyles/images/but.png" width="16" height="16"></a></li>
+							<li><a href="http://facebook.com"> <img src="<?php echo base_url(); ?>html_attrib/parishStyles/images/but.png" width="16" height="16"></a></li>
 						</form>
                         
           </ul>

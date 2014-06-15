@@ -13,6 +13,7 @@
   <script type="text/javascript">
     var a = new ParishDataContainer();
 	<?php 
+		if($information)
 		foreach($information as $value) 
 		{
 			?>a.push_back(

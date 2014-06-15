@@ -16,6 +16,7 @@
   <div class="row">
 	<?php
 		$count = 0;
+		if($information)
 		foreach($information as $value)
 		{
 			?>
