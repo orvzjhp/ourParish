@@ -91,8 +91,8 @@ class admin extends CI_Controller {
 	$data['password'] = $password;
 	
 	if($this->login->model_verifyUser($data)) {
+		$this->load->library('session');
 		$this->session->set_userdata('logged_in', $data);
-		session_start();
 		return TRUE;
 	}
 	else {
@@ -103,7 +103,6 @@ class admin extends CI_Controller {
  
  function logout() {
 	$this->session->unset_userdata('logged_in');
-	session_destroy();
 	//redirect('admin/loginPage', 'refresh');
  }
 

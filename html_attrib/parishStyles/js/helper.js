@@ -329,11 +329,12 @@ function ListManager(parishDataContainer, max)
 	
 	// calculate number of pages
 	// each page should have 5 parishes displayed
-	this.maxPages = Math.round(list.getSize() / max);
+	this.maxPages = parseInt(list.getSize() / max);
 
 	// bounds checking
-	if(list.getSize() < max) this.maxPages++;
-	
+	if(list.getSize() < max || list.getSize() % max != 0)
+		this.maxPages++;
+
 	this.init = function()
 	{
 		document.getElementById("init").innerHTML = '<meta name ="viewport" content = "width=device-width, initial-scale = 1.0">'+
@@ -521,13 +522,13 @@ function ListManager(parishDataContainer, max)
 		var p1 = document.createElement('p');
 		p1.setAttribute('class', 'text-center');
 		p1.appendChild(document.createTextNode(list.get(a).parish_shortDescription));
-		var a = document.createElement('a');
-		a.href = 'google.com';
-		a.setAttribute('class', 'ca-more');
-		a.appendChild(document.createTextNode('More...'));
+		var b = document.createElement('a');
+		b.href = list.get(a).parish_page;
+		b.setAttribute('class', 'ca-more');
+		b.appendChild(document.createTextNode('More...'));
 		div6.appendChild(div7);
 		div6.appendChild(p1);
-		div6.appendChild(a);
+		div6.appendChild(b);
 		var div8 = document.createElement('div');
 		div8.setAttribute('class', 'form-group');
 		div5.appendChild(div6);
@@ -551,10 +552,6 @@ function ListManager(parishDataContainer, max)
 		parish_display.innerHTML = "";
 
 		var flag = 0;
-		console.log(this.pageNum);
-		console.log(this.maxPages);
-		console.log(this.pageNum * (this.maxPages-1));
-		console.log(list.getSize());
 		for(var a = this.pageNum * (this.max); a < list.getSize(); a++, flag++)
 		{
 			if(flag > 0 && flag % (this.max) == 0) break;
@@ -584,9 +581,12 @@ function ViewSwitcher()
 {
 	this.views = {};
 	var base_url = $("#init").data('base_url');
-	
+	var indicator = "thumbnails";
+
 	this.views["thumbnails"] = "index.php/parish_site/thumbnails";
-	this.views["list"] 		 = "index.php/parish_site/lists";
+	this.views["lists"] 		 = "index.php/parish_site/lists";
+
+	this.getIndicator = function() { return indicator; }
 
 	this.init = function()
 	{
@@ -601,6 +601,7 @@ function ViewSwitcher()
 		return function()
 		{
 			document.getElementById("myframe").src = base_url + ref.views[key];		
+			indicator = key;
 		};
 	};
 
@@ -610,14 +611,14 @@ function ViewSwitcher()
 		var ref = this;
 
 		var count = 0;
+		var active = "active";
 		for(var key in this.views)
 		{
 			var li_divider = document.createElement('li');
 			li_divider.setAttribute("class", "divider");
 
 			var li = document.createElement('li');
-			if(count == 0)
-				li.setAttribute("class", "active");
+			li.setAttribute("class", active);
 
 			var a = document.createElement("a");
 			a.setAttribute("data-toggle", "tab");
@@ -631,6 +632,7 @@ function ViewSwitcher()
 			li.appendChild(a);
 			ul.appendChild(li_divider);
 			ul.appendChild(li);
+			active = "";
 			count++;
 		}
 	};
@@ -943,8 +945,8 @@ $(document).ready(function(){
     
 	var keyword = document.getElementById("keyword").value;
 	//i add lang ang keyword at the end of the url
-	var page = "thumbnails";
-	document.getElementById("myframe").src = $("#init").data('base_url') + "index.php/parish_site/"+ page +"/" + keyword;
+
+	document.getElementById("myframe").src = $("#init").data('base_url') + "index.php/parish_site/"+ test.getIndicator() + "/" + keyword;
 	
 	return false;  
   });

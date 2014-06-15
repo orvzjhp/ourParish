@@ -3,12 +3,7 @@ Mga Kuwang
 	Home
 		1. add Calendar to empty spot in page
 		2. sabot what data to put when "more..." button is clicked 
-		
-	Parishes
-		1. sabot ta what data should be added when thumbnail is clicked
-		2. sabot ta what description should be placed on list parish
-		3. Search Bar does not have function
-	
+			
 	Services
 		1. sabot ta how reading of the day data should be stored and accessed
 	

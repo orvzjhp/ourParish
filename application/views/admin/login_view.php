@@ -12,18 +12,21 @@
 		<h1 style="margin-left:130px">Login</h1>
 			<table width="510" border="0" align="center">
 
-			<?php echo form_open('admin/verifyUser'); ?>
+				<?php echo form_open('admin/verifyUser'); ?>
 
-			<tr>Username: <input  type="text" name="username"></tr>
-			<br>
-			<tr>Password: <input type="text" name="password" style="margin-left:8px"></tr>
-			<br>
-			<input type="submit" value="Submit"></table>
-			</form>
+					<tr>Username: <input  type="text" name="username"></tr>
+					<br>
+					<tr>Password: <input type="password" name="password" style="margin-left:8px"></tr>
+					<br>
+					<input type="submit" value="Submit">
+						<br>
+				</form>
+				<tr><?php echo validation_errors(); ?></tr>
+			</table>
 		</div>
-		</section>
+	</section>
 			
-			<?php echo validation_errors(); ?>
+			
 			
 	</body>
 </html>
