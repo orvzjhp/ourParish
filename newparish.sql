@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2014 at 09:45 AM
+-- Generation Time: Jun 15, 2014 at 09:59 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `baptism_schedule` (
 
 INSERT INTO `baptism_schedule` (`id_baptism_schedule`, `id_parish`, `day`, `time_start`, `time_end`) VALUES
 (14, 3, 1, '11:11:00', '23:21:00'),
-(49, 1, 1, '11:11:00', '11:11:00'),
+(49, 1, 4, '11:11:00', '12:12:00'),
 (50, 1, 5, '00:12:00', '00:31:00'),
 (51, 1, 3, '11:11:00', '11:11:00'),
 (52, 1, 6, '11:11:00', '11:11:00'),
@@ -52,7 +52,7 @@ INSERT INTO `baptism_schedule` (`id_baptism_schedule`, `id_parish`, `day`, `time
 (54, 3, 1, '11:11:00', '11:11:00'),
 (55, 2, 6, '00:31:00', '00:12:00'),
 (56, 2, 1, '11:11:00', '11:11:00'),
-(62, 1, 1, '00:15:00', '00:30:00'),
+(62, 1, 2, '00:12:00', '00:12:00'),
 (63, 1, 1, '01:00:00', '01:15:00'),
 (64, 1, 1, '11:11:00', '11:11:00'),
 (65, 1, 1, '00:30:00', '11:11:00');
@@ -313,13 +313,13 @@ CREATE TABLE IF NOT EXISTS `parish` (
 --
 
 INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`, `description`) VALUES
-(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 33, 'http://google.com/', 'Description is to be added'),
-(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 23, 'http://google.com/', 'Description is to be added'),
-(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/', 'Description is to be added'),
-(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/', 'Description is to be added'),
-(6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/', 'Description is to be added'),
-(7, 'porno', 1, 1, 1, '123123123', 6, 'http://google.com/', 'Description is to be added'),
-(8, 'potato', 1, 1, 1, '12312313', 1, 'http://google.com/', 'Description is to be added');
+(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 33, 'http://google.com/', 'Ronnie is so gay'),
+(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 23, 'http://google.com/', 'Orvz bayuuuttt'),
+(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/', 'potato potato potato potato potato'),
+(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/', 'Once upon a time, there was once an ugly barnacle. He was so ugly... Everyone died. The end.'),
+(6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/', 'One cheese burger please. aw'),
+(7, 'porno', 1, 1, 1, '123123123', 6, 'http://google.com/', 'This church has all the answers to pleasure.'),
+(8, 'potato', 1, 1, 1, '12312313', 1, 'http://google.com/', 'mehehehehehehehhehehe');
 
 -- --------------------------------------------------------
 
