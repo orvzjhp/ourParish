@@ -442,7 +442,7 @@ function ListManager(parishDataContainer, max)
 		var img = document.createElement('img');
 		img.setAttribute('style', 'display: block;height: 110px; width: 180px; margin-left:60px; margin-right:50px; margin-bottom: 30px');
 		img.setAttribute('class', 'img-rounded');
-		img.src = url + '/html_attrib/parishStyles/images/'+list.get(a).thumbnail_src;
+		img.src = url + '/html_attrib/parishStyles/images/parishcovers/'+list.get(a).thumbnail_src;
 		div4.appendChild(img);
 
 		div3.appendChild(div4);

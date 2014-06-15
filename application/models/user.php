@@ -270,7 +270,7 @@ Class User extends CI_Model
 		}	
 	}
 	
-	function model_getImage($imageID) {
+	function model_getImageName($imageID) {
 		$this->db->select('filename, ext');
 		$this->db->from('image');
 		$this->db->where('image_id', $imageID);
@@ -285,29 +285,49 @@ Class User extends CI_Model
 		}
 	}
 	
-	function model_updateCover($filename, $imageID) {
-		
-		$fileArray = explode(".", $filename);		
-		$data = array(
-            'filename'      => $fileArray[0],
-            'ext'         => $fileArray[1]
-        );
-		
-		
-        //$this->db->insert('image', $data);
-		
-		
- 		// if($this->db->affected_rows() > 0) {
-			// $this->db->select_max('image_id');
-			// $id = $this->db->get('image');
-			// $id['image_id']; //this is image id in table 'image'
+	function model_updateCover($data, $parish_id) {
+				
+ 		if($this->model_insertImg($data)) {
+
+			$id = $this->model_getMaxImgID();
+			$this->db->flush_cache();
+			// this is image id in table 'image'
 			// update image ID column in 'parish' table
-		// }
-		
-		return TRUE;
-		
+			return $this->model_updateImgID($id, $parish_id);
+		}
 		
 		return FALSE;
+	}
+	
+	//insert new image into db
+	function model_insertImg($fileNeim) {
+		
+        $this->db->insert('image', $fileNeim);		
+		return $this->db->affected_rows() > 0;
+	}
+	
+	function model_updateParishImgID($id, $parish_id) {
+		$this->db->where('id_parish', $parish_id);
+		
+		$data = array(
+			'image' => $id
+		);
+		$this->db->update('parish', $data); 
+		return $this->db->affected_rows() > 0;
+	}
+	
+	function model_getMaxImgID() {
+		$this->db->select_max('image_id');
+		// select max(image_id) as image_id from image
+		$id = $this->db->get('image');
+		$id = $id->result_array();
+		return $id[0]['image_id'];
+	}
+	
+	function model_updateImgName($fileNeim, $imageID) {
+		$this->db->where('image_id', $imageID);
+		$this->db->update('image', $fileNeim); 
+		return $this->db->affected_rows() > 0;
 	}
 	
 

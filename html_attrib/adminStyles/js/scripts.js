@@ -17,6 +17,7 @@ $(document).ready(function(){
 		success:
 			  function(data) {
 					console.log(data);
+					
 			  },
 						
 		error: function(data){
@@ -28,6 +29,8 @@ $(document).ready(function(){
   });
   
   $("#uploadForm").submit(function(e){
+	console.log('parish id is ' + $("#editDesc_PID").attr('value'));
+	console.log('image id is ' + $("#thumb").data('id'));
 	e.preventDefault();
 	$.ajaxFileUpload({
 		url             : base_url + 'index.php/parishadmin/updateCover', 
@@ -35,10 +38,12 @@ $(document).ready(function(){
 		fileElementId   :'imageUpload',
 		dataType        : 'json',
 		data            : {
-			'imageID'     : $("#thumb").data('id')
+			'imageID'     : $("#thumb").data('id'),
+			'parish_id'   : $("#editDesc_PID").attr('value')
 		},
 		success : function (data)
 		{
+			editLocation();
 			console.log(data);
 		}
 	});
@@ -86,7 +91,7 @@ $(document).ready(function(){
 					admin.append($('<a></a>').text('Admin').attr("data-toggle", "modal").attr("data-target", "#prior").attr("data-id",value.id_parish).on( "click", getAdmin));
 
 					var description = $('<td></td>');
-					description.append($('<a></a>').text('Edit').css('margin-left','5px').attr("data-toggle", "modal").attr("data-target", "#desc").attr("data-id",value.id_parish).on("click", editLocation));
+					description.append($('<a></a>').text('Edit').css('margin-left','5px').attr("data-toggle", "modal").attr("data-target", "#desc").attr("data-id",value.id_parish).on("click", descValue));
 
 					var schedule = $('<td></td>');
 					schedule.append($('<a></a>').text('Schedule').css('margin-left','5px').attr("data-toggle", "modal").attr("data-target", "#managesched").attr("data-id",value.id_parish).on( "click", setID));
@@ -168,10 +173,15 @@ $(document).ready(function(){
 	});
   }
   
+  function descValue() {
+    $("#editDesc_PID").attr('value', $(this).data('id'));
+	editLocation();
+  }
+  
   function editLocation() {
-	var parish_id = $(this).data('id');	
-	console.log(parish_id);
-	$("#editDesc_PID").attr("value",parish_id);
+	var parish_id = $("#editDesc_PID").attr('value');	
+    
+	console.log('parish id is ' + parish_id);
 	$.ajax({
 		type: "POST",
 		url: base_url + "index.php/parishadmin/getDetails",
@@ -497,7 +507,6 @@ $(document).ready(function(){
 			  }
 	});
   }
-  
 });
 
  

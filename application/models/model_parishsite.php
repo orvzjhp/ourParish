@@ -3,7 +3,7 @@ Class model_parishsite extends CI_Model
 {
 	function model_getParishData() {
 			
-		$this->db->select('parish.id_parish, parish.parish, street.street, barangay.barangay, towncity.towncity, parish.tnumber, image.filename, image.ext');
+		$this->db->select('parish.id_parish, parish.parish, street.street, barangay.barangay, towncity.towncity, parish.tnumber, image.filename, image.ext, parish.url');
 		$this->db->from('parish');
 		$this->db->join('street', 'parish.street = street.id_street');
 		$this->db->join('barangay', 'parish.barangay = barangay.id_barangay');

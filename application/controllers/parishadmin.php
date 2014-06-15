@@ -308,6 +308,8 @@ class parishadmin extends CI_Controller {
     $msg = "";
     $file_element_name = 'imageUpload';
 	$imageID = $_POST['imageID'];
+	$parish_id = $_POST['parish_id'];
+	$failure = TRUE;
 	
 	$config['upload_path'] ='./html_attrib/parishStyles/images/parishcovers/';
 	$config['allowed_types'] = 'jpg|jpeg|png|gif';
@@ -316,6 +318,7 @@ class parishadmin extends CI_Controller {
 	
 	$this->load->library('upload', $config);
 
+	//adds picture to folder
 	if (!$this->upload->do_upload($file_element_name))
 	{
 		$msg = $this->upload->display_errors('', '');
@@ -325,26 +328,47 @@ class parishadmin extends CI_Controller {
 	
 		$data = $this->upload->data();
 		
-		if($imageID != 1) {
-			
-			 // delete picture in db and folder
-			$query = $this->user->model_getImage($imageID);
-						
+		$fileArray = explode(".", $data['file_name']);
+
+		$fileNeim = array(
+			'filename'      => $fileArray[0],
+			'ext'           => $fileArray[1]
+		);		
+		// if picture is default
+		if($imageID == 1) {
+
+			// insert image name into db		
+			if($this->user->model_insertImg($fileNeim))
+			{
+				$id = $this->user->model_getMaxImgID(); // gets Id of most recent image entry
+
+				// update image ID column in 'parish' table
+				if($this->user->model_updateParishImgID($id, $parish_id)) {
+					$msg = "File successfully uploaded";	
+					$failure = false;
+				}
+			}
+		// if picture was already changed and you want to change it aggain	
+		} else {					
+			$query = $this->user->model_getImageName($imageID);
+			$this->db->flush_cache();
+			//deletes picture in folder
 			$path = "./html_attrib/parishStyles/images/parishcovers/".$query[0]->filename.'.'.$query[0]->ext;
-			unlink($path);
-			if($this->user->model_updateCover($data['file_name'], $imageID))
-			{
-				$msg = "File successfully uploaded";
-			}
-			else
-			{
-				unlink($data['full_path']);
-				$msg = "Something went wrong when saving the file, please try again.";
-			}
+			
+			
+			if(unlink($path)) {
+				//updates name of parishes current image
+				if($this->user->model_updateImgName($fileNeim, $imageID)) {
+						$msg = "File successfully uploaded";	
+						$failure = false;				
+				}
+			}			
 		}
-
 		
-
+		if($failure == TRUE) {
+			unlink($data['full_path']);
+			$msg = "Something went wrong when saving the file, please try again.";			
+		}
 	}
 	@unlink($_FILES[$file_element_name]);
 

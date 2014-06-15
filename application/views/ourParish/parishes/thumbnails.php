@@ -22,7 +22,7 @@
 			       
 			<div class="col-md-3">
 				<div class="thumbnail">
-					<img style="display:block;height: 110px; width: 180px;" src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/<?php echo $value->filename.'.'.$value->ext; ?>">
+					<img style="display:block;height: 110px; width: 180px;" src="<?php echo base_url(); ?>/html_attrib/parishStyles/images/parishcovers/<?php echo $value->filename.'.'.$value->ext; ?>">
 					<div class="caption">
 						<a data-toggle="modal" data-target="#myModal<?php echo $count;?>"><h4 class="text-center"><?php echo $value->parish; ?></h4></a>
 						<p class="text-center"><?php echo $value->barangay.', '.$value->street.' '.$value->towncity.' city'; ?></p>
@@ -42,13 +42,13 @@
 				
 				<div class="modal-body">
 				  <div class="form-group">
-					 <div style="background-: url(<?php echo base_url(); ?>/html_attrib/parishStyles/images/<?php echo $value->filename.'.'.$value->ext; ?>);"></div>
+					 <div style="background-: url(<?php echo base_url(); ?>/html_attrib/parishStyles/images/parishcovers/<?php echo $value->filename.'.'.$value->ext; ?>);"></div>
 					  <p class="text-center">Data: Data here</p>
 					  <p class="text-center">Data: Data here</p>
 					  <p class="text-center">Data: Data here</p>
 					  <p class="text-center">Data: Data here</p>
 					  <p class="text-center">Data: Data here</p>
-					  <a href="http://google.com">See more</a>
+					  <a href="<?php echo $value->url; ?>" target="window">See more</a>
 				  </div>
 					<div class="form-group"></div>
 				</div>
