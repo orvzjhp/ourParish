@@ -57,7 +57,9 @@ class parish_site extends CI_Controller {
  function lists()
  {
  	$this->load->model('model_parishsite');
-	$data['information'] = $this->model_parishsite->model_getParishData();
+	$this->load->helper('url');
+    $keyword = $this->uri->segment(3);
+	$data['information'] = $this->model_parishsite->model_getParishData($keyword);
 	$this->load->view('ourParish/parishes/list', $data);
 	
  }
@@ -76,16 +78,16 @@ class parish_site extends CI_Controller {
  {
 	$this->load->view('ourParish/parishes/listThree'); 
  }
-///////////////////////////////
+
  function thumbnails()
  {
 	$this->load->model('model_parishsite');
-	$data['information'] = $this->model_parishsite->model_getParishData();
+	$this->load->helper('url');
+    $keyword = $this->uri->segment(3);
+	$data['information'] = $this->model_parishsite->model_getParishData($keyword);
 	$this->load->view('ourParish/parishes/thumbnails', $data); 
  }
  
- 
- ///////////////////
  function months()
  {
    $this->load->helper('url');

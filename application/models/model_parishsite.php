@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class model_parishsite extends CI_Model
 {
-	function model_getParishData() {
+	function model_getParishData($keyword) {
 			
 		$this->db->select('parish.id_parish, parish.parish, street.street, barangay.barangay, towncity.towncity, parish.tnumber, image.filename, image.ext, parish.url, parish.description');
 		$this->db->from('parish');
@@ -9,6 +9,12 @@ Class model_parishsite extends CI_Model
 		$this->db->join('barangay', 'parish.barangay = barangay.id_barangay');
 		$this->db->join('towncity', 'parish.towncity = towncity.id_towncity');
 		$this->db->join('image', 'parish.image = image.image_id');		
+		
+		$this->db->like('parish.parish', $keyword);
+		$this->db->or_like('street.street', $keyword); 
+		$this->db->or_like('barangay.barangay', $keyword); 
+		$this->db->or_like('towncity.towncity', $keyword); 
+		$this->db->or_like('parish.description', $keyword); 
 		
 		$query = $this->db->get();
  

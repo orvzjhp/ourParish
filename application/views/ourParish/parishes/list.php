@@ -20,13 +20,13 @@
 				"<?php echo $value->filename.'.'.$value->ext; ?>" ,
 				"<?php echo $value->parish; ?>" ,
 				"<?php echo $value->barangay.', '.$value->street.' '.$value->towncity.' city'; ?>" ,
-				"<?php echo 'The Best Description Ever!' ?>",
+				"<?php echo $value->description ?>",
 				"<?php echo 'Parish Page'?>",
-				"<? echo base_url(); ?>index.php"
+				"<?php echo $value->url; ?>"
 			  )
 			);
 	<?php
-		}
+		}				
 	?>
 	a.sort();
     var test = new ListManager(a, 5);

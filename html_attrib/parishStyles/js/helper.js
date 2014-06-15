@@ -468,7 +468,8 @@ function ListManager(parishDataContainer, max)
 		div3.appendChild(p2);
 
 		var a2 = document.createElement('a');
-		a2.href = 'google.com';
+		a2.href = list.get(a).parish_page;
+		a2.target = 'window';
 		a2.setAttribute('class', 'ca-more');
 		a2.appendChild(document.createTextNode('More...'));
 		div3.appendChild(a2);
