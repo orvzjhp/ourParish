@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2014 at 10:43 AM
+-- Generation Time: Jun 15, 2014 at 09:45 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -175,14 +175,14 @@ CREATE TABLE IF NOT EXISTS `image` (
   `filename` varchar(100) NOT NULL,
   `ext` varchar(10) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `image`
 --
 
 INSERT INTO `image` (`image_id`, `filename`, `ext`) VALUES
-(1, 'pic1', 'jpg'),
+(1, 'default', 'jpg'),
 (2, 'pic2', 'jpg'),
 (3, 'pic3', 'jpg'),
 (4, 'pic4', 'jpg'),
@@ -190,8 +190,9 @@ INSERT INTO `image` (`image_id`, `filename`, `ext`) VALUES
 (6, 'pic6', 'jpg'),
 (7, 'pic7', 'jpg'),
 (8, 'pic8', 'jpg'),
-(9, 'pic9', 'jpg'),
-(10, 'pic10', 'jpg');
+(31, 'pic9', 'jpg'),
+(32, 'potato7', 'jpg'),
+(33, 'sample2', 'jpg');
 
 -- --------------------------------------------------------
 
@@ -299,6 +300,7 @@ CREATE TABLE IF NOT EXISTS `parish` (
   `tnumber` varchar(20) DEFAULT '09227638918',
   `image` int(11) DEFAULT '1',
   `url` varchar(100) NOT NULL DEFAULT 'http://google.com/',
+  `description` varchar(1000) NOT NULL DEFAULT 'Description is to be added',
   PRIMARY KEY (`id_parish`),
   KEY `id_barangay` (`barangay`),
   KEY `id_street` (`street`),
@@ -310,14 +312,14 @@ CREATE TABLE IF NOT EXISTS `parish` (
 -- Dumping data for table `parish`
 --
 
-INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`) VALUES
-(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 1, 'http://google.com/'),
-(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 2, 'http://google.com/'),
-(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/'),
-(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/'),
-(6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/'),
-(7, 'porno', 1, 1, 1, '123123123', 6, 'http://google.com/'),
-(8, 'potato', 1, 1, 1, '12312313', 1, 'http://google.com/');
+INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`, `description`) VALUES
+(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 33, 'http://google.com/', 'Description is to be added'),
+(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 23, 'http://google.com/', 'Description is to be added'),
+(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/', 'Description is to be added'),
+(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/', 'Description is to be added'),
+(6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/', 'Description is to be added'),
+(7, 'porno', 1, 1, 1, '123123123', 6, 'http://google.com/', 'Description is to be added'),
+(8, 'potato', 1, 1, 1, '12312313', 1, 'http://google.com/', 'Description is to be added');
 
 -- --------------------------------------------------------
 
@@ -359,6 +361,21 @@ CREATE TABLE IF NOT EXISTS `role` (
 INSERT INTO `role` (`id_role`, `description`) VALUES
 (1, 'General Admin'),
 (2, 'Parish Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `session_id` varchar(45) NOT NULL DEFAULT '0',
+  `ip_address` varchar(16) NOT NULL DEFAULT '0',
+  `user_agent` varchar(50) NOT NULL,
+  `last_activity` int(11) NOT NULL DEFAULT '0',
+  `user_data` text NOT NULL,
+  PRIMARY KEY (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
