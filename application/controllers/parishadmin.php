@@ -337,25 +337,27 @@ class parishadmin extends CI_Controller {
 		$fileNeim = array(
 			'filename'      => $fileArray[0],
 			'ext'           => $fileArray[1]
-		);		
+		);
 		// if picture is default
 		if($imageID == 1) {
 
 			// insert image name into db		
 			if($this->user->model_insertImg($fileNeim))
 			{
+				$msg = $msg.'uploaded '.$fileArray[0].$fileArray[1].' to db';
 				$id = $this->user->model_getMaxImgID(); // gets Id of most recent image entry
 
 				// update image ID column in 'parish' table
 				if($this->user->model_updateParishImgID($id, $parish_id)) {
-					$msg = "File successfully uploaded";	
+					$msg = $msg." updated parish id to ".$id;	
 					$failure = false;
 				}
 			}
 		// if picture was already changed and you want to change it aggain	
 		} else {					
 			$query = $this->user->model_getImageName($imageID);
-			$this->db->flush_cache();
+			
+			
 			//deletes picture in folder
 			$path = "./html_attrib/parishStyles/images/parishcovers/".$query[0]->filename.'.'.$query[0]->ext;
 			
@@ -363,8 +365,8 @@ class parishadmin extends CI_Controller {
 			if(unlink($path)) {
 				//updates name of parishes current image
 				if($this->user->model_updateImgName($fileNeim, $imageID)) {
-						$msg = "File successfully uploaded";	
-						$failure = false;				
+					$msg = $msg.'updated '.$fileArray[0].$fileArray[1].' in db';
+					$failure = false;				
 				}
 			}			
 		}
