@@ -177,7 +177,7 @@ $(document).ready(function(){
     $("#editDesc_PID").attr('value', $(this).data('id'));
 	editLocation();
   }
-  
+
   function editLocation() {
 	var parish_id = $("#editDesc_PID").attr('value');	
     
@@ -201,7 +201,7 @@ $(document).ready(function(){
 	});
   }
   
-    $("#adminAddForm").submit(function(){
+  $("#adminAddForm").submit(function(){
 	var parish_id = $("#adminAddForm_PID").attr('value');
 	$.ajax({
 		type: "POST",
@@ -335,7 +335,6 @@ $(document).ready(function(){
 	$("#showsched").load(base_url + "index.php/admin/updateFormL/"+ $(this).attr('value'));  
   }
 
-  
   function addSched() {
 		var table =  $("#customTag").data('table_type');
 		var parish_id = $("#customTag").data('parish_id');
@@ -481,8 +480,6 @@ $(document).ready(function(){
 				  }
 		});
   }
-  
-
   
   function deleteSched() {
 	var sched =  $("#customTag").data('table_type');

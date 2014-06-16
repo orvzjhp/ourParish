@@ -18,12 +18,14 @@
         var p = page;
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>index.php/ourparish/selectPage",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/selectPage",
           dataType: "json",
           data: "page=" + p,
           success:
               function(data) {
-                console.log("ok");
+               alert(p);
+               console.log(data);
+               editor1.InnerHtml = "<b>Replace this with your existing HTML code from your Database.</b>";
               },
                   
           error: function(data){
@@ -33,6 +35,83 @@
         return false;
       }
     }
+
+
+    function deleteP(page)
+    {
+      return function()
+      {
+        var p = page;
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/deletePage",
+          dataType: "json",
+          data: "page=" + p,
+          success:
+              function(data) {
+                showHeader();
+              },
+                  
+          error: function(data){
+                console.log(data);
+              }
+        });
+        return false;
+      }
+    }   
+
+    function renameP(page)
+    {
+      return function()
+      {
+        var p = page;
+        
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/renamePage",
+          dataType: "json",
+          data: "page=" + p,
+          success:
+              function(data) {
+                             
+                $("#rename").html('');
+                $.each( data, function( key, value ) {    
+                  var a = document.createElement("br");
+                  var b = document.createElement("br");
+
+                  var c = document.createElement("input")
+                  c.setAttribute("type","text");
+                  c.setAttribute("class","form-control2");
+                  c.setAttribute("name","pagename");
+                  c.setAttribute("value",p);
+
+                  var f = document.createElement("input")
+                  f.setAttribute("type","hidden");
+                  f.setAttribute("name","id_page");
+                  f.setAttribute("value",value.id_page);
+                  f.appendChild(document.createTextNode(p));
+                    
+                  var d = document.createElement('button');
+                  d.setAttribute("type","submit");
+                  d.setAttribute("class","btn btn-primary");
+                  d.appendChild(document.createTextNode("RENAME"));
+                  
+
+                  document.getElementById("rename").appendChild(a);
+                  document.getElementById("rename").appendChild(b);
+                  document.getElementById("rename").appendChild(f);
+                  document.getElementById("rename").appendChild(c);
+                  document.getElementById("rename").appendChild(d);
+                });
+              },
+                  
+          error: function(data){
+                console.log(data);
+              }
+        });
+        return false;
+      }
+    }    
 </script>
 
   <body class = html>
@@ -57,6 +136,28 @@
        </div>
     </div>
 
+        <!-- renameModal -->
+          <div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:1100;">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">RENAME</h4>
+                </div>
+                <div class="modal-body">
+                 <!--FORM_ADD--> 
+                  <form id="form_rename" role="form" >
+                    <div id="rename" class="form-group">
+                      <br><br>
+                      <input type="text" class="form-control2" name="pagename">
+                      <button type="submit" class="btn btn-primary">RENAME</button>
+                    </div>
+                  </form>
+                 <!--END_FORM-->
+                </div>
+               </div>
+            </div>
+          </div>
 
         <!-- Modal -->
           <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:1100;">
@@ -68,12 +169,12 @@
                 </div>
                 <div class="modal-body">
                  <!--FORM_ADD--> 
-                  <form id="form_addpage" role="form">
+                  <form id="form_addpage" role="form" >
                     <div class="form-group">
                       <label for="username" class = "user_view">Page Name:</label>
                       <input type="text" class="form-control1" name="pagename">
                     </div>
-                    <button type="submit" class="btn btn-primary">ADD</button>
+                    <button type="submit"  class="btn btn-primary">ADD</button>
                   </form>
                  <!--END_FORM-->
                 </div>
@@ -96,16 +197,43 @@
                   </div> 
                     
                   <br><br><br><center>
-                    <table  cellpadding="4" style=" text-align: center;" "border:1"; bordercolor="#808080" id="show" bgcolor="#C0C0C0">
+                    <table  id="mp" cellpadding="4" style=" text-align: center;" "border:1"; bordercolor="#808080" id="show" bgcolor="#C0C0C0">
                       <?php
                         $aa='odd';
                         foreach($page as $row)
                         {                  
                       ?>
-                      <tr class="<?php echo $aa;?>"><td width=200><?php echo $row->page_name;?></td>
-                          <td width=100> <a href="">Delete</a></td>
-                          <td width=100>  <a href="">Rename</a></td>
-                      </tr>
+
+                      <script type="text/javascript">
+                        var a = document.createElement('tr');
+                        a.setAttribute("class","<?php echo $aa?>");
+                        var b = document.createElement("td");
+                        b.setAttribute("width", 200);                
+                        b.appendChild(document.createTextNode("<?php echo $row->page_name;?>"));
+
+                        var c = document.createElement('td');
+                        c.setAttribute("width",100);
+                        var d = document.createElement('a');
+                        d.onclick = deleteP("<?php echo $row->page_name;?>");
+                        d.appendChild(document.createTextNode("Delete"));
+                        c.appendChild(d);
+
+                        var e = document.createElement('td');
+                        e.setAttribute("width",100);
+                        var f = document.createElement('a');
+                        f.setAttribute("data-toggle","modal");
+                        f.setAttribute("data-target","#renameModal");
+                        f.onclick = renameP("<?php echo $row->page_name;?>");
+                        f.appendChild(document.createTextNode("Rename"));
+                        e.appendChild(f);
+
+
+                        a.appendChild(b);
+                        a.appendChild(c);
+                        a.appendChild(e);
+                        document.getElementById("mp").appendChild(a);          
+                      </script>
+
                       <?php
                           if($aa=="odd"){
                              $aa="even"; 
@@ -155,67 +283,170 @@
         </div>
 
         <!--CKEditor-->
-        <div id="displayCK" style="top:18%; left:2%; right:2%; position:absolute;">
+        <div style="top:18%; left:2%; right:2%; position:absolute;">
           <form id="form_saveCK" role="form">
-            <textarea class="ckeditor" id="editor1" name="data"> 
-              <?php foreach($description as $row)
-                    {
-                      echo $row->description;
-                      break;
-                    }
-              ?> </textarea> 
-            <button type="submit" name="activepage" value="HOME" class="btn btn-default navbar-btn" >Save Changes</button>
+            <textarea class="ckeditor" id="editor1" name="datavalue" runat="server"> 
+            <?php
+                foreach($description as $rr)
+                {
+                    echo $rr->description;
+                    break;
+                }
+              ?>
+            </textarea> 
+            <input type="hidden" name="activepage" value="HOME"/>
+            <button type="submit" class="btn btn-default navbar-btn">Save Changes</button>
           </form>
+
+          <script type="text/javascript">
+            var editor = CKEDITOR.replace('editor1');
+          </script>
         </div>  
         
       </div>
 
 	</body>
+
+
+
+
 <script type="text/javascript">
 
   $("#form_addpage").submit(function(){
   var id_page = $("#form_addpage").serialize();
   $.ajax({
     type: "POST",
-    url: "<?php echo base_url(); ?>index.php/ourparish/addPage",
+    url: "<?php echo base_url(); ?>index.php/ck_ourparish/addPage",
     dataType: "json",
     data: id_page,
     success:
         function(data) {
-
-          $("#pageheader").html('');
-            <?php
-                $start='active';
-                foreach($page as $row)
-                {                  
-            ?>
-                  var a = document.createElement('li');
-                  a.setAttribute("class","<?php echo $start?>");
-                  var b = document.createElement("a");
-                  b.setAttribute("data-toggle", "tab");                
-
-                  b.onclick = ckshow("<?php echo $row->page_name;?>");
-                  b.appendChild(document.createTextNode("<?php echo $row->page_name;?>"));
-
-                  a.appendChild(b);
-                  document.getElementById("pageheader").appendChild(a);          
-            <?php
-                  $start="";
-                }
-            ?>
+          showHeader();
+          
         },          
     error: function(data){
-        
+        console.log(data);          
         }
   });
-      return true;
+      return false;
   });
 
 
+  function showHeader()
+    {
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/showHeader",
+          dataType: "json",
+          success:
+            function(data) 
+            {
+              var active = "active";
+              $("#pageheader").html('');
+              $.each( data, function( key, value ) {    
+                    
+                    var a = document.createElement('li');
+                    a.setAttribute("class",active);
+                    var b = document.createElement("a");
+                    b.setAttribute("data-toggle", "tab");                
+
+                    b.onclick = ckshow(value.page_name);
+                    b.appendChild(document.createTextNode(value.page_name));
+
+                    a.appendChild(b);
+                    document.getElementById("pageheader").appendChild(a);          
+                    active="";
+                });
+              $('#addModal').modal('hide');
+              $('#manageModal').modal('hide');
+              $('#renameModal').modal('hide');
+              
+              $("#mp").html('');   
+              var aa="odd";
+              $.each( data, function( key, value ) {    
+
+                  var a = document.createElement('tr');
+                  a.setAttribute("class",aa);
+                  var b = document.createElement("td");
+                  b.setAttribute("width", 200);                
+                  b.appendChild(document.createTextNode(value.page_name));
+
+                  var c = document.createElement('td');
+                  c.setAttribute("width",100);
+                  var d = document.createElement('a');
+                  d.onclick = deleteP(value.page_name);
+                  d.appendChild(document.createTextNode("Delete"));
+                  c.appendChild(d);
+
+                  var e = document.createElement('td');
+                  e.setAttribute("width",100);
+                  var f = document.createElement('a');
+                  f.setAttribute("data-toggle","modal");
+                  f.setAttribute("data-target","#renameModal");
+                  f.onclick = renameP(value.page_name);
+                  f.appendChild(document.createTextNode("Rename"));
+                  e.appendChild(f);
+
+                  a.appendChild(b);
+                  a.appendChild(c);
+                  a.appendChild(e);
+                  document.getElementById("mp").appendChild(a);
+                
+                  if(aa=="odd"){
+                     aa="even"; 
+                  }else if(aa=="even"){
+                     aa="odd"; 
+                  }
+                
+              });
+            },
+                      
+          error: function(data){
+                console.log(data);
+              }
+        });
+        return true;
+    }
+
   $("#form_saveCK").submit(function(){
-  alert('wa pa');
+  var id_page = $("#form_saveCK").serialize();
+  $.ajax({
+    type: "POST",
+    url: "<?php echo base_url(); ?>index.php/ck_ourparish/updateDescription",
+    dataType: "json",
+    data: id_page,
+    success:
+        function(data) {
+          console.log(data);
+        },          
+    error: 
+        function(data){
+          console.log(data);          
+        }
+  });
+      return false;
+  });
+
+  $("#form_rename").submit(function(){
+  var id_page = $("#form_rename").serialize();
+  $.ajax({
+    type: "POST",
+    url: "<?php echo base_url(); ?>index.php/ck_ourparish/updatePage",
+    dataType: "json",
+    data: id_page,
+    success:
+        function(data) {
+          showHeader();
+        },          
+    error: 
+        function(data){
+          console.log(data);          
+        }
+  });
+      return false;
   });
 
 </script>
+
 
 </html>

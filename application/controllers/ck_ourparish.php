@@ -9,15 +9,25 @@ class ck_Ourparish extends CI_Controller {
 
 	public function showpage()
 	{
-		$id='1';
+		$id_parish='1';
 		$pagename='HOME';
 		$this->load->model("ck_db");
-		$data['page'] = $this->ck_db->getPage($id);
-		$data['description'] = $this->ck_db->getDescription($id,$pagename);
+		$data['page'] = $this->ck_db->getPage($id_parish);
+		$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
 		$this->load->view("ck/create_page",$data);
 	}
 
-	public function addPage()
+	function showHeader()
+	{
+		$id='1';
+		$this->load->model("ck_db");
+		$data = $this->ck_db->getPage($id);
+		
+		echo json_encode($data);
+	
+	}
+
+	function addPage()
 	{
 		$this->load->model("ck_db");
 		$this->load->library('form_validation');
@@ -32,14 +42,14 @@ class ck_Ourparish extends CI_Controller {
 			);
 			
 			if($this->ck_db->pageAdd($data)) {
-
+				echo json_encode('success');
 			} else {
 				echo json_encode('add Page fail');
 			}
 		}
 	}
 
-	public function selectPage()
+	function selectPage()
 	{
 		$this->load->model("ck_db");
 		$this->load->library('form_validation');
@@ -54,8 +64,7 @@ class ck_Ourparish extends CI_Controller {
 		}	
 	}
 
-	public function updateDescription()
-	{
+	function deletePage() {
 		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
@@ -63,8 +72,73 @@ class ck_Ourparish extends CI_Controller {
 		if($this->form_validation->run() == FALSE) {
 			echo json_encode('Validation run fail');
 		} else {
-			$page = $this->input->post('page');
-			$data = $this->ck_db->getDescription('1',$page);
+			$data = array(
+			   'page_name' => $this->input->post('page')
+			);
+			
+			if($this->ck_db->model_deletePage($data,1)) {
+				echo json_encode('delete success');		
+			} else {
+				echo json_encode('delete fail');
+			}
+		}
+	}
+
+	function updatePage()
+	{
+		$id_parish = '1';
+		$this->load->model("ck_db");
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('pagename', 'Pagename', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('id_page', 'Id_Page', 'trim|required|xss_clean');
+			
+	
+		if($this->form_validation->run() == FALSE) {
+			echo json_encode('Validation run fail');
+		} else {
+			$page = array(
+			   'page_name' => $this->input->post('pagename') 			   
+			);
+			$id = $this->input->post('id_page');
+			$data = $this->ck_db->model_updatePage($id,$id_parish,$page);
+			echo json_encode($data);
+		}		
+	}
+
+	function renamePage()
+	{
+		$id_parish = '1';
+		$this->load->model("ck_db");
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
+	
+		if($this->form_validation->run() == FALSE) {
+			echo json_encode('Validation run fail');
+		} else {
+			$page = $this->input->post('page'); 			   
+			$data = $this->ck_db->model_selectIdPage($id_parish,$page);
+			echo json_encode($data);
+		}		
+	}
+
+
+	function updateDescription()
+	{
+		$id_parish = '1';
+		$this->load->model("ck_db");
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('datavalue', 'Datavalue', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('activepage', 'Activepage', 'trim|required|xss_clean');
+	
+		if($this->form_validation->run() == FALSE) {
+			echo json_encode($this->input->post('datavalue'));
+		} else {
+			$description = $this->input->post('datavalue');
+			$dd = array(
+               'description' => $description,
+            );
+			$page = $this->input->post('activepage');
+			$data = $this->ck_db->model_updateDescription($id_parish,$page,$dd);
 			echo json_encode($data);
 		}	
 	}

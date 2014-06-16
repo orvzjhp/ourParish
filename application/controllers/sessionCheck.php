@@ -1,18 +1,12 @@
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class admin extends CI_Controller {
+class sessionCheck extends CI_Controller {
 
  function __construct()
  {
    parent::__construct();
-   $this->load->helper('MY_session_helper');
-
- }
-
- function index()
- {
-   $this->loginPage();
+   
  }
  
  function loginPage() {
