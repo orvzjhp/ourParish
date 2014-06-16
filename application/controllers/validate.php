@@ -13,8 +13,7 @@ class validate extends CI_Controller {
      $this->load->helper(array('form'));
 	 $this->load->view('admin/login_view');  
    } else {
-     redirect('admin/homePage', 'refresh');  
-	 
+     redirect('admin/homePage', 'refresh');  	 
   }
  }
  
@@ -41,7 +40,7 @@ class validate extends CI_Controller {
 	
 	if($this->login->model_verifyUser($data)) {
 
-		$this->session->set_userdata('userdata', $data);
+		$this->session->set_userdata('user_data', $data);
 		return TRUE;
 	}
 	else {

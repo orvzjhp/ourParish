@@ -8,7 +8,7 @@ class admin extends sessionController {
   function __construct()
  {
    parent::__construct();
-   //parent::sessionCheck();
+   parent::sessionCheck();
  }
  
  function index()
@@ -24,7 +24,6 @@ class admin extends sessionController {
  
  function confirmation()
  {
-   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Confirmation',$data);	
@@ -32,7 +31,6 @@ class admin extends sessionController {
 
   function mass()
  {
-   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Mass',$data);	
@@ -40,7 +38,6 @@ class admin extends sessionController {
 
   function confession()
  {
-   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Confession',$data);	
@@ -48,7 +45,6 @@ class admin extends sessionController {
  
  function baptism()
  {
-   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Baptism',$data);
@@ -56,7 +52,6 @@ class admin extends sessionController {
  
  function updateForm()
  {
-    parent::sessionCheck();
     $this->load->helper('url');
     $data['sched_id'] = $this->uri->segment(3);
 	$this->load->view('admin/UpdateForm',$data);
@@ -64,7 +59,6 @@ class admin extends sessionController {
  
  function updateFormL()
  {
-    parent::sessionCheck();
     $this->load->helper('url');
     $data['sched_id'] = $this->uri->segment(3);
 	$this->load->view('admin/UpdateFormL', $data);

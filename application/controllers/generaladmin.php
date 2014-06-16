@@ -81,8 +81,7 @@ class generaladmin extends sessionController {
  function username_check($username) {
 	if($this->user->model_userExisting($username)) {
 		return false;
-	}
-	
+	}	
 	return true;
  }
 
