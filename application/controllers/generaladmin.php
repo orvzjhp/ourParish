@@ -17,10 +17,7 @@ class generaladmin extends CI_Controller {
 		echo json_encode('Validation run fail');
 	} else {
 		$data = array(
-		   'parish' => $this->input->post('chname') ,
-		   'street' => NULL ,
-		   'barangay' => NULL,
-		   'towncity' => NULL,
+		   'parish' => $this->input->post('chname')
 		);
 		
 		if($this->user->model_addParish($data)) {
