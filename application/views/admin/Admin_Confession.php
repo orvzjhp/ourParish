@@ -17,7 +17,7 @@
 	</tr>
 </table>
 </div>
-<div>
+<div class="divtable">
       <?php
       	/*MO VIEW SA MGA SCHEDULES*/
       ?>
