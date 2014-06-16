@@ -7,7 +7,6 @@ $(document).ready(function(){
   });
   
   $("#editDescForm").submit(function() {
-    console.log($(this).serialize());
 	var parish_id = $("#editDesc_PID").attr('value');	
 	$.ajax({
 		type: "POST",
@@ -29,8 +28,8 @@ $(document).ready(function(){
   });
   
   $("#uploadForm").submit(function(e){
-	console.log('parish id is ' + $("#editDesc_PID").attr('value'));
-	console.log('image id is ' + $("#thumb").data('id'));
+	console.log('parish id passed is ' + $("#editDesc_PID").attr('value'));
+	console.log('image id passed is ' + $("#thumb").data('id'));
 	e.preventDefault();
 	$.ajaxFileUpload({
 		url             : base_url + 'index.php/parishadmin/updateCover', 
@@ -179,9 +178,7 @@ $(document).ready(function(){
   }
 
   function editLocation() {
-	var parish_id = $("#editDesc_PID").attr('value');	
-    
-	console.log('parish id is ' + parish_id);
+	var parish_id = $("#editDesc_PID").attr('value');
 	$.ajax({
 		type: "POST",
 		url: base_url + "index.php/parishadmin/getDetails",
@@ -189,10 +186,9 @@ $(document).ready(function(){
 		data: "parish_id=" + parish_id,
 		success:
 			  function(data) {
-					
+					console.log('data image id is ' + data[0].image);
 					document.getElementById("thumb").src= base_url + "html_attrib/parishStyles/images/parishcovers/"+data[0].filename+'.'+data[0].ext;					
-					document.getElementById('thumb').setAttribute('data-id', data[0].image)
-					console.log(data);
+					$("#thumb").data('id',data[0].image);					
 				},
 						
 		error: function(data){

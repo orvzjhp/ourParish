@@ -352,9 +352,10 @@ class parishadmin extends sessionController {
 			$path = "./html_attrib/parishStyles/images/parishcovers/".$query[0]->filename.'.'.$query[0]->ext;
 						
 			if(unlink($path)) {
+				$msg = $msg.'deleted file '.$query[0]->filename.'.'.$query[0]->ext;
 				//updates name of parishes current image
 				if($this->user->model_updateImgName($fileNeim, $imageID)) {
-					$msg = $msg.'updated '.$fileArray[0].$fileArray[1].' in db';
+					$msg = $msg.' updated image ID '.$imageID.' to '.$fileArray[0].$fileArray[1].' in db function 2';
 					$failure = false;
 				}
 			}			
