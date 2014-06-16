@@ -18,7 +18,7 @@
 </table>
 </div>
 		<!-- MO VIEW SA MGA SCHEDULES -->
-		<div>
+		<div class="divtable">
          <table class="tabledata" id="schedules_Baptism">
          </table>
 		</div>
