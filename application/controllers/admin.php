@@ -1,30 +1,22 @@
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class admin extends CI_Controller {
+include "sessionController.php";
 
- function __construct()
+class admin extends sessionController {
+  
+  function __construct()
  {
    parent::__construct();
-   //$this->load->helper('MY_session_helper');
- }
-
- function index()
- {
-   $this->loginPage();
+   //parent::sessionCheck();
  }
  
- function loginPage() {
-   //if(inSession()) {
-     $this->load->helper(array('form'));
-	 $this->load->view('admin/login_view'); 
-   //}
+ function index()
+ {
+   $this->homePage();
  }
  
  function homePage() {
-   // if(!inSession()) {
-   
-   // } 
    $this->load->helper(array('form', 'url'));
    $this->load->view('admin/Header');
    $this->load->view('admin/Admin_Homepage');
@@ -32,6 +24,7 @@ class admin extends CI_Controller {
  
  function confirmation()
  {
+   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Confirmation',$data);	
@@ -39,6 +32,7 @@ class admin extends CI_Controller {
 
   function mass()
  {
+   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Mass',$data);	
@@ -46,6 +40,7 @@ class admin extends CI_Controller {
 
   function confession()
  {
+   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Confession',$data);	
@@ -53,6 +48,7 @@ class admin extends CI_Controller {
  
  function baptism()
  {
+   parent::sessionCheck();
    $this->load->helper('url');
    $data['parish_id'] = $this->uri->segment(3);
    $this->load->view('admin/Admin_Baptism',$data);
@@ -60,6 +56,7 @@ class admin extends CI_Controller {
  
  function updateForm()
  {
+    parent::sessionCheck();
     $this->load->helper('url');
     $data['sched_id'] = $this->uri->segment(3);
 	$this->load->view('admin/UpdateForm',$data);
@@ -67,49 +64,11 @@ class admin extends CI_Controller {
  
  function updateFormL()
  {
+    parent::sessionCheck();
     $this->load->helper('url');
     $data['sched_id'] = $this->uri->segment(3);
 	$this->load->view('admin/UpdateFormL', $data);
  }
- 
- function verifyUser() {
-	$this->load->model('login');
-	$this->load->library('form_validation');
-	$this->load->helper('url');
-	$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-	$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_validate');
-	
-	if($this->form_validation->run() == FALSE) {
-		$this->load->view('admin/login_view'); //user redirected to login page
-	} else {
-		redirect('admin/homePage', 'refresh');
-	}
- }
- 
- function validate($password) {
-	$data = array(
-		'username' => $this->input->post('username')
-	);
-	
-	$data['password'] = $password;
-	
-	if($this->login->model_verifyUser($data)) {
-		$this->load->library('session');
-		$this->session->set_userdata('userdata', $data);
-		return TRUE;
-	}
-	else {
-		$this->form_validation->set_message('validate', 'Invalid username or password');
-		return FALSE;
-	}
- }
- 
- function logout() {
-	//print_r($this->session->all_userdata());
-	$this->session->unset_userdata('userdata');
-	redirect('admin/loginPage', 'refresh');
- }
-
 }
 
 ?>

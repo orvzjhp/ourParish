@@ -29,7 +29,7 @@
 			<table class="tableheader">
 			<tr>
 				<td><h4><a data-toggle="modal" data-target="#addpar">ADD PARISH</a></td>
-        <td><h4><a href="<?php echo base_url(); ?>index.php/admin/logout" style="margin-left:390px;">LOG-OUT</a></td>
+        <td><h4><a href="<?php echo base_url(); ?>index.php/validate/logout" style="margin-left:390px;">LOG-OUT</a></td>
 			</tr>
 			</table>
 

@@ -142,6 +142,10 @@ class parish_site extends CI_Controller {
 	$this->load->view('ourParish/services/psalms');  	 	
  }
  
+ 
+
+
+ 
 }
 
 ?>

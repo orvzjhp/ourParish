@@ -14,8 +14,7 @@ Class model_parishsite extends CI_Model
 		$this->db->or_like('street.street', $keyword); 
 		$this->db->or_like('barangay.barangay', $keyword); 
 		$this->db->or_like('towncity.towncity', $keyword); 
-		$this->db->or_like('parish.description', $keyword); 
-		
+	
 		$query = $this->db->get();
  
 		if($query->num_rows() > 0)

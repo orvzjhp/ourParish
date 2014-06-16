@@ -25,8 +25,11 @@
               function(data) {
                alert(p);
                console.log(data);
-               editor1.InnerHtml = "<b>Replace this with your existing HTML code from your Database.</b>";
-              },
+               $("#editor1").html('');
+                $.each( data, function( key, value ) { 
+                  CKEDITOR.instances.editor1.setData(value.description);            
+                });
+			   },
                   
           error: function(data){
                 console.log(data);

@@ -1,10 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class generaladmin extends CI_Controller {
+include "sessionController.php";
+
+class generaladmin extends sessionController {
 
  function __construct()
  {
    parent::__construct();
+   parent::sessionCheck();
    $this->load->model('user','',TRUE);
  }
  

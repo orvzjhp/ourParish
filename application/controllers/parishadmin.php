@@ -1,15 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class parishadmin extends CI_Controller {
+include "sessionController.php";
+
+class parishadmin extends sessionController {
 
  function __construct()
  {
    parent::__construct();
+   parent::sessionCheck();
    $this->load->model('user','',TRUE);
-   // $this->load->helper('session_helper');
-  // if(!inSession()) {
-	// redirect('admin/loginPage', 'refresh');
-   // }
  }
  
  function deleteBaptism() {
