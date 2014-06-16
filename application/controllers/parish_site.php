@@ -111,7 +111,7 @@ class parish_site extends CI_Controller {
 			break;
 		case 'mass':
 			
-			$data['parish'] = $this->model_parishsite->model_getParishData();
+			$data['parish'] = $this->model_parishsite->model_getParishData('');
 			$data['street'] = $this->model_parishsite->model_getStreets();
 			$data['barangay'] = $this->model_parishsite->model_getBarangays();
 			$data['towncity'] = $this->model_parishsite->model_getTowncity();			

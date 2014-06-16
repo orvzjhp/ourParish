@@ -6,8 +6,7 @@ class admin extends CI_Controller {
  function __construct()
  {
    parent::__construct();
-   $this->load->helper('MY_session_helper');
-
+   //$this->load->helper('MY_session_helper');
  }
 
  function index()
@@ -16,16 +15,16 @@ class admin extends CI_Controller {
  }
  
  function loginPage() {
-   if(inSession) {
+   //if(inSession()) {
      $this->load->helper(array('form'));
 	 $this->load->view('admin/login_view'); 
-   }
+   //}
  }
  
  function homePage() {
-   if(!inSession()) {
+   // if(!inSession()) {
    
-   } 
+   // } 
    $this->load->helper(array('form', 'url'));
    $this->load->view('admin/Header');
    $this->load->view('admin/Admin_Homepage');

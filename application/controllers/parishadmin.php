@@ -6,10 +6,10 @@ class parishadmin extends CI_Controller {
  {
    parent::__construct();
    $this->load->model('user','',TRUE);
-   $this->load->helper('session_helper');
-  if(!inSession()) {
-	redirect('admin/loginPage', 'refresh');
-   }
+   // $this->load->helper('session_helper');
+  // if(!inSession()) {
+	// redirect('admin/loginPage', 'refresh');
+   // }
  }
  
  function deleteBaptism() {
