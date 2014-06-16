@@ -42,7 +42,7 @@ class parishadmin extends CI_Controller {
 	if($this->form_validation->run() == FALSE) {
 		echo json_encode('Validation run fail');
     } 
-	else 
+	else
 	{		
 		$data = array(
 			'id_'.$database => $this->input->post('sched_id'),
@@ -55,10 +55,7 @@ class parishadmin extends CI_Controller {
 	}
  }
  
- 
- 
  function insertReading() {
- 
 	$this->load->library('form_validation');
 	
 	$this->form_validation->set_rules('date', 'Date', 'trim|required|xss_clean');
@@ -72,7 +69,7 @@ class parishadmin extends CI_Controller {
 			'date' => $this->input->post('date'),
 			'language' => $this->input->post('language')
 		);
-		
+
 		if($this->user->model_insert($data, $database)) {			
 			echo json_encode('insert Successful');
 		}
@@ -359,7 +356,7 @@ class parishadmin extends CI_Controller {
 				//updates name of parishes current image
 				if($this->user->model_updateImgName($fileNeim, $imageID)) {
 					$msg = $msg.'updated '.$fileArray[0].$fileArray[1].' in db';
-					$failure = false;				
+					$failure = false;
 				}
 			}			
 		}
