@@ -26,11 +26,14 @@
   <!--=========End of Logo=======-->
    <!--======================Body Content===========================--> 
   <div id="container_body2" class="text-center">
-    <div class="block-2 pad-1"> 
-     <nav class="navbar navbar-default" role="navigation">
-     </nav>
+   <div class = "design_bar">
+         <h1> 
+     <img src = "<?php echo base_url();?>/html_attrib/parishStyles/images/header.png" style = "position:relative; top:-19px;">
+     OurParish.org
+     </h1>
+    </div>
       <div class="ic"></div>
-        <div class="row block-bg"><h3 class="text-center" style="float:center">Services</h3></div>
+        <div class="row block-bg"><h3 class="text-center" style="float:center; margin-top: 40px">Services</h3></div>
         <div class="col-md-3">
           <div class="panel1 panel-default" style="border-color: #ddd;">
             <div class="panel-heading" style="padding:30px" >

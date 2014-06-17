@@ -154,7 +154,7 @@
         margin-top:10px;
         width: auto%; 
         position:absolute;
-        box-shadow: 3px 3px 3px #4f565c;
+       
     }
 
     .myButton{
@@ -172,8 +172,8 @@
         display: inline-block;
         width:200px;
         vertical-align: middle;
-        margin-left: 750px;
-        margin-top: 6px;
+       margin-left: -750px;
+      margin-top:   0px;
         box-shadow: 3px 3px 3px #B6B6B6;
   }
 
@@ -186,7 +186,7 @@
     .dropdown-menu {
         position: absolute;
         top: 100%;
-        left: 0;
+        left: 790px;
         z-index: 1000;
         display: none;
         float: left;
@@ -202,6 +202,8 @@
         border-radius: 4px;
         -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
                 box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+                
+                top:65px;
     }
 
     .thumbnail > img,
@@ -255,7 +257,7 @@
 
     .block-bg {
       background: url(../images/block-3.png)  center 0 no-repeat;
-      top:-20px;
+      top:-9px;
       position:relative;
     }
 
@@ -269,13 +271,14 @@
     
     img{
       border: 0;
-      margin-left: 922px;
-      margin-top: -92px;
+      margin-left: 0px;
+      margin-top: 0px;
     }
       .text-center {
             text-align: center;
             font-family: Helvetica Neue;
             font-style: italic;
+            cursor: pointer;
         }
     .img-rounded {
       border-radius: 6px;
@@ -331,8 +334,8 @@ text-align: center;
       width: auto%;
       position: absolute;
       box-shadow: 3px 3px 3px #B6B6B6;
-      left: -74px;
-      top: -2px;
+      left: 712px;
+      top:10px;
     }
 
     footer 
@@ -1077,3 +1080,20 @@ div.box {
     left:35px;
     margin-top: px;
 } 
+
+
+        .design_bar 
+{
+position: relative;
+width: 970px;
+height: 66px;
+background-color: #f5f5f5;
+border-color: #e7e7e7;
+border-bottom: #bebebe 1px solid;
+top: -9px;
+}
+
+.input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group {
+margin-right: -460px;
+margin-top: -20px;
+}

@@ -15,9 +15,12 @@ class parish_site extends CI_Controller {
  
  function home()
  {
+   $this->load->model('model_parishsite');
+   $data['information'] = $this->model_parishsite->model_homeData();
+   // print_r($data['information']);
    $this->load->view('ourParish/home/homeHeader'); 
    $this->load->view('ourParish/navBar');
-   $this->load->view('ourParish/home/homeBody');
+   $this->load->view('ourParish/home/homeBody',$data);
    // $this->load->view('ourParish/home/homeOriginal');
    
  }

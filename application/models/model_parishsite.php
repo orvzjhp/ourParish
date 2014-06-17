@@ -1,9 +1,63 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class model_parishsite extends CI_Model
 {
+	function model_homeData() {
+		$this->db->select('parish.id_parish');
+		$this->db->from('parish');		
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0)
+		{
+			$query = $query->result();
+			shuffle($query);
+			
+			$limit = 0;
+			
+			$limit = (count($query) >= 7) ? 7 : count($query);
+			// if(count($query) >=5) {
+				// $limit = 5;
+			// } else {
+				// $limit = count($query);
+			// }
+			
+			$data = null;
+			for($count = 0; $count < $limit; $count++) {
+				$this->db->select('parish.parish, image.filename, image.ext, parish.description');
+				$this->db->from('parish');		
+				$this->db->where('id_parish', $query[$count]->id_parish);
+				$this->db->join('image', 'parish.image = image.image_id');
+				$query2 = $this->db->get();
+				$data[$count] = $query2->result();
+			}
+			return $data;
+		}
+		else
+		{
+			return false;
+		}
+	
+	
+		// $this->db->select('parish.parish, image.filename, image.ext, parish.description');
+		// $this->db->from('parish');		
+		// $this->db->join('image', 'parish.image = image.image_id');	
+
+		// $query = $this->db->get();
+		
+		// if($query->num_rows() > 0)
+		// {
+			// return $query->result();
+		// }
+		// else
+		// {
+			// return false;
+		// }
+	
+	}
+	
+	
 	function model_getParishData($keyword) {
 			
-		$this->db->select('parish.id_parish, parish.parish, street.street, barangay.barangay, towncity.towncity, parish.tnumber, image.filename, image.ext, parish.url, parish.description');
+		$this->db->select('parish.id_parish, parish.parish, street.street, barangay.barangay, towncity.towncity, image.filename, image.ext, parish.url, parish.description');
 		$this->db->from('parish');
 		$this->db->join('street', 'parish.street = street.id_street');
 		$this->db->join('barangay', 'parish.barangay = barangay.id_barangay');

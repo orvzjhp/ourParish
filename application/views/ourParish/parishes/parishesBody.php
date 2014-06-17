@@ -27,7 +27,13 @@
 
     <div class = "main_container">
       <div class="block-2 pad-1">
-        <nav class="navbar navbar-default" role="navigation">
+        <div class = "design_bar">
+         <h1> 
+     <img src = "<?php echo base_url();?>/html_attrib/parishStyles/images/header.png" style = "position:relative; top:-19px;">
+     OurParish.org
+     </h1>
+    </div>
+       
           <ul class="nav navbar-nav nav-justified menu">
             <form class="form-inline" role="form">
               <div class="form-group"></form>
@@ -40,25 +46,22 @@
                       <ul id="views" class="dropdown-menu" role="menu"></ul>
                       <script type="text/javascript">test.setView();</script>
                 </li>
-                        <li> <label class="sr-only" for="search">Search</label></li>
-						<form id="searchForm" method="post" accept-charset="utf-8">
-							<li><input type="search" class="form-control" id="keyword" name="keyword" placeholder="Search"></li>
-								 
-							<li> <button type="submit" style="border: 0; background: transparent"></button></li>
-							<li><a href="http://facebook.com"> <img src="<?php echo base_url(); ?>html_attrib/parishStyles/images/but.png" width="16" height="16"></a></li>
-						</form>
-                        
+						</form>   
           </ul>
-
-         <!--icon image-->
-       
-        </nav>
-
-                               
-                <div class="row block-bg">
-                  <h3 class="text-center" style="float:center">Parishes</h3>
+        </nav>                
+                <div class="row block-bg" style="top:-9px">
+                  <h3 class="text-center" style="float:center; margin-top: 35px; padding-bottom:15px">Parishes</h3>
                 </div>
            
+             <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search</button>
+      </span>
+      <input type="text" class="form-control" style="margin-left:275px; margin-bottom: 20px">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+ 
                <!--==========================Calling the page of the iframes=========================================-->           
           <iframe id="myframe" src="<?php echo base_url(); ?>index.php/parish_site/thumbnails/" height="1000" width="1000" scrolling="no"  frameBorder="0"></iframe>            
                 <!--============================End=========================================================-->

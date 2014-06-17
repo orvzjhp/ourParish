@@ -1,4 +1,4 @@
- <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+  <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
  <!--==============LOGO===========-->
   <header class="text-center">
     <!-- Myparish Logo -->
@@ -10,15 +10,16 @@
   <!--======================Body Content===========================-->
   
     <div class="main_container">
-        <div class="ic"></div>
-          <div class="block-2 pad-all">
-        <nav class="navbar navbar-default" role="navigation">
-          <ul class="nav navbar-nav nav-justified menu">
-            
-        </nav>
-            
+
+     <div class = "design_bar">
+         <h1> 
+     <img src = "<?php echo base_url();?>/html_attrib/parishStyles/images/header.png" style = "position:relative; top:-19px;">
+     OurParish.org
+     </h1>
+    </div>
+             
         <div class="row block-bg">
-          <h3 class="text-center" style="float:center">About Us</h3>
+          <h3 class="text-center" style="float:center;  margin-top: 40px">About Us</h3>
         </div>   
 
       

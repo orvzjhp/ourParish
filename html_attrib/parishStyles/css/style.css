@@ -69,8 +69,13 @@ width: 220px;
 	height:155px;
 	position:relative;
 	margin:0 auto;
-	background:transparent url(../images/s1.jpg) no-repeat center center;
+	background:transparent no-repeat center center;
 }
+
+.ca-item-1 .ca-icon{
+	background-image:url(../images/s1.jpg);
+}
+
 .ca-item-2 .ca-icon{
 	background-image:url(../images/s2.jpg);
 }

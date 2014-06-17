@@ -55,93 +55,37 @@
 		<p class = "parishes"  >Parishes</p>
 		<div id="ca-container" class="ca-container">
 		<div class="ca-wrapper">
-		<div class="ca-item ca-item-1">
-		<div class="ca-item-main">
-		<div class="ca-icon"></div>
-						<a href="#" class="ca-more">more...</a>
-		</div>
-		<div class="ca-content-wrapper">
-		<div class="ca-content">
 
-		<a href="#" class="ca-close">close</a>
-		<div class="ca-content-text">
-		<p>Data</p>
-		</div>
-		<ul>
-		</ul>
-		</div>
-		</div>
-		</div>
-				<div class="ca-item ca-item-2">
-				<div class="ca-item-main">
-				<div class="ca-icon"></div>
-				<a href="#" class="ca-more">more...</a>
+<?php
+			if($information)
+			foreach($information as $info) 
+			{
+				foreach($info as $value) 
+				{
+				
+?>	
+				<!-- The carousel thing-->
+				<div class="ca-item">
+					<div class="ca-item-main">
+					<div class="ca-icon" style="background-size: 220px 155px; background-image:url(<?php echo base_url(); ?>html_attrib/parishStyles/images/parishcovers/<?php echo $value->filename; ?>.<?php echo $value->ext; ?>);"></div>
+					<a href="#" class="ca-more">more...</a>
 				</div>
-				<div class="ca-content-wrapper">
-				<div class="ca-content">
-				<a href="#" class="ca-close">close</a>
-				<div class="ca-content-text">
-				<p>Data</p>
+					<div class="ca-content-wrapper">
+						<div class="ca-content">
+							<a href="#" class="ca-close">close</a>
+							<div class="ca-content-text">
+							<p><?php echo $value->parish; ?></p>
+							<p><?php echo $value->description; ?></p>
+							</div>
+						</div>
+					</div>
 				</div>
-				</div>
-				</div>
-				</div>
-					  <div class="ca-item ca-item-3">
-					  <div class="ca-item-main">
-					  <div class="ca-icon"></div>
-					  <a href="#" class="ca-more">more...</a>
-					  </div>
-					  <div class="ca-content-wrapper">
-					  <div class="ca-content">
-					  <a href="#" class="ca-close">close</a>
-					  <div class="ca-content-text">
-					  <p>Data</p>
-					  </div>
-					  </div>
-					  </div>
-					  </div>
-							 <div class="ca-item ca-item-4">
-							 <div class="ca-item-main">
-							 <div class="ca-icon"></div>
-							 <a href="#" class="ca-more">more...</a>
-							 </div>
-							 <div class="ca-content-wrapper">
-							 <div class="ca-content">
-							 <a href="#" class="ca-close">close</a>
-							 <div class="ca-content-text">
-							 <p>Data</p>
-							 </div>
-							 </div>
-							 </div>
-							 </div>
-								   <div class="ca-item ca-item-5">
-								   <div class="ca-item-main">
-								   <div class="ca-icon"></div>
-								   <a href="#" class="ca-more">more...</a>
-								   </div>
-								   <div class="ca-content-wrapper">
-								   <div class="ca-content">
-								   <a href="#" class="ca-close">close</a>
-								   <div class="ca-content-text">
-								   <p>Data</p>
-								   </div>
-								   </div>
-								   </div>
-								   </div>
-										  <div class="ca-item ca-item-6">
-										  <div class="ca-item-main">
-										  <div class="ca-icon"></div>
-										  <a href="#" class="ca-more">more...</a>
-										  </div>
-										  <div class="ca-content-wrapper">
-										  <div class="ca-content">  
-										  <a href="#" class="ca-close">close</a>
-										  <div class="ca-content-text">
-										  <p>Data</p>
-										  </div>
-										  </div>
-										  </div>
-										  </div>   
+<?php
+				}
+			}
+?>
+		<!--end of transformation -->
+
 		</div>
 	</div>
 	</div>

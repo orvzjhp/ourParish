@@ -33,16 +33,16 @@
   <!--======================Body Content===========================--> 
   
     <div class="block-2 pad-1">
-      <nav class="navbar navbar-default" role="navigation">
-        <ul class="nav navbar-nav nav-justified menu">
-        </ul>
-        <!--Image Icon-->
-        
-      </nav>  
+     <div class = "design_bar">
+         <h1> 
+     <img src = "<?php echo base_url();?>/html_attrib/parishStyles/images/header.png" style = "position:relative; top:-19px;">
+     OurParish.org
+     </h1>
+    </div>
 
       <div class="ic"></div>
           <div class="row block-bg">
-              <h3 class="text-center" style="float:center">News and Events</h3></div>
+              <h3 class="text-center" style="float:center; margin-top: 40px">News and Events</h3></div>
             <div class="col-md-3">
               <div class="panel panel-default">
                 <div class="panel-heading"><h4>Date</h4></div>
