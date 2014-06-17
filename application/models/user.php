@@ -1,6 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 Class User extends CI_Model
 {
+	//gets all parish data from db
+	// note: need to edit this to be more specific
 	function model_getParishData($parish_id, $database) {
 		$this->db->select('*');
 		$this->db->from($database);
@@ -18,6 +21,7 @@ Class User extends CI_Model
 		}
 	}
 	
+	//get all locations from db
 	function model_getLocations($database) {
 		$this->db->select('*');
 		$this->db->from($database);		
@@ -35,6 +39,7 @@ Class User extends CI_Model
 	}
 	
 	
+	//gets all schedules from specific db
 	function model_getAllSchedules($parish_id, $database)
 	{
 		$command = '';
@@ -78,17 +83,20 @@ Class User extends CI_Model
 		}
 	}
 	
+	//adds admin
 	function model_addAdmin($data) {
 		$this->db->insert('user', $data);		
 		return $this->db->affected_rows() > 0;		
 	}
 	
+	// adds parish
 	function model_addParish($data)
 	{
 		$this->db->insert('parish', $data);		
 		return $this->db->affected_rows() > 0;
 	}
-
+	
+	//edits location of chosen parish
 	function model_editLocation($parish_id, $data) 
 	{
 		$this->db->where('id_parish', $parish_id);
@@ -96,7 +104,7 @@ Class User extends CI_Model
 		
 		return $this->db->affected_rows() > 0;
 	}
-
+	
 	function model_updateSched($ids, $data, $database) 
 	{
 		$this->db->where('id_parish', $ids['parish_id']);
@@ -250,17 +258,17 @@ Class User extends CI_Model
 		}
 	}
 	
-	function model_getDetails($data) {
+	function model_getParDetails($data) {
 		
-		$this->db->select('parish.image, image.filename, image.ext');
+		$this->db->select('image.filename, image.ext, parish.street, parish.barangay, parish.towncity, parish.tnumber');
 		$this->db->from('parish');
 		$this->db->where('parish.id_parish', $data['parish_id']);		
 	
-		$this->db->join('image', 'parish.image = image.image_id', 'inner');
-
+		$this->db->join('image', 'parish.image = image.image_id');
+	
 		$query = $this->db->get();
  
-		if($query->num_rows() == 1)
+		if($query->num_rows() > 0)
 		{
 			return $query->result();
 		}
@@ -268,6 +276,15 @@ Class User extends CI_Model
 		{
 			return false;
 		}	
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	function model_getImageName($imageID) {
@@ -284,21 +301,7 @@ Class User extends CI_Model
 			return false;
 		}
 	}
-	
-	function model_updateCover($data, $parish_id) {
-				
- 		if($this->model_insertImg($data)) {
 
-			$id = $this->model_getMaxImgID();
-			$this->db->flush_cache();
-			// this is image id in table 'image'
-			// update image ID column in 'parish' table
-			return $this->model_updateImgID($id, $parish_id);
-		}
-		
-		return FALSE;
-	}
-	
 	//insert new image into db
 	function model_insertImg($fileNeim) {
 		

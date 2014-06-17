@@ -181,14 +181,22 @@ $(document).ready(function(){
 	var parish_id = $("#editDesc_PID").attr('value');
 	$.ajax({
 		type: "POST",
-		url: base_url + "index.php/parishadmin/getDetails",
+		url: base_url + "index.php/parishadmin/getParDetails",
 		dataType: "json",
 		data: "parish_id=" + parish_id,
 		success:
 			  function(data) {
-					console.log('data image id is ' + data[0].image);
-					document.getElementById("thumb").src= base_url + "html_attrib/parishStyles/images/parishcovers/"+data[0].filename+'.'+data[0].ext;					
-					$("#thumb").data('id',data[0].image);					
+					document.getElementById("thumb").src= base_url + "html_attrib/parishStyles/images/parishcovers/"+data.details[0].filename+'.'+data.details[0].ext;					
+					$("#thumb").data('id',data.details[0].image);
+					document.getElementById('street').value = data.details[0].street;
+					document.getElementById('barangay').value = data.details[0].barangay;
+					document.getElementById('towncity').value = data.details[0].towncity;
+					document.getElementById('tnumber').value = data.details[0].tnumber;
+					console.log('street ' +data.details[0].street);
+					console.log('barnagay ' +data.details[0].barangay);
+					console.log('towncity ' +data.details[0].towncity);
+					console.log(data.details[0].tnumber);
+					
 				},
 						
 		error: function(data){

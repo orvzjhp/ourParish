@@ -14,11 +14,6 @@ Class model_parishsite extends CI_Model
 			$limit = 0;
 			
 			$limit = (count($query) >= 7) ? 7 : count($query);
-			// if(count($query) >=5) {
-				// $limit = 5;
-			// } else {
-				// $limit = count($query);
-			// }
 			
 			$data = null;
 			for($count = 0; $count < $limit; $count++) {
@@ -35,23 +30,6 @@ Class model_parishsite extends CI_Model
 		{
 			return false;
 		}
-	
-	
-		// $this->db->select('parish.parish, image.filename, image.ext, parish.description');
-		// $this->db->from('parish');		
-		// $this->db->join('image', 'parish.image = image.image_id');	
-
-		// $query = $this->db->get();
-		
-		// if($query->num_rows() > 0)
-		// {
-			// return $query->result();
-		// }
-		// else
-		// {
-			// return false;
-		// }
-	
 	}
 	
 	

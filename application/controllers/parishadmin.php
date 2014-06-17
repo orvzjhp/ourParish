@@ -371,7 +371,7 @@ class parishadmin extends sessionController {
     echo json_encode($msg);	
  }
 
- function getDetails() {
+ function getParDetails() {
 	
 	$this->load->library('form_validation');
 	$this->form_validation->set_rules('parish_id', 'Parish_id', 'trim|required|xss_clean');
@@ -384,7 +384,8 @@ class parishadmin extends sessionController {
 		);
 		
 		
-		$details = $this->user->model_getDetails($data);
+		$details['details'] = $this->user->model_getParDetails($data);
+
 		echo json_encode($details);		
 		
 		
