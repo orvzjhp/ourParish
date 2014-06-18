@@ -939,6 +939,14 @@ function MassSchedulerHelper()
 	};
 };
 
+  function asdf() {
+	var language = document.getElementById("read_language").value;
+
+	document.getElementById("onframe panel1").src = $("#base_url").data('base_url') + "index.php/parish_site/firstReading/" + language;
+	document.getElementById("onframe panel2").src = $("#base_url").data('base_url') + "index.php/parish_site/psalms/" + language;
+  };
+
+
 $(document).ready(function(){
 
   $("#searchForm").submit(function() {
@@ -950,6 +958,8 @@ $(document).ready(function(){
 	
 	return false;  
   });
+  
+
 });
 
 // set inheritance

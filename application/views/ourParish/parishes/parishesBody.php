@@ -54,12 +54,14 @@
                 </div>
            
              <div class="col-lg-6">
-    <div class="input-group">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search</button>
-      </span>
-      <input type="text" class="form-control" style="margin-left:275px; margin-bottom: 20px">
-    </div><!-- /input-group -->
+		<form id="searchForm">
+			<div class="input-group">
+					<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Search</button>
+					</span>
+					<input id="keyword" type="text" class="form-control" style="margin-left:275px; margin-bottom: 20px">
+			</div><!-- /input-group -->
+		</form>
   </div><!-- /.col-lg-6 -->
  
                <!--==========================Calling the page of the iframes=========================================-->           

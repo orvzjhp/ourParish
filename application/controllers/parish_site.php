@@ -110,7 +110,12 @@ class parish_site extends CI_Controller {
    switch($schedType)
    {
 		case 'read':
-			$this->load->view('ourParish/services/readSched');  			
+			// add somethig here
+		
+			$this->load->view('ourParish/services/readSched');
+
+			
+			
 			break;
 		case 'mass':
 			
@@ -137,18 +142,21 @@ class parish_site extends CI_Controller {
  
  function firstReading()
  {
-	$this->load->view('ourParish/services/firstreading');  	 
+	$this->load->helper('url');
+	$this->load->model('model_parishsite');
+	$language = $this->uri->segment(3);
+	$data['readings'] = $this->model_parishsite->model_getReading($language, 'firstReading');
+	$this->load->view('ourParish/services/firstreading', $data);
  }
  
  function psalms()
  {
-	$this->load->view('ourParish/services/psalms');  	 	
+	$this->load->helper('url');
+	$this->load->model('model_parishsite');
+	$language = $this->uri->segment(3);
+	$data['readings'] = $this->model_parishsite->model_getReading($language, 'psalms');
+	$this->load->view('ourParish/services/psalms', $data);
  }
- 
- 
-
-
- 
 }
 
 ?>

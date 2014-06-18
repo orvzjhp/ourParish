@@ -1,6 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class model_parishsite extends CI_Model
 {
+	function model_getReading($language, $column) {
+		$this->db->select($column);
+		$this->db->from('reading');
+		
+		$this->db->where('id_language', $language); 
+		$this->db->where('month(date)', date('m')); 
+		$this->db->where('year(date)', date('Y')); 
+		$this->db->where('day(date)', date('d'));
+		
+		
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	function model_homeData() {
 		$this->db->select('parish.id_parish');
 		$this->db->from('parish');		
