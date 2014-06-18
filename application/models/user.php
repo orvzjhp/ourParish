@@ -260,7 +260,7 @@ Class User extends CI_Model
 	
 	function model_getParDetails($data) {
 		
-		$this->db->select('image.filename, image.ext, parish.street, parish.barangay, parish.towncity, parish.tnumber');
+		$this->db->select('image.filename, image.ext, parish.street, parish.barangay, parish.towncity, parish.tnumber, parish.image');
 		$this->db->from('parish');
 		$this->db->where('parish.id_parish', $data['parish_id']);		
 	

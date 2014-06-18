@@ -385,7 +385,7 @@ class parishadmin extends sessionController {
 		
 		
 		$details['details'] = $this->user->model_getParDetails($data);
-
+		//print_r($details);
 		echo json_encode($details);		
 		
 		

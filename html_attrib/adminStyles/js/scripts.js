@@ -29,7 +29,8 @@ $(document).ready(function(){
   
   $("#uploadForm").submit(function(e){
 	console.log('parish id passed is ' + $("#editDesc_PID").attr('value'));
-	console.log('image id passed is ' + $("#thumb").data('id'));
+	
+	console.log('image id passed is ' + $("#thumb").attr('data-id'));
 	e.preventDefault();
 	$.ajaxFileUpload({
 		url             : base_url + 'index.php/parishadmin/updateCover', 
@@ -195,6 +196,7 @@ $(document).ready(function(){
 					console.log('street ' +data.details[0].street);
 					console.log('barnagay ' +data.details[0].barangay);
 					console.log('towncity ' +data.details[0].towncity);
+					console.log('image id is ' + data.details[0].image);
 					console.log(data.details[0].tnumber);
 					
 				},
