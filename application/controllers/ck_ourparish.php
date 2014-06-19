@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class ck_Ourparish extends CI_Controller {
+class Ourparish extends CI_Controller {
 
 	public function index()
 	{
@@ -13,8 +13,8 @@ class ck_Ourparish extends CI_Controller {
 		$pagename='HOME';
 		$this->load->model("ck_db");
 		$data['page'] = $this->ck_db->getPage($id_parish);
-		$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
-		$this->load->view("ck/create_page",$data);
+		//$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
+		$this->load->view("create_page",$data);
 	}
 
 	function showHeader()
@@ -51,6 +51,7 @@ class ck_Ourparish extends CI_Controller {
 
 	function selectPage()
 	{
+		$id_parish='1';
 		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
@@ -59,7 +60,7 @@ class ck_Ourparish extends CI_Controller {
 			echo json_encode('Validation run fail');
 		} else {
 			$page = $this->input->post('page');
-			$data = $this->ck_db->getDescription('1',$page);
+			$data = $this->ck_db->getDescription($id_parish,$page);
 			echo json_encode($data);
 		}	
 	}
@@ -120,7 +121,7 @@ class ck_Ourparish extends CI_Controller {
 			echo json_encode($data);
 		}		
 	}
-
+	
 
 	function updateDescription()
 	{
@@ -138,7 +139,7 @@ class ck_Ourparish extends CI_Controller {
                'description' => $description,
             );
 			$page = $this->input->post('activepage');
-			$data = $this->ck_db->model_updateDescription($id_parish,$page,$dd);
+			$data = $this->ck_db->model_updateDescription($page,$dd);
 			echo json_encode($data);
 		}	
 	}

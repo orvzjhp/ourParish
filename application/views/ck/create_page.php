@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<meta>
-    <script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/ckeditor/ckeditor.js"></script>
-		<script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/assets/js/jquery-1.11.0.js"></script>
-		<script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/assets/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/bootstrap.min.css"/>
-    <link href = "<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/styles.css" rel = "stylesheet">
-    <link href = "<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/modal.css" rel = "stylesheet">
+    <script type="text/javascript" src="design/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript" src="design/assets/js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="design/assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="design/assets/css/bootstrap.min.css"/>
+    <link href = "design/assets/css/styles.css" rel = "stylesheet">
+    <link href = "design/assets/css/modal.css" rel = "stylesheet">
 	</head>
 
 <script type="text/javascript">
@@ -18,18 +18,26 @@
         var p = page;
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>index.php/ck_ourparish/selectPage",
+          url: "http://localhost/ci_intro/index.php/ourparish/selectPage",
           dataType: "json",
           data: "page=" + p,
           success:
               function(data) {
-               alert(p);
-               console.log(data);
-               $("#editor1").html('');
+                console.log(data);
+
+                $("#editor1").html('');
                 $.each( data, function( key, value ) { 
-                  CKEDITOR.instances.editor1.setData(value.description);            
-                });
-			   },
+                  CKEDITOR.instances.editor1.setData(value.description);
+                                    alert(value.id_page);
+                
+                $("#div_CK").html('');
+                var a = document.createElement('input');
+                a.setAttribute("type","hidden");
+                a.setAttribute("name","activepage");
+                a.setAttribute("value",value.id_page);
+                document.getElementById("div_CK").appendChild(a);
+                });    
+              },
                   
           error: function(data){
                 console.log(data);
@@ -47,7 +55,7 @@
         var p = page;
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>index.php/ck_ourparish/deletePage",
+          url: "http://localhost/ci_intro/index.php/ourparish/deletePage",
           dataType: "json",
           data: "page=" + p,
           success:
@@ -71,7 +79,7 @@
         
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>index.php/ck_ourparish/renamePage",
+          url: "http://localhost/ci_intro/index.php/ourparish/renamePage",
           dataType: "json",
           data: "page=" + p,
           success:
@@ -262,13 +270,13 @@
         <div style="left:2%; top:10%; position: relative;">
             <ul id="pageheader" class="nav nav-pills">
               <?php
-                $start='active';
+                //$start='active';
                 foreach($page as $row)
                 {                  
               ?>
               <script type="text/javascript">
                 var a = document.createElement('li');
-                a.setAttribute("class","<?php echo $start?>");
+                a.setAttribute("class","");
                 var b = document.createElement("a");
                 b.setAttribute("data-toggle", "tab");                
 
@@ -279,7 +287,7 @@
                 document.getElementById("pageheader").appendChild(a);          
               </script>
               <?php
-                  $start="";
+                  //$start="";
                 }
               ?>
             </ul>
@@ -288,22 +296,15 @@
         <!--CKEditor-->
         <div style="top:18%; left:2%; right:2%; position:absolute;">
           <form id="form_saveCK" role="form">
-            <textarea class="ckeditor" id="editor1" name="datavalue" runat="server"> 
-            <?php
-                foreach($description as $rr)
-                {
-                    echo $rr->description;
-                    break;
-                }
-              ?>
+            <textarea class="ckeditor" id="editor1" name="datavalue" > 
+              
             </textarea> 
-            <input type="hidden" name="activepage" value="HOME"/>
-            <button type="submit" class="btn btn-default navbar-btn">Save Changes</button>
-          </form>
 
-          <script type="text/javascript">
-            var editor = CKEDITOR.replace('editor1');
-          </script>
+            <div id="div_CK"> 
+            
+            </div>
+            <button type="submit" class="btn btn-default navbar-btn">Save Changes</button>
+          </form>               
         </div>  
         
       </div>
@@ -319,7 +320,7 @@
   var id_page = $("#form_addpage").serialize();
   $.ajax({
     type: "POST",
-    url: "<?php echo base_url(); ?>index.php/ck_ourparish/addPage",
+    url: "http://localhost/ci_intro/index.php/ourparish/addPage",
     dataType: "json",
     data: id_page,
     success:
@@ -339,7 +340,7 @@
     {
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>index.php/ck_ourparish/showHeader",
+          url: "http://localhost/ci_intro/index.php/ourparish/showHeader",
           dataType: "json",
           success:
             function(data) 
@@ -415,12 +416,16 @@
   var id_page = $("#form_saveCK").serialize();
   $.ajax({
     type: "POST",
-    url: "<?php echo base_url(); ?>index.php/ck_ourparish/updateDescription",
+    url: "http://localhost/ci_intro/index.php/ourparish/updateDescription",
     dataType: "json",
     data: id_page,
     success:
         function(data) {
           console.log(data);
+          if(data == true)
+          {
+            alert("SAVED");
+          } 
         },          
     error: 
         function(data){
@@ -434,7 +439,7 @@
   var id_page = $("#form_rename").serialize();
   $.ajax({
     type: "POST",
-    url: "<?php echo base_url(); ?>index.php/ck_ourparish/updatePage",
+    url: "http://localhost/ci_intro/index.php/ourparish/updatePage",
     dataType: "json",
     data: id_page,
     success:

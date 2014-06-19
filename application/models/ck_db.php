@@ -11,7 +11,7 @@ class ck_db extends CI_Model
 
 	function getDescription($id,$page_name)
 	{
-		$query = $this->db->query("SELECT description FROM page where id_parish='$id' and page_name='$page_name'");
+		$query = $this->db->query("SELECT description, id_page FROM page where id_parish='$id' and page_name='$page_name'");
 		return $query->result();
 	}
 
@@ -43,11 +43,10 @@ class ck_db extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
-	function model_updateDescription($id_parish,$page,$description)
+	function model_updateDescription($id_page,$description)
 	{
 		
-		$this->db->where('id_parish', $id_parish);
-		$this->db->where('page_name', $page);
+		$this->db->where('id_page', $id_page);
 		$this->db->update('page', $description); 
 		return $this->db->affected_rows() > 0;
 	}	
