@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<meta>
-    <script type="text/javascript" src="design/ckeditor/ckeditor.js"></script>
-		<script type="text/javascript" src="design/assets/js/jquery-1.11.0.js"></script>
-		<script type="text/javascript" src="design/assets/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="design/assets/css/bootstrap.min.css"/>
-    <link href = "design/assets/css/styles.css" rel = "stylesheet">
-    <link href = "design/assets/css/modal.css" rel = "stylesheet">
+    <script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/design/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/design/assets/js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/design/assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>html_attrib/ckStyles/design/assets/css/bootstrap.min.css"/>
+    <link href = "<?php echo base_url(); ?>html_attrib/ckStyles/design/assets/css/styles.css" rel = "stylesheet">
+    <link href = "<?php echo base_url(); ?>html_attrib/ckStyles/design/assets/css/modal.css" rel = "stylesheet">
 	</head>
 
 <script type="text/javascript">
@@ -18,7 +18,7 @@
         var p = page;
         $.ajax({
           type: "POST",
-          url: "http://localhost/ci_intro/index.php/ourparish/selectPage",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/selectPage",
           dataType: "json",
           data: "page=" + p,
           success:
@@ -55,7 +55,7 @@
         var p = page;
         $.ajax({
           type: "POST",
-          url: "http://localhost/ci_intro/index.php/ourparish/deletePage",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/index.php/ourparish/deletePage",
           dataType: "json",
           data: "page=" + p,
           success:
@@ -79,7 +79,7 @@
         
         $.ajax({
           type: "POST",
-          url: "http://localhost/ci_intro/index.php/ourparish/renamePage",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/renamePage",
           dataType: "json",
           data: "page=" + p,
           success:
@@ -320,7 +320,7 @@
   var id_page = $("#form_addpage").serialize();
   $.ajax({
     type: "POST",
-    url: "http://localhost/ci_intro/index.php/ourparish/addPage",
+    url: "<?php echo base_url(); ?>index.php/ck_ourparish/addPage",
     dataType: "json",
     data: id_page,
     success:
@@ -340,7 +340,7 @@
     {
         $.ajax({
           type: "POST",
-          url: "http://localhost/ci_intro/index.php/ourparish/showHeader",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/index.php/ourparish/showHeader",
           dataType: "json",
           success:
             function(data) 
@@ -416,7 +416,7 @@
   var id_page = $("#form_saveCK").serialize();
   $.ajax({
     type: "POST",
-    url: "http://localhost/ci_intro/index.php/ourparish/updateDescription",
+    url: "<?php echo base_url(); ?>index.php/ck_ourparish/index.php/ourparish/updateDescription",
     dataType: "json",
     data: id_page,
     success:
@@ -439,7 +439,7 @@
   var id_page = $("#form_rename").serialize();
   $.ajax({
     type: "POST",
-    url: "http://localhost/ci_intro/index.php/ourparish/updatePage",
+    url: "<?php echo base_url(); ?>index.php/ck_ourparish/updatePage",
     dataType: "json",
     data: id_page,
     success:

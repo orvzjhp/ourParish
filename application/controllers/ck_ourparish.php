@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ourparish extends CI_Controller {
+class ck_Ourparish extends CI_Controller {
 
 	public function index()
 	{
@@ -14,7 +14,7 @@ class Ourparish extends CI_Controller {
 		$this->load->model("ck_db");
 		$data['page'] = $this->ck_db->getPage($id_parish);
 		//$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
-		$this->load->view("create_page",$data);
+		$this->load->view("ck/create_page",$data);
 	}
 
 	function showHeader()

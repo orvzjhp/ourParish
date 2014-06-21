@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2014 at 10:13 AM
+-- Generation Time: Jun 21, 2014 at 09:17 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -130,14 +130,7 @@ CREATE TABLE IF NOT EXISTS `confirmation_schedule` (
   PRIMARY KEY (`id_confirmation_schedule`),
   KEY `parishid` (`id_parish`),
   KEY `id_day` (`day`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Dumping data for table `confirmation_schedule`
---
-
-INSERT INTO `confirmation_schedule` (`id_confirmation_schedule`, `id_parish`, `day`, `time_start`, `time_end`) VALUES
-(10, 7, 1, '00:12:00', '00:12:00');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -174,7 +167,8 @@ CREATE TABLE IF NOT EXISTS `image` (
   `image_id` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(100) NOT NULL,
   `ext` varchar(10) NOT NULL,
-  PRIMARY KEY (`image_id`)
+  PRIMARY KEY (`image_id`),
+  KEY `image_id` (`image_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
@@ -184,15 +178,15 @@ CREATE TABLE IF NOT EXISTS `image` (
 INSERT INTO `image` (`image_id`, `filename`, `ext`) VALUES
 (1, 'default', 'jpg'),
 (2, 'pic2', 'jpg'),
-(3, 'pic3', 'jpg'),
+(3, 'potato7', 'jpg'),
 (4, 'pic4', 'jpg'),
 (5, 'pic5', 'jpg'),
 (6, 'pic6', 'jpg'),
-(7, 'pic7', 'jpg'),
+(7, 'potato', 'png'),
 (8, 'pic8', 'jpg'),
 (31, 'pic9', 'jpg'),
 (32, 'potato7', 'jpg'),
-(33, 'sample2', 'jpg');
+(33, 'potato71', 'jpg');
 
 -- --------------------------------------------------------
 
@@ -277,13 +271,20 @@ INSERT INTO `news` (`id_news`, `id_parish`, `date`, `title`, `content`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `page` (
-  `id_page` int(11) NOT NULL,
+  `id_page` int(11) NOT NULL AUTO_INCREMENT,
   `id_parish` int(11) DEFAULT NULL,
   `page_name` varchar(45) DEFAULT NULL,
   `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_page`),
   KEY `id.parish` (`id_parish`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `page`
+--
+
+INSERT INTO `page` (`id_page`, `id_parish`, `page_name`, `description`) VALUES
+(1, 2, 'home', '1231231');
 
 -- --------------------------------------------------------
 
@@ -305,7 +306,8 @@ CREATE TABLE IF NOT EXISTS `parish` (
   KEY `id_barangay` (`barangay`),
   KEY `id_street` (`street`),
   KEY `id_town` (`towncity`),
-  KEY `id_towncity` (`towncity`)
+  KEY `id_towncity` (`towncity`),
+  KEY `image` (`image`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='		' AUTO_INCREMENT=9 ;
 
 --
@@ -313,12 +315,11 @@ CREATE TABLE IF NOT EXISTS `parish` (
 --
 
 INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`, `description`) VALUES
-(1, 'Alliance of Two Hearts Parish', 4, 2, 2, '09228076111', 33, 'http://google.com/', 'Ronnie is so gay'),
+(1, 'Alliance of Two Hearts Parish', 7, 2, 2, '09228076111', 33, 'http://google.com/', 'Ronnie is so gay'),
 (2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 7, 'http://google.com/', 'Orvz bayuuuttt'),
 (3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/', 'potato potato potato potato potato'),
 (4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/', 'Once upon a time, there was once an ugly barnacle. He was so ugly... Everyone died. The end.'),
 (6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/', 'One cheese burger please. aw'),
-(7, 'porno', 1, 1, 1, '123123123', 6, 'http://google.com/', 'This church has all the answers to pleasure.'),
 (8, 'potato', 1, 1, 1, '12312313', 1, 'http://google.com/', 'mehehehehehehehhehehe');
 
 -- --------------------------------------------------------
@@ -330,17 +331,20 @@ INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `
 CREATE TABLE IF NOT EXISTS `reading` (
   `id_reading` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `description` varchar(45) DEFAULT NULL,
-  `id_language` int(11) NOT NULL,
+  `firstReading` varchar(6000) NOT NULL DEFAULT 'reading not defined',
+  `psalms` varchar(6000) NOT NULL DEFAULT 'psalms not defined',
+  `id_language` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_reading`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `reading`
 --
 
-INSERT INTO `reading` (`id_reading`, `date`, `description`, `id_language`) VALUES
-(1, '2014-05-13', 'Somethings', 1);
+INSERT INTO `reading` (`id_reading`, `date`, `firstReading`, `psalms`, `id_language`) VALUES
+(1, '2014-05-13', 'Somethings', 'psalms not defined', 1),
+(2, '2014-06-18', 'KINUTLO GIKAN SA IKADUHANG BASAHON NI SAMUEL Unya gipadala sa GINOO si Natan Ngadto kang David. Miadto siya kaniya Ug giingnan niya si David, â€œMay duha Ka tawo nga miadto sa usa ka syudad, Dato ang usa og ang usa kabus. Daghan Kaayog mga hayopan ang dato, apan ang Kabus wala gayoy lain gawas sa usa ka Bayeng karnero nga iyang napalit. Ug Giamoma niya kini; mitubo kini uban Kaniya ug sa iyang anak, ug nagkan-anan Kini sa iyang mumho ug nag-imnanan sa Iyang imnanan. Iya kining kugoskugoson Sama sa iyang anak. Usa ka adlaw niana, may bisita nga Miabot sa balay sa dato, ug wala siyay Gusto nga mokuha gikan sa iyang Kahayopan aron iyang ihawon alang sa Bisita, ug maoy iyang giihaw ang baying Karnero sa kabus aron ikadalit niya sa Iyang bisita.â€ Unya nasuko pag-ayo si David, ug Giingnan niya si Natan, â€œIpanumpa ko Sa ngalan sa GINOO, nga ang tawo nga Nagbuhat niini angayng patyon. Kina- Hanglang ulian niya ang tag-iya ug upat Ka buok karnero kay wala siyay kaluoy.â€ Giingnan ni Natan si David, â€œIkaw Mao ang tawo. Ug niana ang pulong sa GINOO ,ang Dios sa Israel, â€˜Gidihogan Ko ikaw aron maghari sa Israel, ug Giluwas ko ikaw sa kamot ni Saul.â€ â€œBusa dili mo biya ang espada sa Imong balay, kay imo man akong gitamay, Og giilog mo ang asawa ni Uria.â€ Kini Ang giingon sa GINOO, â€˜Patunghaon ko Batok kanimo ang dautan gikan sa imong Banay; ug sa atubangan mo kuhaon ko Ang imong mga asawa ug ihatag ko sila sa imong silingan bisag adlawng dako. Imo kining gibuhat sa tago, apan buhaton Ko kini atobangan sa tibuok Israel ug sa Adlawng dako.â€ Miingon si David kang Natan, â€œNaka- Sala ako sa GINOO.â€ Ug giingnan ni Natan si David, â€œGipasaylo usab sa GINoo ang imong sala og dili ka niya Patyon. Apan kay pinaagi niining buhata Imo mang gipasipad-an ang GINOO, Mamatay ang bata nga natawo kanimo.â€ Unya mipauli si Natan sa ila. Gihatagan sa GINOO ug grabing Sakit ang anak ni David sa asawa ni Uria. Busa si David nagpakiluoy sa Dios tungod Sa bata; ug nagpuasa si David, ug mihigda Siya sa yuta tibuok gabii. Ang mga Kadagkoan miadto kaniya; apan midumili Siya, ug wala siya mokaon uban kanila. ANG PULONG SA GINOO. â€œSalamat sa Dios.â€', 'SALMO RESPONSORYO R. Linisa ang akong kasingkasing, O Dios Usa ka malinis nga kasingkasing Gamaa dinhi kanako, O Dios, Ug usa ka makanunayong espiritu Bag-oha sulod kanako. Ayaw ako isalikway sa imong atubangan, Ug ayaw kuhaa gikan kanako ang imong balaang espiritu. R. Linisa ang akong kasingkasing, O Dios Ibalik kanako ang kasadya sa imong Kaluwasan, Ug padayona dinhi kanako Ang mauyonong espiritu, Tudloan ko ang malapason sa imong Dalan Ug ang mga makasasala mamalik Kanimo. R. Linisa ang akong kasingkasing, O Dios Luwasa ako sa dugo nga makasasala, O Dios, akong manluluwas nga Dios; Unya Magsaysay ang akong dila sa Imong katarong. O Ginoo, abliha ang akong mga ngabil, Ug ang akong ba-ba magsangyaw Sa imong kadayganan. R. Linisa ang akong kasingkasing, O DiosSALMO RESPONSORYO R. Linisa ang akong kasingkasing, O Dios Usa ka malinis nga kasingkasing Gamaa dinhi kanako, O Dios, Ug usa ka makanunayong espiritu Bag-oha sulod kanako. Ayaw ako isalikway sa imong atubangan, Ug ayaw kuhaa gikan kanako ang imong balaang espiritu. R. Linisa ang akong kasingkasing, O Dios Ibalik kanako ang kasadya sa imong Kaluwasan, Ug padayona dinhi kanako Ang mauyonong espiritu, Tudloan ko ang malapason sa imong Dalan Ug ang mga makasasala mamalik Kanimo. R. Linisa ang akong kasingkasing, O Dios Luwasa ako sa dugo nga makasasala, O Dios, akong manluluwas nga Dios; Unya Magsaysay ang akong dila sa Imong katarong. O Ginoo, abliha ang akong mga ngabil, Ug ang akong ba-ba magsangyaw Sa imong kadayganan. R. Linisa ang akong kasingkasing, O DiosSALMO RESPONSORYO R. Linisa ang akong kasingkasing, O Dios Usa ka malinis nga kasingkasing Gamaa dinhi kanako, O Dios, Ug usa ka makanunayong espiritu Bag-oha sulod kanako. Ayaw ako isalikway sa imong atubangan, Ug ayaw kuhaa gikan kanako ang imong balaang espiritu. R. Linisa ang akong kasingkasing, O Dios Ibalik kanako ang kasadya sa imong Kaluwasan, Ug padayona dinhi kanako Ang mauyonong espiritu, Tudloan ko ang malapason sa imong Dalan Ug ang mga makasasala mamalik Kanimo. R. Linisa ang akong kasingkasing, O Dios Luwasa ako sa dugo nga makasasala, O Dios, akong manluluwas nga Dios; Unya Magsaysay ang akong dila sa Imong katarong. O Ginoo, abliha ang akong mga ngabil, Ug ang akong ba-ba magsangyaw Sa imong kadayganan. R. Linisa ang akong kasingkasing, O DiosSALMO RESPONSORYO R. Linisa ang akong kasingkasing, O Dios Usa ka malinis nga kasingkasing Gamaa dinhi kanako, O Dios, Ug usa ka makanunayong espiritu Bag-oha sulod kanako. Ayaw ako isalikway sa imong atubangan, Ug ayaw kuhaa gikan kanako ang imong balaang espiritu. R. Linisa ang akong kasingkasing, O Dios Ibalik kanako ang kasadya sa imong Kaluwasan, Ug padayona dinhi kanako Ang mauyonong espiritu, Tudloan ko ang malapason sa imong Dalan Ug ang mga makasasala mamalik Kanimo. R. Linisa ang akong kasingkasing, O Dios Luwasa ako sa dugo nga makasasala, O Dios, akong manluluwas nga Dios; Unya Magsaysay ang akong dila sa Imong katarong. O Ginoo, abliha ang akong mga ngabil, Ug ang akong ba-ba magsangyaw Sa imong kadayganan. R. Linisa ang akong kasingkasing, O Dios', 2),
+(3, '2014-06-18', '6/18/2014 reading english', '6/18/2014 psalms english', 1);
 
 -- --------------------------------------------------------
 
@@ -370,12 +374,19 @@ INSERT INTO `role` (`id_role`, `description`) VALUES
 
 CREATE TABLE IF NOT EXISTS `sessions` (
   `session_id` varchar(45) NOT NULL DEFAULT '0',
-  `ip_address` varchar(16) NOT NULL DEFAULT '0',
-  `user_agent` varchar(50) NOT NULL,
+  `ip_address` varchar(45) NOT NULL DEFAULT '0',
+  `user_agent` varchar(120) NOT NULL,
   `last_activity` int(11) NOT NULL DEFAULT '0',
   `user_data` text NOT NULL,
   PRIMARY KEY (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
+('20098eba10663120e904d30bb0d8681f', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403332049, 'a:1:{s:9:"user_data";a:2:{s:8:"username";s:3:"qwe";s:8:"password";s:3:"qwe";}}');
 
 -- --------------------------------------------------------
 
@@ -435,7 +446,7 @@ INSERT INTO `towncity` (`id_towncity`, `towncity`) VALUES
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(32) DEFAULT NULL,
   `role` int(11) DEFAULT NULL,
   `id_parish` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
@@ -505,7 +516,8 @@ ALTER TABLE `page`
 ALTER TABLE `parish`
   ADD CONSTRAINT `id_barangay` FOREIGN KEY (`barangay`) REFERENCES `barangay` (`id_barangay`),
   ADD CONSTRAINT `id_street` FOREIGN KEY (`street`) REFERENCES `street` (`id_street`),
-  ADD CONSTRAINT `id_towncity` FOREIGN KEY (`towncity`) REFERENCES `towncity` (`id_towncity`);
+  ADD CONSTRAINT `id_towncity` FOREIGN KEY (`towncity`) REFERENCES `towncity` (`id_towncity`),
+  ADD CONSTRAINT `parish_ibfk_1` FOREIGN KEY (`image`) REFERENCES `image` (`image_id`);
 
 --
 -- Constraints for table `user`
