@@ -86,25 +86,22 @@ $(document).ready(function(){
 					
 					var parishName = $('<td></td>').attr('class','left tdparish');
 					parishName.append($('<font></font>').text(value.parish).attr('class','fontparish'));
-					
-					var admin = $('<td></td>');
-					admin.append($('<a></a>').text('Admin').attr("data-toggle", "modal").attr("data-backdrop","static").attr("data-target", "#prior").attr("data-id",value.id_parish).on( "click", getAdmin));
 
+					var ckeditor = $('<td></td>');
+					ckeditor.append($('<a></a>').text('CKEditor').css('margin-left','5px'));
+					
 					var description = $('<td></td>');
 					description.append($('<a></a>').text('Edit').css('margin-left','5px').attr("data-toggle", "modal").attr("data-backdrop","static").attr("data-target", "#desc").attr("data-id",value.id_parish).on("click", descValue));
 
-					var schedule = $('<td></td>');
+					var schedule = $('<td></td>').attr('class','right');
 					schedule.append($('<a></a>').text('Schedule').css('margin-left','5px').attr("data-toggle", "modal").attr("data-backdrop","static").attr("data-target", "#managesched").attr("data-id",value.id_parish).on( "click", setID));
 
-					var deletes = $('<td></td>').attr('class','right');
-					deletes.append($('<a></a>').text('Delete').css('margin-left','5px').attr("data-id",value.id_parish).on( "click" , deleteParish));
-					
+				
 
 					tableRow.append(parishName);
-					tableRow.append(admin);
+					tableRow.append(ckeditor)
 					tableRow.append(description);
 					tableRow.append(schedule);
-					tableRow.append(deletes);
 
 
                 	$("#parish_table").append(tableRow);

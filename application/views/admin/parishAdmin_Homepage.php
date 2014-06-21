@@ -8,7 +8,7 @@
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/bootstrap.min.js"></script>
  	<script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/ajaxfileupload.js"></script>
-    <script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/scripts.js"></script>    
+    <script src="<?php echo base_url(); ?>/html_attrib/adminStyles/js/parishadmin_script.js"></script>    
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,7 +28,6 @@
 		<div class="col-md-12">
 			<table class="tableheader">
 			<tr>
-				<td><h4><a data-toggle="modal" data-target="#addpar" data-backdrop="static">ADD PARISH</a></td>
         <td><h4><a href="<?php echo base_url(); ?>index.php/validate/logout" style="margin-left:390px;">LOG-OUT</a></td>
 			</tr>
 			</table>

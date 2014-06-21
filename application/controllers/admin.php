@@ -19,8 +19,10 @@ class admin extends sessionController {
  function homePage() {
    $this->load->helper(array('form', 'url'));
    $this->load->view('admin/Header');
-   $this->load->view('admin/Admin_Homepage');
+   $this->load->view('admin/parishAdmin_Homepage');
  }
+
+
  
  function confirmation()
  {
