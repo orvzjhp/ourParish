@@ -13,16 +13,30 @@ class admin extends sessionController {
  
  function index()
  {
-   $this->homePage();
+   if($this->session->userdata['user_data']['role'] == 2) {
+	 $this->_parishhomePage();   
+   } else if($this->session->userdata['user_data']['role'] == 1) {
+	 $this->_generalhomePage();
+   } else {
+      redirect( "validate/loginPage", 'refresh');
+   }
  }
  
- function homePage() {
+ private function _parishhomePage() {
+   $this->load->model('user','',TRUE);
+   $data['parish'] = $this->user->model_getParName($this->session->userdata['user_data']['id_parish']);
+   $data['parish_id'] = $this->session->userdata['user_data']['id_parish'];   
+ 
    $this->load->helper(array('form', 'url'));
    $this->load->view('admin/Header');
-   $this->load->view('admin/parishAdmin_Homepage');
+   $this->load->view('admin/parishAdmin_Homepage', $data);
  }
-
-
+ 
+ private function _generalhomePage() {
+   $this->load->helper(array('form', 'url'));
+   $this->load->view('admin/Header');
+   $this->load->view('admin/Admin_Homepage');
+ }
  
  function confirmation()
  {
@@ -65,6 +79,8 @@ class admin extends sessionController {
     $data['sched_id'] = $this->uri->segment(3);
 	$this->load->view('admin/UpdateFormL', $data);
  }
+ 
+
 }
 
 ?>

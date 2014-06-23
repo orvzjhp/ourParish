@@ -45,8 +45,25 @@
 			   
          <div>
 			 <table class="tabledata" id="parish_table">
-			 
-       </table>
+					<tr class="row">
+						<td class="tdparish">
+							<font class="fontparish"><?php echo $parish; ?></font>
+						</td>
+						
+						<td>
+							<a style="margin-left:5px;" id="ckEditor" href="<?php echo base_url(); ?>index.php/ck_ourparish/showpage/<?php echo $parish_id; ?>">CKEditor</a>
+						</td>
+						
+						<td>
+							<a style="margin-left:5px;" data-toggle="modal" data-backdrop="static" data-target="#desc" data-id="<?php echo $parish_id; ?>" id="editDetails">Edit</a>
+						</td>
+						
+						<td>
+							<a style="margin-left:5px;" data-toggle="modal" data-backdrop="static" data-target="#managesched" data-id="<?php echo $parish_id; ?>" id="editSchedules">Schedule</a>
+						</td>
+					
+					</tr>
+			</table>
          </div>
 
       </div>	
@@ -54,52 +71,6 @@
 	</div>
 </div>
 
-
-<!--Add parish Modal-->
-
-<div class="modal fade" id="addpar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content modal_background">
-      <div class="modal-header modal_bheader">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel" style="font-color:gray;">ADD PARISH</h4>
-      </div>
-	  
-    <form role="form" id="addParishForm">
-		  <div class="modal-body">	  
-			   <div class="form-group">
-				    <label for="chname">Church's Name:</label>
-				      <input type="chname" class="form-control" id="chname" name="chname" placeholder="">
-		            
-	       </div>
-      </div>
-     <div class="modal-footer">
-                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                   <input type="submit" data-toggle="modal" data-target="#notiaddpar" class="btn btn-primary" value="Add Parish">
-                </div>  
-    </form>
-    </div>
-  </div>
-</div>	
-
-<!--notification para add parish -->
-<div class="modal fade" id="notiaddpar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal_noti modal_notisizesw">
-    <div class="modal-content modal_background">
-      <div class="modal-header modal_bheader" style="height:35px;">
-        <font class="modal-title" id="myModalLabel">STATUS</font>
-      </div>
- 
-          <div class="modal-body modal_background modal_notisizeh" style="margin-bottom:3px;">
-            <font style="margin-left:35px;">PARISH ADDED</font>
-          </div>
-      
-
-    </div>
-  </div>
-</div>  
-
-<!--End of add parish modal-->
 
 <!-- Main schedule page -->
 <div class="modal fade" id="managesched" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -130,86 +101,6 @@
     </div>
   </div>
 </div>  
-
-<!--Start of Edit Admin Modal -->
-
-<div class="modal fade" id="prior" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content modal_background">
-      <div class="modal-header modal_bheader">
-        <h4 class="modal-title" id="myModalLabel">EDIT ADMIN</h4>
-      </div>
-	 <form>
-		 <div class="modal-body modal_adminbody modal_background" style="margin-bottom:3px;">
-			<div><h4 style="margin-left:180px;">ADMINISTRATORS</h4></div>
-			 <div><h4><a data-toggle="modal" data-target="#addadmin">ADD ADMIN</a></h4></div>
-			 <!--The Admin Table -->
-			<div id="admin_table"></div> 
-			<!--End of Admin Table -->
-		 </div>
-		 <div class="modal-footer modal_bfooter">
-			<button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
-		 </div>
-	 </form>
-    </div>
-  </div>
-</div>  
-
-<!--End of Edit Admin Modal -->
-
-<!--add admin modal -->
-
-<div class="modal fade" id="addadmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content modal_background">
-      <div class="modal-header modal_bheader">
-        <h4 class="modal-title" id="myModalLabel">ADD ADMIN</h4>
-      </div>
-  <form id="adminAddForm">
-  <div class="modal-body modal_bodyaddadmin modal_background" style="margin-bottom:3px;">
-    
-
-	<div id="adminAddForm_PID" value="" name="parish_id"></div>
-    <div class="form-group">
-    <label for="labelforuname">Username</label>
-    <input type="text" class="form-control" id="uname" name="username" placeholder="Enter Username">
-    </div>
-    <div class="form-group">
-    <label for="labelforpass">Password</label>
-    <input type="password" name="password" class="form-control" id="pass" placeholder="Enter Password">
-    </div>
-  
-
-  
-    </div>
-      <div class="modal-footer modal_bfooter">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" data-toggle="modal" data-target="#notiaddadmin" class="btn btn-primary" value="Save Changes">
-      </div>
-	</form>
-    </div>
-  </div>
-</div>  
-
-<!--notification para add admin -->
-<div class="modal fade" id="notiaddadmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal_noti modal_notisizesw">
-    <div class="modal-content modal_background">
-      <div class="modal-header modal_bheader" style="height:35px;">
-        <font class="modal-title" id="myModalLabel">STATUS</font>
-      </div>
- 
-          <div class="modal-body modal_background modal_notisizeh" style="margin-bottom:3px;">
-            <font style="margin-left:35px;">ADMIN ADDED</font>
-          </div>
-      
-
-    </div>
-  </div>
-</div>    
-
-<!--end of add admim modal -->
-
 
 <!-- Start of Edit Location modal-->
 

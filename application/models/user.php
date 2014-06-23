@@ -276,15 +276,6 @@ Class User extends CI_Model
 		{
 			return false;
 		}	
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	function model_getImageName($imageID) {
@@ -331,6 +322,24 @@ Class User extends CI_Model
 		$this->db->where('image_id', $imageID);
 		$this->db->update('image', $fileNeim); 
 		return $this->db->affected_rows() > 0;
+	}
+	
+	function model_getParName($data) {
+		$this->db->select('parish');
+		$this->db->from('parish');
+		$this->db->where('id_parish', $data); 
+		
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0)
+		{
+			$query = $query->result_array();
+			return $query[0]['parish'];
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 

@@ -9,7 +9,7 @@ class sessionController extends CI_Controller {
  public function sessionCheck() {
 	$this->load->library('session');
     if ( $this->session->userdata('user_data') == FALSE ) {
-      redirect( "validate/loginPage" );
+      redirect( "validate/loginPage", 'refresh');
     }
  }
 

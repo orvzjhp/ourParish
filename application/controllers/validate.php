@@ -13,7 +13,8 @@ class validate extends CI_Controller {
      $this->load->helper(array('form'));
 	 $this->load->view('admin/login_view');  
    } else {
-     redirect('admin/homePage', 'refresh');  	 
+
+     redirect('admin/homePage', 'refresh');
   }
  }
  
@@ -27,7 +28,9 @@ class validate extends CI_Controller {
 	if($this->form_validation->run() == FALSE) {
 		$this->load->view('admin/login_view'); //user redirected to login page
 	} else {
-		redirect('admin/homePage', 'refresh');
+		//redirect('admin/homePage', 'refresh');
+		redirect('admin', 'refresh');
+		
 	}
  }
  
@@ -39,7 +42,10 @@ class validate extends CI_Controller {
 	$data['password'] = $password;
 	
 	if($this->login->model_verifyUser($data)) {
-
+		$details = $this->login->model_getAdminDetails($data['username']);
+		$data['id_parish'] = $details[0]['id_parish'];
+		$data['role'] = $details[0]['role'];
+		
 		$this->session->set_userdata('user_data', $data);
 		return TRUE;
 	}
@@ -51,7 +57,7 @@ class validate extends CI_Controller {
  
  function logout() {
 	//print_r($this->session->all_userdata());
-	$this->session->unset_userdata('userdata');
+	$this->session->unset_userdata('user_data');
 	redirect('validate/loginPage', 'refresh');
  }
 }

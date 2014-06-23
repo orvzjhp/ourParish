@@ -1,17 +1,27 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class ck_Ourparish extends CI_Controller {
+include "sessionController.php";
 
+class ck_Ourparish extends sessionController {
+
+
+	function __construct()
+	{
+	  parent::__construct();
+	  parent::sessionCheck();
+	  $this->load->model("ck_db");
+	}
+	 
 	public function index()
 	{
 		$this->showpage();
 	}
-
+	
 	public function showpage()
 	{
-		$id_parish='1';
+		$this->load->helper('url');
+		$id_parish = $this->uri->segment(3);
 		$pagename='HOME';
-		$this->load->model("ck_db");
 		$data['page'] = $this->ck_db->getPage($id_parish);
 		//$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
 		$this->load->view("ck/create_page",$data);
@@ -20,7 +30,6 @@ class ck_Ourparish extends CI_Controller {
 	function showHeader()
 	{
 		$id='1';
-		$this->load->model("ck_db");
 		$data = $this->ck_db->getPage($id);
 		
 		echo json_encode($data);
@@ -66,7 +75,6 @@ class ck_Ourparish extends CI_Controller {
 	}
 
 	function deletePage() {
-		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
 
@@ -88,7 +96,6 @@ class ck_Ourparish extends CI_Controller {
 	function updatePage()
 	{
 		$id_parish = '1';
-		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('pagename', 'Pagename', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('id_page', 'Id_Page', 'trim|required|xss_clean');
@@ -109,7 +116,6 @@ class ck_Ourparish extends CI_Controller {
 	function renamePage()
 	{
 		$id_parish = '1';
-		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
 	
@@ -126,7 +132,6 @@ class ck_Ourparish extends CI_Controller {
 	function updateDescription()
 	{
 		$id_parish = '1';
-		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('datavalue', 'Datavalue', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('activepage', 'Activepage', 'trim|required|xss_clean');

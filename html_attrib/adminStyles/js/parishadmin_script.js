@@ -2,7 +2,6 @@ $(document).ready(function(){
 	var base_url;
   $(window).load(function() {
 	base_url = $("#base_url").data('base_url');
-    loadParishData();
 	loadLocations();
   });
   
@@ -15,8 +14,7 @@ $(document).ready(function(){
 		data:  $(this).serialize() + '&parish_id=' + parish_id ,
 		success:
 			  function(data) {
-					console.log(data);
-					
+					console.log(data);					
 			  },
 						
 		error: function(data){
@@ -50,99 +48,7 @@ $(document).ready(function(){
   
 	return false;
   });
-
-  $("#addParishForm").submit(function(){
-
-	$.ajax({
-		type: "POST",
-		url: base_url + "index.php/generaladmin/addParish",
-		dataType: "json",
-		data:  $(this).serialize() ,
-		success:
-			  function(data) {
-					console.log(data);
-					loadParishData();
-				},
-						
-		error: function(data){
-					console.log(data);
-			  }
-	});
 	
-	return false;
-  });
-	
-  function loadParishData() {
-	$.ajax({
-		type: "POST",
-		url: base_url + "index.php/parishadmin/getParishes",
-		dataType: "json",
-		success:
-			  function(data) {
-			  	$("#parish_table").html('');
-				
-				$.each( data, function( key, value ) {					
-					var tableRow = $('<tr></tr>').attr('class','row');
-					
-					var parishName = $('<td></td>').attr('class','left tdparish');
-					parishName.append($('<font></font>').text(value.parish).attr('class','fontparish'));
-
-					var ckeditor = $('<td></td>');
-					ckeditor.append($('<a></a>').text('CKEditor').css('margin-left','5px'));
-					
-					var description = $('<td></td>');
-					description.append($('<a></a>').text('Edit').css('margin-left','5px').attr("data-toggle", "modal").attr("data-backdrop","static").attr("data-target", "#desc").attr("data-id",value.id_parish).on("click", descValue));
-
-					var schedule = $('<td></td>').attr('class','right');
-					schedule.append($('<a></a>').text('Schedule').css('margin-left','5px').attr("data-toggle", "modal").attr("data-backdrop","static").attr("data-target", "#managesched").attr("data-id",value.id_parish).on( "click", setID));
-
-				
-
-					tableRow.append(parishName);
-					tableRow.append(ckeditor)
-					tableRow.append(description);
-					tableRow.append(schedule);
-
-
-                	$("#parish_table").append(tableRow);
-					$(function() {
-						var tr = $('#parish_table').find('tr');
-						tr.bind('click', function(event) {
-						var values = '';
-						tr.removeClass('row-highlight');
-						var tds = $(this).addClass('row-highlight').find('td');	
-						});
-					});
-				});			  
-			  },
-			
-		error: function(data){
-			$("#parish_table").html("An error has occurred");
-			console.log(data);
-		}
-	
-	});
-  }
-  
-  function deleteParish() {
-	var parish_id = $(this).data('id');
-	$.ajax({
-		type: "POST",
-		url: base_url + "index.php/generaladmin/deleteParish",
-		dataType: "json",
-		data:  'id_parish=' + parish_id,
-		success:
-			  function(data) {
-					console.log(data);					
-					loadParishData();
-				},
-						
-		error: function(data){
-					console.log(data);
-			  }
-	});
-  }
-  
   function loadLocations() {
 	$.ajax({
 		type: "POST",
@@ -170,10 +76,10 @@ $(document).ready(function(){
 	});
   }
   
-  function descValue() {
-    $("#editDesc_PID").attr('value', $(this).data('id'));
-	editLocation();
-  }
+   $("#editDetails").click(function(){
+     $("#editDesc_PID").attr('value', $(this).data('id'));
+	 editLocation();
+   });
 
   function editLocation() {
 	var parish_id = $("#editDesc_PID").attr('value');
@@ -204,94 +110,17 @@ $(document).ready(function(){
 	});
   }
   
-  $("#adminAddForm").submit(function(){
-	var parish_id = $("#adminAddForm_PID").attr('value');
-	$.ajax({
-		type: "POST",
-		url: base_url + "index.php/generaladmin/addAdmin",
-		dataType: "json",
-		data:  $(this).serialize() +'&id_parish=' + parish_id,
-		success:
-			  function(data) {
-					console.log(data);
-					getAdmin2(parish_id);
-				},
-						
-		error: function(data){
-					console.log(data);
-			  }
-	});
-	
-	return false;
-  });
-  
-  function getAdmin() {
-	var parish_id = $(this).data('id');
-	$("#adminAddForm_PID").attr("value",parish_id);
-	getAdmin2(parish_id);
-  }
-  
-  function getAdmin2(parish_id) {
-  	$.ajax({
-		type: "POST",
-		url: base_url + "index.php/generaladmin/getAdmin",
-		dataType: "json",
-		data: "parish_id=" + parish_id,
-		success:
-			  function(data) {
-				$("#admin_table").html('');
-				
-					$.each( data, function( key, value ) {
-									
-						var tableRow = $('<tr></tr>');
-						
-						var adminName = $('<td></td>');					
-						$("<font />", { text: value.username, value: parish_id, id: 'adminparish_id' }).css("margin-left","30px").appendTo(adminName);							
-						
-						var dButton = $('<td></td>');						
-						$("<a />", { text: "delete", value: value.id_user, name: 'id_user' }).css("margin-left","190px").on( "click", deleteAdmin).appendTo(dButton);
 
-						tableRow.append(adminName);
-						tableRow.append(dButton);
-						$("#admin_table").append(tableRow);
+  $("#editSchedules").click(function(){
+     var parish_id = $(this).data('id');	
+	 $('#getBapt').data('id',parish_id);
+	 $('#getConfe').data('id',parish_id);
+	 $('#getConfi').data('id',parish_id);
+	 $('#getMass').data('id',parish_id);
+ 	 getSchedules(parish_id, 'Baptism');
+	});
 
-					});
-				},
-						
-		error: function(data){
-			  }
-	});
-  
-  }
-  
-  function deleteAdmin() {
-	var adminparish_id = $("#adminparish_id").attr('value');
-	$.ajax({
-	type: "POST",
-	url: base_url + "index.php/generaladmin/deleteAdmin",
-	dataType: "json",
-	data: "admin_id=" + $(this).attr('value'),
-	success:
-		  function(data) {
-				console.log(data);
-				getAdmin2(adminparish_id);
-			},
-					
-	error: function(data){
-				console.log(data);
-		  }
-	});
-	return false;
-  }
-  
-  function setID() {
-    var parish_id = $(this).data('id');	
-	$('#getBapt').data('id',parish_id);
-	$('#getConfe').data('id',parish_id);
-	$('#getConfi').data('id',parish_id);
-	$('#getMass').data('id',parish_id);
-	getSchedules(parish_id, 'Baptism');
-  }
+
   
   $("#getBapt").click(function(){
 	var parish_id = $(this).data('id');
@@ -384,8 +213,7 @@ $(document).ready(function(){
   }
   
    function getSchedules(parish_id, type, toHighlight) {
-		//toHighlight = typeof toHighlight !== 'undefined' ? toHighlight : 0;
-		//console.log(toHighlight);
+
 		$.ajax({
 			type: "POST",
 			url: base_url + "index.php/parishadmin/schedules" + type,
