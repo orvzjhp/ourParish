@@ -81,6 +81,12 @@ $(document).ready(function(){
 	 editLocation();
    });
 
+   $("#editDetails").click(function(){
+     $("#editDesc_PID").attr('value', $(this).data('id'));
+	 editLocation();
+   });
+   
+   
   function editLocation() {
 	var parish_id = $("#editDesc_PID").attr('value');
 	$.ajax({

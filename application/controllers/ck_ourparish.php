@@ -23,30 +23,36 @@ class ck_Ourparish extends sessionController {
 		$id_parish = $this->uri->segment(3);
 		$pagename='HOME';
 		$data['page'] = $this->ck_db->getPage($id_parish);
+		$data['id_parish'] = $id_parish;
 		//$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
 		$this->load->view("ck/create_page",$data);
 	}
 
 	function showHeader()
 	{
-		$id='1';
-		$data = $this->ck_db->getPage($id);
-		
-		echo json_encode($data);
-	
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('id_parish', 'Id_parish', 'trim|required|xss_clean');
+
+		if($this->form_validation->run() == FALSE) {
+			echo json_encode('Validation run fail');
+		} else {
+			$id = $this->input->post('id_parish');		
+			$data = $this->ck_db->getPage($id);
+			echo json_encode($data);
+		}	
 	}
 
 	function addPage()
 	{
-		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('pagename', 'Pagename', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('id_parish', 'Id_parish', 'trim|required|xss_clean');
 		if($this->form_validation->run() == FALSE) {
 			echo json_encode('Validation run fail');
 		} else {
 			$data = array(
 			   'page_name' => $this->input->post('pagename') ,
-			   'id_parish' => '1',
+			   'id_parish' => $this->input->post('id_parish'),
 			   'description' => NULL
 			);
 			
@@ -60,15 +66,15 @@ class ck_Ourparish extends sessionController {
 
 	function selectPage()
 	{
-		$id_parish='1';
-		$this->load->model("ck_db");
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('id_parish', 'Id_parish', 'trim|required|xss_clean');
 
 		if($this->form_validation->run() == FALSE) {
 			echo json_encode('Validation run fail');
 		} else {
-			$page = $this->input->post('page');
+			$page = $this->input->post('page');		    
+			$id_parish = $this->input->post('id_parish');
 			$data = $this->ck_db->getDescription($id_parish,$page);
 			echo json_encode($data);
 		}	
@@ -77,7 +83,8 @@ class ck_Ourparish extends sessionController {
 	function deletePage() {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
-
+		$this->form_validation->set_rules('id_parish', 'Id_parish', 'trim|required|xss_clean');
+	
 		if($this->form_validation->run() == FALSE) {
 			echo json_encode('Validation run fail');
 		} else {
@@ -85,7 +92,8 @@ class ck_Ourparish extends sessionController {
 			   'page_name' => $this->input->post('page')
 			);
 			
-			if($this->ck_db->model_deletePage($data,1)) {
+			$id_parish = $this->input->post('id_parish');
+			if($this->ck_db->model_deletePage($data, $id_parish)) {
 				echo json_encode('delete success');		
 			} else {
 				echo json_encode('delete fail');
@@ -115,37 +123,41 @@ class ck_Ourparish extends sessionController {
 
 	function renamePage()
 	{
-		$id_parish = '1';
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('id_parish', 'Id_parish', 'trim|required|xss_clean');
 	
 		if($this->form_validation->run() == FALSE) {
 			echo json_encode('Validation run fail');
 		} else {
+			$id_parish = $this->input->post('id_parish');
 			$page = $this->input->post('page'); 			   
 			$data = $this->ck_db->model_selectIdPage($id_parish,$page);
 			echo json_encode($data);
 		}		
 	}
 	
-
+	// wala pa
 	function updateDescription()
 	{
-		$id_parish = '1';
 		$this->load->library('form_validation');
+		$this->form_validation->set_rules('id_parish', 'Id_parish', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('datavalue', 'Datavalue', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('activepage', 'Activepage', 'trim|required|xss_clean');
-	
+		
 		if($this->form_validation->run() == FALSE) {
-			echo json_encode($this->input->post('datavalue'));
+			echo json_encode('validation run fail');
 		} else {
 			$description = $this->input->post('datavalue');
 			$dd = array(
                'description' => $description,
             );
+			$id_parish = $this->input->post('id_parish');
+
 			$page = $this->input->post('activepage');
-			$data = $this->ck_db->model_updateDescription($page,$dd);
-			echo json_encode($data);
-		}	
+			if($this->ck_db->model_updateDescription($page,$dd, $id_parish)) {
+				echo json_encode('update success');
+			}
+		}
 	}
 }

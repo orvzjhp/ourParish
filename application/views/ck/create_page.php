@@ -20,7 +20,7 @@
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/selectPage",
           dataType: "json",
-          data: "page=" + p,
+          data: "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>,
           success:
               function(data) {
                 console.log(data);
@@ -28,7 +28,7 @@
                 $("#editor1").html('');
                 $.each( data, function( key, value ) { 
                   CKEDITOR.instances.editor1.setData(value.description);
-                                    alert(value.id_page);
+                  console.log(value.id_page);
                 
                 $("#div_CK").html('');
                 var a = document.createElement('input');
@@ -41,6 +41,7 @@
                   
           error: function(data){
                 console.log(data);
+				 $("#editor1").html('');
               }
         });
         return false;
@@ -55,11 +56,12 @@
         var p = page;
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>index.php/ck_ourparish/index.php/ourparish/deletePage",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/deletePage",
           dataType: "json",
-          data: "page=" + p,
+          data: "page="+ p +"&id_parish=" + <?php echo $id_parish; ?>,
           success:
               function(data) {
+				console.log('delete succesful');
                 showHeader();
               },
                   
@@ -81,7 +83,7 @@
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/renamePage",
           dataType: "json",
-          data: "page=" + p,
+          data: "page=" + p +"&id_parish=" + <?php echo $id_parish; ?>,
           success:
               function(data) {
                              
@@ -296,12 +298,11 @@
         <!--CKEditor-->
         <div style="top:18%; left:2%; right:2%; position:absolute;">
           <form id="form_saveCK" role="form">
-            <textarea class="ckeditor" id="editor1" name="datavalue" > 
+            <textarea class="ckeditor" id="editor1" name="datavalue"> 
               
             </textarea> 
-
+			
             <div id="div_CK"> 
-            
             </div>
             <button type="submit" class="btn btn-default navbar-btn">Save Changes</button>
           </form>               
@@ -311,9 +312,6 @@
 
 	</body>
 
-
-
-
 <script type="text/javascript">
 
   $("#form_addpage").submit(function(){
@@ -322,7 +320,7 @@
     type: "POST",
     url: "<?php echo base_url(); ?>index.php/ck_ourparish/addPage",
     dataType: "json",
-    data: id_page,
+    data: id_page + "&id_parish=" + <?php echo $id_parish; ?>,
     success:
         function(data) {
           showHeader();
@@ -340,8 +338,9 @@
     {
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url(); ?>index.php/ck_ourparish/index.php/ourparish/showHeader",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/showHeader",
           dataType: "json",
+		  data: "id_parish=" + <?php echo $id_parish; ?>,
           success:
             function(data) 
             {
@@ -414,18 +413,16 @@
 
   $("#form_saveCK").submit(function(){
   var id_page = $("#form_saveCK").serialize();
+  console.log('value is '+ id_page);
   $.ajax({
     type: "POST",
-    url: "<?php echo base_url(); ?>index.php/ck_ourparish/index.php/ourparish/updateDescription",
+    url: "<?php echo base_url(); ?>index.php/ck_ourparish/updateDescription",
     dataType: "json",
-    data: id_page,
+    data: id_page +"&id_parish=" + <?php echo $id_parish; ?>,
+	
     success:
         function(data) {
           console.log(data);
-          if(data == true)
-          {
-            alert("SAVED");
-          } 
         },          
     error: 
         function(data){
@@ -441,7 +438,7 @@
     type: "POST",
     url: "<?php echo base_url(); ?>index.php/ck_ourparish/updatePage",
     dataType: "json",
-    data: id_page,
+    data: id_page +"&id_parish=" + <?php echo $id_parish; ?>,
     success:
         function(data) {
           showHeader();
