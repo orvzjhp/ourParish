@@ -13,7 +13,7 @@
 
 
 	<p id="psalms_reading">
-		<?php echo $readings[0]->psalms;?>
+	not yet implemented
 	</p>
 
 

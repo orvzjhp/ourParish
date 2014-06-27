@@ -39,7 +39,7 @@ class validate extends CI_Controller {
 		'username' => $this->input->post('username')
 	);
 	
-	$data['password'] = $password;
+	$data['password'] = MD5($password);
 	
 	if($this->login->model_verifyUser($data)) {
 		$details = $this->login->model_getAdminDetails($data['username']);

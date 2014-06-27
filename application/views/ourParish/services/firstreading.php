@@ -11,7 +11,7 @@
 <body>
 <div class="panel-body">	
 					<p class="text-center">
-							<?php echo $readings[0]->firstReading; ?>
+							<?php echo $readings; ?>
 					</p>
 </div>
 

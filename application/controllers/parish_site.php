@@ -1,6 +1,8 @@
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+include 'pdf2text.php';
+
 class parish_site extends CI_Controller {
 
  function __construct()
@@ -142,10 +144,18 @@ class parish_site extends CI_Controller {
  
  function firstReading()
  {
-	$this->load->helper('url');
-	$this->load->model('model_parishsite');
+	// $this->load->helper('url');
+	// $this->load->model('model_parishsite');
 	$language = $this->uri->segment(3);
-	$data['readings'] = $this->model_parishsite->model_getReading($language, 'firstReading');
+	
+	switch($language)
+	{
+		case 1: $language = 'english'; break;
+		case 2: $language = 'bisaya'; break;
+	}
+	// $data['readings'] = $this->model_parishsite->model_getReading($language, 'firstReading');
+	
+	$data['readings'] = pdf2text(base_url().'html_attrib/parishStyles/readings/.'$language'./yearA/yeara.pdf');
 	$this->load->view('ourParish/services/firstreading', $data);
  }
  
@@ -154,7 +164,7 @@ class parish_site extends CI_Controller {
 	$this->load->helper('url');
 	$this->load->model('model_parishsite');
 	$language = $this->uri->segment(3);
-	$data['readings'] = $this->model_parishsite->model_getReading($language, 'psalms');
+	$data['readings'] = 'asdasda';
 	$this->load->view('ourParish/services/psalms', $data);
  }
 }
