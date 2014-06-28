@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2014 at 04:08 AM
+-- Generation Time: Jun 28, 2014 at 11:57 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -271,17 +271,18 @@ CREATE TABLE IF NOT EXISTS `page` (
   `id_page` int(11) NOT NULL AUTO_INCREMENT,
   `id_parish` int(11) DEFAULT NULL,
   `page_name` varchar(45) DEFAULT NULL,
-  `description` varchar(45) DEFAULT NULL,
+  `description` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`id_page`),
   KEY `id.parish` (`id_parish`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id_page`, `id_parish`, `page_name`, `description`) VALUES
-(1, 2, 'home', '1231231');
+(3, 1, 'home', '<p>i am a potatoaasdfasdfasdfafasfasfas</p>'),
+(4, 1, 'foo', '<p>this is foo time</p>');
 
 -- --------------------------------------------------------
 
@@ -373,7 +374,9 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('44075359bfc30f5fecb033fb8cb1c31e', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403487855, 'a:1:{s:9:"user_data";a:4:{s:8:"username";s:4:"asdf";s:8:"password";s:4:"adsf";s:9:"id_parish";s:1:"1";s:4:"role";s:1:"2";}}');
+('2b95dc5840a4af60f828d863564cb4b5', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403882452, 'a:1:{s:9:"user_data";a:4:{s:8:"username";s:7:"lourdes";s:8:"password";s:32:"9618df17a1d242eed1275efef4bd6681";s:9:"id_parish";s:1:"2";s:4:"role";s:1:"2";}}'),
+('64ac9501f11f301f7b73fec6721aa469', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403878126, ''),
+('77989ba82d15302b8691255f20ea4398', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403946982, '');
 
 -- --------------------------------------------------------
 
@@ -439,19 +442,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`),
   KEY `id_role` (`role`),
   KEY `id,parish` (`id_parish`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `role`, `id_parish`) VALUES
-(4, 'zxcv', 'zcxv', 2, 3),
-(11, 'erty', 'asdf', 2, 2),
-(13, 'qwerwerqw', 'asdf', 2, 4),
-(38, '134', 'adfadf', 2, 1),
-(41, 'qwe', 'qwe', 1, 0),
-(43, 'asdf', 'adsf', 2, 1);
+(44, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 0),
+(45, 'dummy', '275876e34cf609db118f3d84b799a790', 2, 1),
+(46, 'lourdes', '9618df17a1d242eed1275efef4bd6681', 2, 2);
 
 --
 -- Constraints for dumped tables
