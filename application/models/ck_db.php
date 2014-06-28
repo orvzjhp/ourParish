@@ -8,7 +8,12 @@ class ck_db extends CI_Model
 		$query = $this->db->query("SELECT page_name FROM page where id_parish=".$id);
 		return $query->result();
 	}
-
+	
+	function model_getParishName($id_parish) {
+		$query = $this->db->query("SELECT parish FROM parish where id_parish='$id_parish'");
+		return $query->result();
+	}
+	
 	function getDescription($id,$page_name)
 	{
 		$query = $this->db->query("SELECT description, id_page FROM page where id_parish='$id' and page_name='$page_name'");

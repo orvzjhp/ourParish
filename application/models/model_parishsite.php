@@ -9,8 +9,7 @@ Class model_parishsite extends CI_Model
 		$this->db->where('month(date)', date('m')); 
 		$this->db->where('year(date)', date('Y')); 
 		$this->db->where('day(date)', date('d'));
-		
-		
+				
 		$query = $this->db->get();
  
 		if($query->num_rows() > 0)

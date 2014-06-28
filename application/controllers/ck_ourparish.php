@@ -23,6 +23,7 @@ class ck_Ourparish extends sessionController {
 		$id_parish = $this->uri->segment(3);
 		$pagename='HOME';
 		$data['page'] = $this->ck_db->getPage($id_parish);
+		$data['name_parish'] = $this->ck_db->model_getParishName($id_parish);
 		$data['id_parish'] = $id_parish;
 		//$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
 		$this->load->view("ck/create_page",$data);

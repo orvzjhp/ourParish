@@ -5,9 +5,9 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/ckeditor/ckeditor.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/assets/js/jquery-1.11.0.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>html_attrib/ckStyles/assets/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/bootstrap.min.css"/>
-    <link href = "<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/styles.css" rel = "stylesheet">
-    <link href = "<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/modal.css" rel = "stylesheet">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/bootstrap.min.css"/>
+	<link href = "<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/styles.css" rel = "stylesheet">
+	<link href = "<?php echo base_url(); ?>html_attrib/ckStyles/assets/css/modal.css" rel = "stylesheet">
 	</head>
 
 <script type="text/javascript">
@@ -131,7 +131,7 @@
     <!--Navbar-->
     <div class="navbar navbar-static-top navbar-default"> 
       <div class="container">
-        <a href ="#" class = "navbar-brand">OurParish</a>
+        <a href ="#" class = "navbar-brand"><?php echo $name_parish[0]->parish; ?></a>
         <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
           <span class = "icon-bar"></span>
           <span class = "icon-bar"></span>
@@ -141,7 +141,7 @@
         <div class = "collapse navbar-collapse navHeaderCollapse">
           <ul class = "nav navbar-nav navbar-right">
             <li>
-              <a>Logout</a>
+              <a href="<?php echo base_url(); ?>index.php/admin">back</a>
             </li>
 
           </ul>
