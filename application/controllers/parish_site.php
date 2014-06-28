@@ -147,15 +147,15 @@ class parish_site extends CI_Controller {
 	// $this->load->helper('url');
 	// $this->load->model('model_parishsite');
 	$language = $this->uri->segment(3);
-	
+	$yes = "";
 	switch($language)
 	{
-		case 1: $language = 'english'; break;
-		case 2: $language = 'bisaya'; break;
+		case 1: $yes = 'english'; break;
+		case 2: $yes = 'bisaya'; break;
 	}
 	// $data['readings'] = $this->model_parishsite->model_getReading($language, 'firstReading');
 	
-	$data['readings'] = pdf2text(base_url().'html_attrib/parishStyles/readings/.'$language'./yearA/yeara.pdf');
+	$data['readings'] = pdf2text(base_url().'html_attrib/parishStyles/readings/'.$yes.'/yearA/yeara.pdf');
 	$this->load->view('ourParish/services/firstreading', $data);
  }
  
