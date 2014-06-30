@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2014 at 11:57 AM
+-- Generation Time: Jun 30, 2014 at 05:50 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -274,15 +274,16 @@ CREATE TABLE IF NOT EXISTS `page` (
   `description` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`id_page`),
   KEY `id.parish` (`id_parish`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id_page`, `id_parish`, `page_name`, `description`) VALUES
-(3, 1, 'home', '<p>i am a potatoaasdfasdfasdfafasfasfas</p>'),
-(4, 1, 'foo', '<p>this is foo time</p>');
+(3, 1, 'home', '<h1>i am a potatoaasdfasdfasdfafasfasfas</h1>'),
+(4, 1, 'foo', '<h1><strong>this is a sentence</strong></h1>'),
+(5, 2, 'afufu', NULL);
 
 -- --------------------------------------------------------
 
@@ -292,13 +293,14 @@ INSERT INTO `page` (`id_page`, `id_parish`, `page_name`, `description`) VALUES
 
 CREATE TABLE IF NOT EXISTS `parish` (
   `id_parish` int(11) NOT NULL AUTO_INCREMENT,
+  `keyword` varchar(100) NOT NULL,
   `parish` varchar(45) DEFAULT NULL,
   `street` int(11) DEFAULT '1',
   `barangay` int(11) DEFAULT '1',
   `towncity` int(11) DEFAULT '1',
   `tnumber` varchar(20) DEFAULT '09227638918',
   `image` int(11) DEFAULT '1',
-  `url` varchar(100) NOT NULL DEFAULT 'http://google.com/',
+  `url` varchar(100) DEFAULT NULL,
   `description` varchar(1000) NOT NULL DEFAULT 'Description is to be added',
   PRIMARY KEY (`id_parish`),
   KEY `id_barangay` (`barangay`),
@@ -312,13 +314,13 @@ CREATE TABLE IF NOT EXISTS `parish` (
 -- Dumping data for table `parish`
 --
 
-INSERT INTO `parish` (`id_parish`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`, `description`) VALUES
-(1, 'Alliance of Two Hearts Parish', 7, 2, 2, '09228076111', 33, 'http://google.com/', 'Ronnie is so gay'),
-(2, 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 7, 'http://google.com/', 'Orvz bayuuuttt'),
-(3, 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, 'http://google.com/', 'potato potato potato potato potato'),
-(4, 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, 'http://google.com/', 'Once upon a time, there was once an ugly barnacle. He was so ugly... Everyone died. The end.'),
-(6, 'capitol capitan', 1, 1, 1, '123123123', 5, 'http://google.com/', 'One cheese burger please. aw'),
-(8, 'potato', 1, 1, 1, '12312313', 1, 'http://google.com/', 'mehehehehehehehhehehe');
+INSERT INTO `parish` (`id_parish`, `keyword`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`, `description`) VALUES
+(1, 'twohearts', 'Alliance of Two Hearts Parish', 8, 11, 2, '09228076111', 33, 'http://localhost/parishsite/index.php/parish/index/twohearts/homes', 'Ronnie is so gay'),
+(2, 'lourdes', 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 7, 'http://localhost/parishsite/index.php/parish/index/lourdes/afufu', 'Orvz bayuuuttt'),
+(3, 'guadalupearchshrine', 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, NULL, 'potato potato potato potato potato'),
+(4, 'sacredheart', 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, NULL, 'Once upon a time, there was once an ugly barnacle. He was so ugly... Everyone died. The end.'),
+(6, 'capitol', 'capitol capitan', 1, 1, 1, '123123123', 5, NULL, 'One cheese burger please. aw'),
+(8, 'potato', 'potato', 1, 1, 1, '12312313', 1, NULL, 'mehehehehehehehhehehe');
 
 -- --------------------------------------------------------
 
@@ -374,9 +376,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('2b95dc5840a4af60f828d863564cb4b5', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403882452, 'a:1:{s:9:"user_data";a:4:{s:8:"username";s:7:"lourdes";s:8:"password";s:32:"9618df17a1d242eed1275efef4bd6681";s:9:"id_parish";s:1:"2";s:4:"role";s:1:"2";}}'),
-('64ac9501f11f301f7b73fec6721aa469', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403878126, ''),
-('77989ba82d15302b8691255f20ea4398', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1403946982, '');
+('e6c16a913dd5331b6e9fb8238a2cd7e6', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1404142968, 'a:1:{s:9:"user_data";a:4:{s:8:"username";s:7:"lourdes";s:8:"password";s:32:"9618df17a1d242eed1275efef4bd6681";s:9:"id_parish";s:1:"2";s:4:"role";s:1:"2";}}');
 
 -- --------------------------------------------------------
 
