@@ -16,6 +16,7 @@
       return function()
       {
         var p = page;
+		console.log('sending to controller '+ "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>);
         $.ajax({
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/selectPage",
@@ -36,6 +37,8 @@
                 a.setAttribute("name","activepage");
                 a.setAttribute("value",value.id_page);
                 document.getElementById("div_CK").appendChild(a);
+                document.getElementById("url").innerHTML = "<?php echo base_url(); ?>index.php/parish/index/<?php echo $keyword[0]->keyword; ?>/" + p;
+                document.getElementById("makeHome").onclick = updateHome(p);				
                 });    
               },
                   
@@ -48,6 +51,29 @@
       }
     }
 
+    function updateHome(page)
+    {
+      return function()
+      {
+        var p = page;
+		console.log('sending to controller '+ "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>);
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url(); ?>index.php/ck_ourparish/updateUrl",
+          dataType: "json",
+          data: "page=" + p +"&id_parish=<?php echo $id_parish; ?>&keyword=<?php echo $keyword[0]->keyword; ?>",
+          success:
+              function(data) {
+                console.log(data);
+  
+              },
+                  
+          error: function(data){
+                console.log(data);
+              }
+        });
+      }
+    }
 
     function deleteP(page)
     {
@@ -305,7 +331,16 @@
             <div id="div_CK"> 
             </div>
             <button type="submit" class="btn btn-default navbar-btn">Save Changes</button>
-          </form>               
+          </form>
+		  <br>
+
+		  <div style="text-align:center" >
+			  <label>Url:</label>
+			  <label id="url">No Page selected</label>
+			  <br>
+			  <button id="makeHome" class="btn btn-default navbar-btn">Make this url the home Page</button>
+			  <br>
+		  <div>
         </div>  
         
       </div>
@@ -313,7 +348,10 @@
 	</body>
 
 <script type="text/javascript">
-
+  $("makeHome").click(function() {
+	
+  
+  });
   $("#form_addpage").submit(function(){
   var id_page = $("#form_addpage").serialize();
   $.ajax({

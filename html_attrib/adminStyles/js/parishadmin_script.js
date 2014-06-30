@@ -101,6 +101,7 @@ $(document).ready(function(){
 					document.getElementById('street').value = data.details[0].street;
 					document.getElementById('barangay').value = data.details[0].barangay;
 					document.getElementById('towncity').value = data.details[0].towncity;
+					document.getElementById('description').value = data.details[0].description;
 					document.getElementById('tnumber').value = data.details[0].tnumber;
 					console.log('street ' +data.details[0].street);
 					console.log('barnagay ' +data.details[0].barangay);

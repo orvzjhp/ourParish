@@ -92,7 +92,18 @@ Class User extends CI_Model
 	// adds parish
 	function model_addParish($data)
 	{
-		$this->db->insert('parish', $data);		
+		$this->db->select('keyword');
+		$this->db->from('parish');
+		$this->db->where('keyword',$data['keyword']);
+		
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0)
+		{
+			return false;
+		}
+		
+		$this->db->insert('parish', $data);
 		return $this->db->affected_rows() > 0;
 	}
 	
@@ -260,7 +271,7 @@ Class User extends CI_Model
 	
 	function model_getParDetails($data) {
 		
-		$this->db->select('image.filename, image.ext, parish.street, parish.barangay, parish.towncity, parish.tnumber, parish.image');
+		$this->db->select('image.filename, image.ext, parish.description, parish.street, parish.barangay, parish.towncity, parish.tnumber, parish.image');
 		$this->db->from('parish');
 		$this->db->where('parish.id_parish', $data['parish_id']);		
 	

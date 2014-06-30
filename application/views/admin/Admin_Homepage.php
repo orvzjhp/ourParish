@@ -71,6 +71,9 @@
 			   <div class="form-group">
 				    <label for="chname">Church's Name:</label>
 				      <input type="chname" class="form-control" id="chname" name="chname" placeholder="">
+				    <br>
+					<label for="chname">Website Keyword:</label>
+				      <input type="chname" class="form-control" id="chname" name="keyword" placeholder="">
 		            
 	       </div>
       </div>
@@ -225,7 +228,7 @@
 	    <div class="modal-body" style="margin-bottom:3px;">
 	      <div><h4 style="margin-left:180px;">Profile Parish Picture</h4></div>
          
-		 <!-- start of uploaddd-->
+		 <!-- start of uploaddd picture-->
 		 
 		 
 		    
@@ -266,6 +269,10 @@
 			<select class="form-control" name="town" id="towncity">
 			</select> 		
 		</div>
+	<div class="form-group">
+    <label for="labelfortnumber">Description</label>
+    <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description">
+    </div>
     <div class="form-group">
     <label for="labelfortnumber">Telephone/Cellphone #</label>
     <input type="text" class="form-control" id="tnumber" name="tnumber" placeholder="Enter Number">

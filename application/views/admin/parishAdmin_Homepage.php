@@ -156,6 +156,10 @@
 			<select class="form-control" name="town" id="towncity">
 			</select> 		
 		</div>
+	<div class="form-group">
+    <label for="labelfortnumber">Description</label>
+    <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description">
+    </div>
     <div class="form-group">
     <label for="labelfortnumber">Telephone/Cellphone #</label>
     <input type="text" class="form-control" id="tnumber" name="tnumber" placeholder="Enter Number">

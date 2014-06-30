@@ -9,6 +9,17 @@ class ck_db extends CI_Model
 		return $query->result();
 	}
 	
+	function model_updateUrl($data, $id_parish) {
+		$this->db->where('id_parish', $id_parish);
+		$this->db->update('parish', $data); 
+		return $this->db->affected_rows() > 0;
+	}
+	
+	function model_getKeyword($id_parish) {
+		$query = $this->db->query("SELECT keyword FROM parish where id_parish='$id_parish'");
+		return $query->result();	
+	}
+	
 	function model_getParishName($id_parish) {
 		$query = $this->db->query("SELECT parish FROM parish where id_parish='$id_parish'");
 		return $query->result();

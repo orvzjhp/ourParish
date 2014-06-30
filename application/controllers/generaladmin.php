@@ -15,12 +15,14 @@ class generaladmin extends sessionController {
  function addParish() {
 	$this->load->library('form_validation');
 	$this->form_validation->set_rules('chname', 'church_name', 'trim|required|xss_clean');
+	$this->form_validation->set_rules('keyword', 'Keyword', 'trim|required|xss_clean');
 
 	if($this->form_validation->run() == FALSE) {
 		echo json_encode('Validation run fail');
 	} else {
 		$data = array(
-		   'parish' => $this->input->post('chname')
+		   'parish' => $this->input->post('chname'),
+		   'keyword' => strtolower($this->input->post('keyword'))
 		);
 		
 		if($this->user->model_addParish($data)) {
@@ -100,11 +102,6 @@ class generaladmin extends sessionController {
 			echo json_encode('delete Parish Fail');		
 		}
 	}
- }
- 
- 
- function addReadings() {
- 
  }
  
  function getAdmin() {

@@ -25,7 +25,8 @@ class ck_Ourparish extends sessionController {
 		$data['page'] = $this->ck_db->getPage($id_parish);
 		$data['name_parish'] = $this->ck_db->model_getParishName($id_parish);
 		$data['id_parish'] = $id_parish;
-		//$data['description'] = $this->ck_db->getDescription($id_parish,$pagename);
+		$data['keyword'] = $this->ck_db->model_getKeyword($id_parish);
+		
 		$this->load->view("ck/create_page",$data);
 	}
 
@@ -42,7 +43,32 @@ class ck_Ourparish extends sessionController {
 			echo json_encode($data);
 		}	
 	}
-
+	
+	function updateUrl() {
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('page', 'Page', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('id_parish', 'Id_parish', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('keyword', 'Keyword', 'trim|required|xss_clean');
+		
+		if($this->form_validation->run() == FALSE) {
+			echo json_encode('Validation run fail');
+		} else {
+			$keyword = $this->input->post('keyword');
+			$page = $this->input->post('page');
+			$id_parish = $this->input->post('id_parish');
+			$data = array(
+			   'url' => base_url().'index.php/parish/index/'.$keyword.'/'.$page ,
+			);
+			
+			if($this->ck_db->model_updateUrl($data, $id_parish)) {
+				echo json_encode('success');
+			} else {
+				echo json_encode('update fail');
+			}
+		}
+	
+	}
+	
 	function addPage()
 	{
 		$this->load->library('form_validation');
