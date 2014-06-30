@@ -2,18 +2,17 @@ Mga Kuwang
 
 	Home
 		1. add Calendar to empty spot in page
-		2. sabot what data to put when "more..." button is clicked 
-			
+
 	Services
 		1. sabot ta how reading of the day data should be stored and accessed
+		
+general admin 
+	user: admin
+	pass: admin
 	
-	others:
+other accounts:
+	user: dummy
+	pass: dummy
 	
-		general admin
-			1. wala pa na session
-			2. may need more fields
-		ckEditor/ parishAdmin:
-			ambut lang... bouncy?	
-		database
-			1. may need to add more fields
-	
+	user: lourdes
+	pass: lourdes
