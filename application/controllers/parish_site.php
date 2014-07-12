@@ -128,29 +128,64 @@ class parish_site extends CI_Controller {
  
  function firstReading()
  {
-	// $this->load->helper('url');
-	// $this->load->model('model_parishsite');
+	$this->load->helper('url');
 	$language = $this->uri->segment(3);
+		
+	$data['readings'] = getTextData($language,'reading');
+	
+	$this->load->view('ourParish/services/firstreading', $data);
+ }  
+ 
+ function psalms()
+ {
+	$this->load->helper('url');
+	$language = $this->uri->segment(3);
+	$data['readings'] = getTextData($language,'psalms');
+	$this->load->view('ourParish/services/psalms', $data);
+ }
+}
+
+function getTextData($language, $type)
+{
 	$yes = "";
 	switch($language)
 	{
 		case 1: $yes = 'english'; break;
 		case 2: $yes = 'bisaya'; break;
 	}
-	// $data['readings'] = $this->model_parishsite->model_getReading($language, 'firstReading');
 	
-	$data['readings'] = pdf2text(base_url().'html_attrib/parishStyles/readings/'.$yes.'/yearA/yeara.pdf');
-	$this->load->view('ourParish/services/firstreading', $data);
- }
- 
- function psalms()
- {
-	$this->load->helper('url');
-	$this->load->model('model_parishsite');
-	$language = $this->uri->segment(3);
-	$data['readings'] = 'asdasda';
-	$this->load->view('ourParish/services/psalms', $data);
- }
+	date_default_timezone_set('Asia/Manila');
+	
+	$now = time();	
+    $firstDay = strtotime("2014-07-01");
+    $datediff = (($now - $firstDay)/(60*60*24)) % 1095;
+	$day = '';
+	if(date('D', $now) === 'Sun')
+	{
+		$yes = $yes.'/sunday';
+		
+		if($datediff > 730) $yes = $yes.'/yearC';				
+		else if($datediff > 365) $yes = $yes.'/yearB';		
+		else $yes = $yes.'/yearA';
+		
+		$day = round($datediff / 7);	
+	}
+	else
+	{
+		$yes = $yes.'/daily';
+		if($datediff > 365 && $datediff <= 730) $yes = $yes.'/odd';		
+		else $yes = $yes.'/even';
+		
+		$day = round($datediff - $datediff / 7);	
+	
+	}	
+	
+	$myFile = '././html_attrib/parishStyles/readings/'.$yes.'/'.$type.'/day'.$day.'.txt';
+	$fh = fopen($myFile, 'r');
+	$theData = fread($fh, filesize($myFile));
+	fclose($fh);
+	
+	return '<pre>'.$theData.'</pre>';
 }
 
 ?>
