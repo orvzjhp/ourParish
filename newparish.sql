@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2014 at 05:50 PM
+-- Generation Time: Jul 25, 2014 at 05:22 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `page` (
   `description` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`id_page`),
   KEY `id.parish` (`id_parish`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `page`
@@ -283,7 +283,8 @@ CREATE TABLE IF NOT EXISTS `page` (
 INSERT INTO `page` (`id_page`, `id_parish`, `page_name`, `description`) VALUES
 (3, 1, 'home', '<h1>i am a potatoaasdfasdfasdfafasfasfas</h1>'),
 (4, 1, 'foo', '<h1><strong>this is a sentence</strong></h1>'),
-(5, 2, 'afufu', NULL);
+(5, 2, 'afufu', NULL),
+(6, 1, 'potato', '<p>yes</p>');
 
 -- --------------------------------------------------------
 
@@ -315,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `parish` (
 --
 
 INSERT INTO `parish` (`id_parish`, `keyword`, `parish`, `street`, `barangay`, `towncity`, `tnumber`, `image`, `url`, `description`) VALUES
-(1, 'twohearts', 'Alliance of Two Hearts Parish', 8, 11, 2, '09228076111', 33, 'http://localhost/parishsite/index.php/parish/index/twohearts/homes', 'Ronnie is so gay'),
+(1, 'twohearts', 'Alliance of Two Hearts Parish', 8, 11, 2, '09228076111', 33, 'http://localhost/parishsite/index.php/parish/index/twohearts/home', 'Ronnie is so gay'),
 (2, 'lourdes', 'Our Lady of Lourdes Parish', 1, 1, 1, '123123123', 7, 'http://localhost/parishsite/index.php/parish/index/lourdes/afufu', 'Orvz bayuuuttt'),
 (3, 'guadalupearchshrine', 'Archdiocesan Shrine of Our Lady of Guadalupe', 1, 1, 1, '123123123', 3, NULL, 'potato potato potato potato potato'),
 (4, 'sacredheart', 'Our Lady of the Sacred Heart Parish - Capitol', 1, 1, 1, '123123123', 4, NULL, 'Once upon a time, there was once an ugly barnacle. He was so ugly... Everyone died. The end.'),
@@ -376,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('e6c16a913dd5331b6e9fb8238a2cd7e6', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36', 1404142968, 'a:1:{s:9:"user_data";a:4:{s:8:"username";s:7:"lourdes";s:8:"password";s:32:"9618df17a1d242eed1275efef4bd6681";s:9:"id_parish";s:1:"2";s:4:"role";s:1:"2";}}');
+('5bbff8a87be2f6112b521c801a545290', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36', 1406301174, 'a:1:{s:9:"user_data";a:4:{s:8:"username";s:5:"dummy";s:8:"password";s:32:"275876e34cf609db118f3d84b799a790";s:9:"id_parish";s:1:"1";s:4:"role";s:1:"2";}}');
 
 -- --------------------------------------------------------
 
