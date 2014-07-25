@@ -1,7 +1,7 @@
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-include 'pdf2text.php';
+//include 'pdf2text.php';
 
 class parish_site extends CI_Controller {
 

@@ -17,6 +17,9 @@ class parish extends CI_Controller {
    $parishKey = $this->uri->segment(3);
    $pageName = $this->uri->segment(4);
    
+   if($parishKey == NULL) {
+	return;
+   }
    
    if($pageName === false) {
 	$link = $this->model_externals->model_getHome($parishKey);
@@ -30,7 +33,9 @@ class parish extends CI_Controller {
 	}	
    } else {
 	$data['code'] = $this->model_externals->model_getPage($parishKey, $pageName);   
-   }   
+	$data['pages'] = $this->model_externals->model_getPageNames($parishKey);
+	$data['parishKey'] = $parishKey;
+   }
    
    $this->load->view('externals', $data);
  }

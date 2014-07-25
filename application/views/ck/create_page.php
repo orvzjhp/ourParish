@@ -56,7 +56,7 @@
       return function()
       {
         var p = page;
-		console.log('sending to controller '+ "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>);
+		console.log('sending to controller '+ "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>+" <?php echo $keyword[0]->keyword; ?>");
         $.ajax({
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/updateUrl",

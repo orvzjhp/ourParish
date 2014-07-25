@@ -12,6 +12,7 @@ class ck_db extends CI_Model
 	function model_updateUrl($data, $id_parish) {
 		$this->db->where('id_parish', $id_parish);
 		$this->db->update('parish', $data); 
+		//$query = $this->db->query("Update url FROM parish where id_parish='$id_parish'");
 		return $this->db->affected_rows() > 0;
 	}
 	

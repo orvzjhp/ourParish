@@ -20,13 +20,35 @@ Class model_externals extends CI_Model
 		}
 	}	
 	
+	function model_getPageNames($parishKey) {
+		$this->db->select('page.page_name');
+		$this->db->from('page');
+
+		$this->db->where('parish.keyword', $parishKey); 
+
+		$this->db->join('parish', 'parish.id_parish = page.id_parish');
+
+		$query = $this->db->get();
+ 
+		if($query->num_rows() > 0)
+		{
+			return $query->result();
+		}
+		else
+		{
+			return false;
+		}
+
+		
+	}
+	
 	function model_getPage($parishKey, $pageName) {
 	
 		$this->db->select('page.description');
 		$this->db->from('page');
 		
 		$this->db->where('parish.keyword', $parishKey); 
-		$this->db->where('page.page_name', $pageName); 
+		$this->db->where('page.page_name', $pageName);
 		
 		$this->db->join('parish', 'parish.id_parish = page.id_parish');
 	

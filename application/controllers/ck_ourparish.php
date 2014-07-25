@@ -57,7 +57,7 @@ class ck_Ourparish extends sessionController {
 			$page = $this->input->post('page');
 			$id_parish = $this->input->post('id_parish');
 			$data = array(
-			   'url' => base_url().'index.php/parish/index/'.$keyword.'/'.$page ,
+			   'url' => base_url().'index.php/parish/index/'.$keyword.'/'.$page
 			);
 			
 			if($this->ck_db->model_updateUrl($data, $id_parish)) {
