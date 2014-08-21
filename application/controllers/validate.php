@@ -9,11 +9,10 @@ class validate extends CI_Controller {
  }
  
   function loginPage() {
-   if ( $this->session->userdata('userdata') == FALSE) {   
+   if ( $this->session->userdata('user_data') == FALSE) {   
      $this->load->helper(array('form'));
 	 $this->load->view('admin/login_view');  
    } else {
-
      redirect('admin/homePage', 'refresh');
   }
  }
@@ -43,10 +42,12 @@ class validate extends CI_Controller {
 	
 	if($this->login->model_verifyUser($data)) {
 		$details = $this->login->model_getAdminDetails($data['username']);
-		$data['id_parish'] = $details[0]['id_parish'];
-		$data['role'] = $details[0]['role'];
 		
-		$this->session->set_userdata('user_data', $data);
+		$data2['username'] = $this->input->post('username');
+		$data2['id_parish'] = $details[0]['id_parish'];
+		$data2['role'] = $details[0]['role'];
+		
+		$this->session->set_userdata('user_data', $data2);
 		return TRUE;
 	}
 	else {

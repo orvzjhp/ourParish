@@ -16,12 +16,12 @@
       return function()
       {
         var p = page;
-		console.log('sending to controller '+ "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>);
+		console.log('sending to controller '+ "page=" + p );
         $.ajax({
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/selectPage",
           dataType: "json",
-          data: "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>,
+          data: "page=" + p,
           success:
               function(data) {
                 console.log(data);
@@ -56,12 +56,12 @@
       return function()
       {
         var p = page;
-		console.log('sending to controller '+ "page=" + p +"&id_parish="+ <?php echo $id_parish; ?>+" <?php echo $keyword[0]->keyword; ?>");
+		console.log('sending to controller '+ "page=" + p +" <?php echo $keyword[0]->keyword; ?>");
         $.ajax({
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/updateUrl",
           dataType: "json",
-          data: "page=" + p +"&id_parish=<?php echo $id_parish; ?>&keyword=<?php echo $keyword[0]->keyword; ?>",
+          data: "page=" + p + "&keyword=<?php echo $keyword[0]->keyword; ?>",
           success:
               function(data) {
                 console.log(data);
@@ -84,7 +84,7 @@
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/deletePage",
           dataType: "json",
-          data: "page="+ p +"&id_parish=" + <?php echo $id_parish; ?>,
+          data: "page="+ p,
           success:
               function(data) {
 				console.log('delete succesful');
@@ -109,7 +109,7 @@
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/renamePage",
           dataType: "json",
-          data: "page=" + p +"&id_parish=" + <?php echo $id_parish; ?>,
+          data: "page=" + p,
           success:
               function(data) {
                              
@@ -358,11 +358,10 @@
     type: "POST",
     url: "<?php echo base_url(); ?>index.php/ck_ourparish/addPage",
     dataType: "json",
-    data: id_page + "&id_parish=" + <?php echo $id_parish; ?>,
+    data: id_page,
     success:
         function(data) {
-          showHeader();
-          
+          showHeader();          
         },          
     error: function(data){
         console.log(data);          
@@ -378,7 +377,6 @@
           type: "POST",
           url: "<?php echo base_url(); ?>index.php/ck_ourparish/showHeader",
           dataType: "json",
-		  data: "id_parish=" + <?php echo $id_parish; ?>,
           success:
             function(data) 
             {
@@ -456,7 +454,7 @@
     type: "POST",
     url: "<?php echo base_url(); ?>index.php/ck_ourparish/updateDescription",
     dataType: "json",
-    data: id_page +"&id_parish=" + <?php echo $id_parish; ?>,
+    data: id_page,
 	
     success:
         function(data) {
@@ -476,7 +474,7 @@
     type: "POST",
     url: "<?php echo base_url(); ?>index.php/ck_ourparish/updatePage",
     dataType: "json",
-    data: id_page +"&id_parish=" + <?php echo $id_parish; ?>,
+    data: id_page,
     success:
         function(data) {
           showHeader();

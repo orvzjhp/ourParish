@@ -65,7 +65,7 @@
   </div><!-- /.col-lg-6 -->
  
                <!--==========================Calling the page of the iframes=========================================-->           
-          <iframe id="myframe" src="<?php echo base_url(); ?>index.php/parish_site/thumbnails/" height="1000" width="1000" scrolling="no"  frameBorder="0"></iframe>            
+          <iframe id="myframe" src="<?php echo base_url(); ?>index.php/parish_site/thumbnails/" height="1000" width="1000" scrolling="no"  frameBorder="0" onload='javascript:test.initIframeSize(this);'></iframe>
                 <!--============================End=========================================================-->
           
       </div>

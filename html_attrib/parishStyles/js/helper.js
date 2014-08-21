@@ -582,6 +582,7 @@ function ViewSwitcher()
 	this.views = {};
 	var base_url = $("#init").data('base_url');
 	var indicator = "thumbnails";
+	var scrollHeight;
 
 	this.views["thumbnails"] = "index.php/parish_site/thumbnails";
 	this.views["lists"] 		 = "index.php/parish_site/lists";
@@ -596,12 +597,39 @@ function ViewSwitcher()
 		'<link rel="stylesheet" type="text/css" href="'+ base_url +'html_attrib/parishStyles/css/parishStyle.css" media="screen"></style>';
 	};
 
+	this.initIframeSize = function(obj)
+	{
+		scrollHeight = obj.contentWindow.document.body.scrollHeight;
+		obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+	}
+
+	var resizeIframe = function(obj)
+	{
+	    obj.style.height = scrollHeight + 'px';
+	}
+
+	var resizeIframeWHeight = function(obj, height)
+	{
+	    obj.style.height = height + 'px';
+	}
+
 	var closure = function(ref, key)
 	{
 		return function()
 		{
-			document.getElementById("myframe").src = base_url + ref.views[key];		
+			document.getElementById("myframe").src = base_url + ref.views[key];
+			var a = document.getElementById("myframe");
+			a.setAttribute("onload", "");
 			indicator = key;
+			switch(key)
+			{
+				case "thumbnails":
+					resizeIframe(a);
+					break;
+				case "lists":
+					resizeIframeWHeight(a, 1000);
+					break;
+			}
 		};
 	};
 

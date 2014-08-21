@@ -51,7 +51,7 @@
 						</td>
 						
 						<td>
-							<a style="margin-left:5px;" id="ckEditor" href="<?php echo base_url(); ?>index.php/ck_ourparish/showpage/<?php echo $parish_id; ?>">CKEditor</a>
+							<a style="margin-left:5px;" id="ckEditor" href="<?php echo base_url(); ?>index.php/ck_ourparish/showpage">CKEditor</a>
 						</td>
 						
 						<td>

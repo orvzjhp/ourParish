@@ -6,12 +6,12 @@ $(document).ready(function(){
   });
   
   $("#editDescForm").submit(function() {
-	var parish_id = $("#editDesc_PID").attr('value');	
+
 	$.ajax({
 		type: "POST",
 		url: base_url + "index.php/parishadmin/editLocation",
 		dataType: "json",
-		data:  $(this).serialize() + '&parish_id=' + parish_id ,
+		data:  $(this).serialize(),
 		success:
 			  function(data) {
 					console.log(data);					
@@ -26,9 +26,7 @@ $(document).ready(function(){
   });
   
   $("#uploadForm").submit(function(e){
-	console.log('parish id passed is ' + $("#editDesc_PID").attr('value'));
-	
-	console.log('image id passed is ' + $("#thumb").attr('data-id'));
+
 	e.preventDefault();
 	$.ajaxFileUpload({
 		url             : base_url + 'index.php/parishadmin/updateCover', 
@@ -36,8 +34,7 @@ $(document).ready(function(){
 		fileElementId   :'imageUpload',
 		dataType        : 'json',
 		data            : {
-			'imageID'     : $("#thumb").data('id'),
-			'parish_id'   : $("#editDesc_PID").attr('value')
+			'imageID'     : $("#thumb").data('id')
 		},
 		success : function (data)
 		{
@@ -80,20 +77,13 @@ $(document).ready(function(){
      $("#editDesc_PID").attr('value', $(this).data('id'));
 	 editLocation();
    });
-
-   $("#editDetails").click(function(){
-     $("#editDesc_PID").attr('value', $(this).data('id'));
-	 editLocation();
-   });
    
    
   function editLocation() {
-	var parish_id = $("#editDesc_PID").attr('value');
 	$.ajax({
 		type: "POST",
 		url: base_url + "index.php/parishadmin/getParDetails",
 		dataType: "json",
-		data: "parish_id=" + parish_id,
 		success:
 			  function(data) {
 					document.getElementById("thumb").src= base_url + "html_attrib/parishStyles/images/parishcovers/"+data.details[0].filename+'.'+data.details[0].ext;					
@@ -182,7 +172,7 @@ $(document).ready(function(){
 		type: "POST",
 		url: base_url + "index.php/parishadmin/insert" + table,
 		dataType: "json",
-		data: $(this).serialize() + "&parish_id=" + parish_id,
+		data: $(this).serialize(),
 		success:
 			  function(data) {
 					console.log(data);
@@ -200,12 +190,12 @@ $(document).ready(function(){
 		var table =  $("#customTag").data('table_type');
 		var parish_id = $("#customTag").data('parish_id');
 		var sched_id =  $("#update_ID").data('sched_id');
-		console.log($(this).serialize() + "&parish_id=" + parish_id + "&sched_id=" + sched_id);
+		//console.log($(this).serialize() + "&parish_id=" + parish_id + "&sched_id=" + sched_id);
 		$.ajax({
 		type: "POST",
 		url: base_url + "index.php/parishadmin/update" + table,
 		dataType: "json",
-		data: $(this).serialize() + "&parish_id=" + parish_id + "&sched_id=" + sched_id,
+		data: $(this).serialize() + "&sched_id=" + sched_id,
 		success:
 			  function(data) {
 					console.log(data);
@@ -225,7 +215,6 @@ $(document).ready(function(){
 			type: "POST",
 			url: base_url + "index.php/parishadmin/schedules" + type,
 			dataType: "json",
-			data: "parish_id=" + parish_id,
 			success:
 				  function(data) {
 						$("#schedules_" + type).html('');
@@ -329,7 +318,7 @@ $(document).ready(function(){
 		type: "POST",
 		url: base_url + "index.php/parishadmin/delete" + sched,
 		dataType: "json",
-		data: "parish_id=" + parish_id + "&sched_id=" + $(this).attr('value'),
+		data: "sched_id=" + $(this).attr('value'),
 		success:
 			  function(data) {
 			  
