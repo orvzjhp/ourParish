@@ -61,6 +61,9 @@
 						<td>
 							<a style="margin-left:5px;" data-toggle="modal" data-backdrop="static" data-target="#managesched" data-id="<?php echo $parish_id; ?>" id="editSchedules">Schedule</a>
 						</td>
+						<td>
+							<a style="margin-left:5px;" data-toggle="modal" data-backdrop="static" data-target="#news" data-id="<?php echo $parish_id; ?>" id="editNews">News</a>
+						</td>
 					
 					</tr>
 			</table>
@@ -193,6 +196,145 @@
   </div>
 </div>   
 
+<!-- Start of Edit News modal-->
+<div class="modal fade" id="news" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal_background">
+      <div class="modal-header modal_bheader">
+        <h4 class="modal-title" id="myModalLabel">EDIT NEWS</h4>
+      </div>
+
+	    <div class="modal-body" style="margin-bottom:3px;">
+	      
+         
+		<form id="editNews">		
+		<div class="form-group">
+    	<label for="labelfortnumber">Title</label>
+    	<input type="text" class="form-control" id="title" name="title" placeholder="Enter News Title">
+    	</div>
+    	<div class="form-group">
+    	<label for="labelfortnumber">Content</label>
+    	<textarea class="form-control textarea_edit" rows="5"></textarea>
+    	</div>
+		 
+		  <table>
+	
+			<tr>
+				<td>
+					<h4 style="margin-bottom:10px;">Date</h4>
+				</td>	
+				<td>
+					<div>
+						<select class="form-control" name="month">
+							<option value='1'>January</option>
+							<option value='2'>February</option>
+							<option value='3'>March</option>
+							<option value='4'>April</option>
+							<option value='5'>May</option>
+							<option value='6'>June</option>
+							<option value='7'>July</option>
+							<option value='8'>August</option>
+							<option value='9'>September</option>
+							<option value='10'>October</option>
+							<option value='11'>November</option>
+							<option value='12'>December</option>
+						</select>
+					</div>	
+				</td>
+
+				<td>
+					<div>
+						<select class="form-control" name="day">
+							<option value='1'>1</option>
+							<option value='2'>2</option>
+							<option value='3'>3</option>
+							<option value='4'>4</option>
+							<option value='5'>5</option>
+							<option value='6'>6</option>
+							<option value='7'>7</option>
+							<option value='8'>8</option>
+							<option value='9'>9</option>
+							<option value='10'>10</option>
+							<option value='11'>11</option>
+							<option value='12'>12</option>
+							<option value='13'>13</option>
+							<option value='14'>14</option>
+							<option value='15'>15</option>
+							<option value='16'>16</option>
+							<option value='17'>17</option>
+							<option value='18'>18</option>
+							<option value='19'>19</option>
+							<option value='20'>20</option>
+							<option value='21'>21</option>
+							<option value='22'>22</option>
+							<option value='23'>23</option>
+							<option value='24'>24</option>
+							<option value='25'>25</option>
+							<option value='26'>26</option>
+							<option value='27'>27</option>
+							<option value='28'>28</option>
+							<option value='29'>29</option>
+							<option value='30'>30</option>
+							<option value='31'>31</option>
+						</select>
+					</div>	
+				</td>
+
+				<td>
+					<div>
+						<select class="form-control" name="year">
+							<option value='1'>2014</option>
+							<option value='2'>2015</option>
+							<option value='3'>2016</option>
+							<option value='4'>2017</option>
+							<option value='5'>2018</option>
+							<option value='6'>2019</option>
+							<option value='7'>2020</option>
+							<option value='8'>2021</option>
+							<option value='9'>2022</option>
+						</select>
+					</div>	
+				</td>
+			</tr>
+			
+	    </table>
+		 
+		    
+       
+     
+	    </div>
+	    <div class="modal-footer modal_bfooter">
+	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" data-toggle="modal" data-target="#notiedit" class="btn btn-primary" value="Save Changes">
+	    </div>
+	  </form>
+    </div>    
+  </div>
+</div>  
+
+<!--End of Edit description modal -->
+
+<!--notification para edit location -->
+<div class="modal fade" id="notiedit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal_noti modal_notisizesw">
+    <div class="modal-content modal_background">
+      <div class="modal-header modal_bheader" style="height:35px;">
+        <font class="modal-title" id="myModalLabel">STATUS</font>
+      </div>
+ 
+          <div class="modal-body modal_background modal_notisizeh" style="margin-bottom:3px;">
+            <font style="margin-left:55px;">SAVED</font>
+          </div>
+      
+
+    </div>
+  </div>
+</div>   
+
+
+<!--End of Edit News modal -->
+
 </body>
 </html>
 
+   
